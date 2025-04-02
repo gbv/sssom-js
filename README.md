@@ -9,6 +9,10 @@ This Node package provides methods to process mappings in [SSSOM](https://mappin
 
 **THIS IS WORK IN PROGRESS, NOT PUBLISHED AS PACKAGE YET!**
 
+## Installation
+
+Requires Node >= 20.
+
 ## API
 
 The package exports the following:

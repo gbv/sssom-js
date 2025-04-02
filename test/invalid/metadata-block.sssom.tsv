@@ -1,0 +1,8 @@
+# This is a comment that does not belong here.
+#curie_map:
+#  HP: "http://purl.obolibrary.org/obo/HP_"
+#  MP: "http://purl.obolibrary.org/obo/MP_"
+#  orcid: "https://orcid.org/"
+# This is another comment that also does not belong here.
+#creator_id:
+#  - "orcid:0000-0002-7356-1779"

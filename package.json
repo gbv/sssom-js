@@ -29,6 +29,7 @@
     "release:major": "SEMVER=major npm run release"
   },
   "dependencies": {
+    "csv-parser": "^3.2.0",
     "yaml": "^2.7.1"
   },
   "engines": {
