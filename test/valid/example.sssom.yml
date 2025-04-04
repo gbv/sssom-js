@@ -1,0 +1,9 @@
+---
+curie_map:
+  FOODON: http://purl.obolibrary.org/obo/FOODON_
+  KF_FOOD: https://kewl-foodie.inc/food/
+  orcid: https://orcid.org/
+mapping_set_id: https://w3id.org/sssom/tutorial/example1.sssom.tsv
+mapping_set_description: Manually curated alignment of KEWL FOODIE INC internal food and nutrition database with Food Ontology (FOODON). Intended to be used for ontological analysis and grouping of KEWL FOODIE INC related data.
+license: https://creativecommons.org/licenses/by/4.0/
+mapping_date: 2022-05-02
