@@ -1,5 +1,5 @@
 {
-  "name": "sssom",
+  "name": "sssom-js",
   "version": "0.0.1",
   "description": "Simple Standard for Sharing Ontology Mappings (SSOM) JavaScript library",
   "author": "Jakob Voß",

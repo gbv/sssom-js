@@ -1,7 +1,7 @@
 # sssom-js
 
 [![Test](https://github.com/gbv/sssom-js/actions/workflows/test.yml/badge.svg?branch=dev)](https://github.com/gbv/sssom-js/actions/workflows/test.yml)
-[![NPM Version](http://img.shields.io/npm/v/sssom.svg?style=flat)](https://www.npmjs.org/package/sssom)
+[![NPM Version](http://img.shields.io/npm/v/sssom-js.svg?style=flat)](https://www.npmjs.org/package/sssom-js)
 
 > Simple Standard for Sharing Ontology Mappings (SSOM) JavaScript library
 
@@ -19,7 +19,7 @@ This Node package provides methods and a command line client to process mappings
 ## Install 
 
 ```bash
-npm install sssom
+npm install sssom-js
 ```
 
 Requires Node.js >= 18.
