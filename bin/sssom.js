@@ -13,8 +13,8 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
     // TODO: support more output formats
     options.metadataHandler = metadata => console.log(JSON.stringify(metadata || {}))
     options.mappingHandler = mapping => console.log(JSON.stringify(mapping))
-
-    return process.exit(await parseTSV(input, options))
+      
+    return await parseTSV(input, options)
   })
   .parse(process.argv)
   .catch(e => {
