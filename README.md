@@ -11,6 +11,7 @@ This Node package provides methods and a command line client to process mappings
 
 - [Install](#install)
 - [Usage](#usage)
+- [API](#api)
 - [Maintainers](#maintainers)
 - [Publish](#publish)
 - [Contribute](#contribute)
@@ -28,21 +29,21 @@ Requires Node.js >= 18.
 
 See [API](#api) for usage as a library. The package includes the command line client `sssom`. Please call `sssom --help` for usage.
 
-## Installation
-
-Requires Node >= 20.
-
 ## API
 
 The package exports the following:
 
 ### TSVReader
 
-Parses [SSSOM/TSV] from a stream and emits `metadata` and `mapping` events.
+This event emitter parses [SSSOM/TSV] from a stream and emits `metadata` and `mapping` events.
 
-### parseTSV
+### parseSSSOM (input, options)
 
-Parses [SSSOM/TSV] from a stream or file and returns a mapping set.
+This function parses SSSOM in format `options.from` (default `tsv`) from a stream or file and returns a mapping set. The result should directly be serializable as SSSOM/JSON.
+
+### parseTSV (input, options)
+
+This function parses [SSSOM/TSV] from a stream or file and returns a mapping set. The result should directly be serializable as SSSOM/JSON.
 
 ## Maintainers
 

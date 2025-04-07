@@ -2,6 +2,8 @@ import { expect } from "chai"
 import fs from "fs"
 import { TSVReader } from "../index.js"
 
+import { example } from "./example.js"
+
 describe("TSVReader", () => {
   let reader
   afterEach(() => reader.removeAllListeners())
@@ -19,6 +21,19 @@ describe("TSVReader", () => {
         expect(err.message).to.equal(message)
         done()
       })
+    })
+  })
+
+  it("should parse example SSSOM/TSV", done => {
+    reader = new TSVReader(fs.createReadStream("test/valid/example.sssom.tsv"))
+    const result = { mappings: [] }
+    reader.on("metadata", metadata => Object.assign(result, metadata))
+    reader.on("mapping", mapping => result.mappings.push(mapping))
+    reader.on("end", metadata => {
+      expect(result).to.deep.equal(example)
+      const { mappings, ...rest } = result // eslint-disable-line
+      expect(metadata).to.deep.equal(rest)
+      done()
     })
   })
 })
