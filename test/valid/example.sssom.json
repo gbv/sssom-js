@@ -15,7 +15,7 @@
       "predicate_id": "http://www.w3.org/2004/02/skos/core#exactMatch",
       "object_id": "http://purl.obolibrary.org/obo/FOODON_00002473",
       "object_label": "apple (whole)",
-      "mapping_justification": "semapv:ManualMappingCuration",
+      "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "author_id": [
         "https://orcid.org/0000-0002-7356-1779"
       ],
@@ -28,7 +28,7 @@
       "predicate_id": "http://www.w3.org/2004/02/skos/core#exactMatch",
       "object_id": "http://purl.obolibrary.org/obo/FOODON_00003348",
       "object_label": "Gala apple (whole)",
-      "mapping_justification": "semapv:ManualMappingCuration",
+      "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "author_id": [
         "https://orcid.org/0000-0002-7356-1779"
       ],
@@ -40,7 +40,7 @@
       "predicate_id": "http://www.w3.org/2004/02/skos/core#exactMatch",
       "object_id": "http://purl.obolibrary.org/obo/FOODON_00004186",
       "object_label": "Pink apple (whole)",
-      "mapping_justification": "semapv:ManualMappingCuration",
+      "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "author_id": [
         "https://orcid.org/0000-0002-7356-1779"
       ],
@@ -53,7 +53,7 @@
       "predicate_id": "http://www.w3.org/2004/02/skos/core#broadMatch",
       "object_id": "http://purl.obolibrary.org/obo/FOODON_00002473",
       "object_label": "apple (whole)",
-      "mapping_justification": "semapv:ManualMappingCuration",
+      "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "author_id": [
         "https://orcid.org/0000-0002-7356-1779"
       ],
