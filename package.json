@@ -2,6 +2,7 @@
   "name": "sssom-js",
   "version": "0.1.1",
   "description": "Simple Standard for Sharing Ontology Mappings (SSOM) JavaScript library",
+  "keywords": ["crosswalk", "concordance", "alignment", "jskos"],
   "author": "Jakob Voß",
   "license": "MIT",
   "homepage": "https://github.com/gbv/sssom-js#readme",
