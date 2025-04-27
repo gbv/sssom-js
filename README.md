@@ -23,7 +23,7 @@ This Node package provides methods and a command line client to process mappings
 npm install sssom-js
 ```
 
-Requires Node.js >= 18.
+Requires Node.js >= 20.
 
 ## Usage
 
