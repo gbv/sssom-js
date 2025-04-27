@@ -31,19 +31,27 @@ See [API](#api) for usage as a library. The package includes the command line cl
 
 ## API
 
-The package exports the following:
+~~~js
+import { parseSSSOM, parseTSV, parseJSON, TSVReader } from "sssom-js"
+~~~
+
+### parseSSSOM (input, options)
+
+This function parses SSSOM in format `options.from` (`json`, or `tsv` as default) from a stream or file and returns a mapping set. The result should directly be serializable as SSSOM/JSON.
+
+### parseTSV
+
+Parse [SSSOM/TSV] from a stream or file and returns a mapping set.
+
+### parseJSON
+
+Parse [SSSOM/JSON] from a stream or file and returns a mapping set.
+
+*Note that SSSOM/JSON has not been specified officially yet, so details may change!*
 
 ### TSVReader
 
 This event emitter parses [SSSOM/TSV] from a stream and emits `metadata` and `mapping` events.
-
-### parseSSSOM (input, options)
-
-This function parses SSSOM in format `options.from` (default `tsv`) from a stream or file and returns a mapping set. The result should directly be serializable as SSSOM/JSON.
-
-### parseTSV (input, options)
-
-This function parses [SSSOM/TSV] from a stream or file and returns a mapping set. The result should directly be serializable as SSSOM/JSON.
 
 ## Maintainers
 
@@ -59,3 +67,4 @@ MIT license
 
 [SSSOM]: https://mapping-commons.github.io/sssom/
 [SSSOM/TSV]: https://mapping-commons.github.io/sssom/spec-formats-tsv/
+[SSSOM/JSON]: https://mapping-commons.github.io/sssom/spec-formats-json/
