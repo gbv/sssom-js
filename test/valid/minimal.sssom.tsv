@@ -1,0 +1,5 @@
+# curie_map:
+#  x: http://example.org/
+# mapping_set_id: https://example.org/mappings
+subject_id	predicate_id	object_id	mapping_justification
+x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration
