@@ -7,10 +7,11 @@ describe("parseSSSOM", () => {
   Object.entries({
     "SSSOM/TSV": ["test/valid/example.sssom.tsv"],
     "SSSOM/JSON": ["test/valid/example.sssom.json", { from: "json" }],
-    // TODO: external metadata mode
+    "SSSOM/JSON with external metadata": ["test/valid/example.mappings.json", { metadata: "test/valid/example.sssom.yml" }],
   }).forEach(([test, args]) => {
     it(test, async () => {
-      expect(await parseSSSOM(...args)).to.deep.equal(example)
+      const result = await parseSSSOM(...args)
+      expect(result).to.deep.equal(example)
     })
   })
 })

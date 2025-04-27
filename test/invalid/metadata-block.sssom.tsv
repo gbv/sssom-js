@@ -6,3 +6,5 @@
 # This is another comment that also does not belong here.
 #creator_id:
 #  - "orcid:0000-0002-7356-1779"
+#mapping_set_id: https://example.org/mappings
+#license: https://creativecommons.org/licenses/by/4.0/

@@ -9,10 +9,12 @@ describe("TSVReader", () => {
   afterEach(() => reader.removeAllListeners())
 
   Object.entries({
-    "missing-mapping-slot.sssom.tsv": "Missing mapping slot in line 1: mapping_justification",
-    "missing-mapping-slots.sssom.tsv": "Missing mapping slots in line 1: predicate_id, mapping_justification",
+    "missing-mapping-slot.sssom.tsv": "Missing mapping slot in line 3: mapping_justification",
+    "missing-mapping-slots.sssom.tsv": "Missing mapping slots in line 3: predicate_id, mapping_justification",
     "metadata-block.sssom.tsv": "Metadata line 2 has wrong number of space characters!",
-    "empty-line.sssom.tsv": "Missing mapping slots in line 5: subject_id, predicate_id, object_id, mapping_justification",
+    "empty-line.sssom.tsv": "Missing mapping slots in line 7: subject_id, predicate_id, object_id, mapping_justification",
+    "curie.sssom.tsv": "Unknown or invalid CURIE 'x:1' in line 4",
+    "license.sssom.tsv": "Missing metadata slot: license",
     empty: "Input is empty",
   }).forEach(([file, message]) => {
     it(`should emit error for ${file}`, done => {
