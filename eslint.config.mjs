@@ -12,4 +12,7 @@ export default [
         ...globals.mocha,
       },
     },
+    rules: {
+      "no-case-declarations": "off",
+    },
   }]
