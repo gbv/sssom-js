@@ -7,6 +7,10 @@
 
 This Node package provides methods and a command line client to process mappings in [SSSOM] format.
 
+It implements parsing SSSOM (TSV and JSON) with validation and transformation to other SSSOM serializations and to [JSKOS] format.
+
+[Propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots) is not supported yet.
+
 # Table of Contents
 
 - [Install](#install)
@@ -49,12 +53,14 @@ The following formats are supported:
 format   | description   | support
 ---------|---------------|---------
 `tsv`    | [SSSOM/TSV]   | from
-`json`   | [SSSOM/JSON]  | from and to
+`json`   | [SSSOM/JSON]  | from & to
 `ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to
 `jskos`  | [JSKOS]       | to
 `ndjskos`| metadata and mappings on individual lines (JSKOS) | to 
 
 If not specified, formats are guessed from file name with fallback to `tsv` (from) and `ndjson` (to).
+
+Formats `json` and `jskos` require to fully load the input into memory for processing, the other formats support streaming processing.
 
 ### API
 
