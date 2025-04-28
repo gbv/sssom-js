@@ -14,7 +14,10 @@ describe("TSVReader", () => {
     "metadata-block.sssom.tsv": "Metadata line 2 has wrong number of space characters!",
     "empty-line.sssom.tsv": "Missing mapping slots in line 7: subject_id, predicate_id, object_id, mapping_justification",
     "curie.sssom.tsv": "Unknown or invalid CURIE 'x:1' in line 4",
-    "license.sssom.tsv": "Missing metadata slot: license",
+    "license.sssom.tsv": "Missing MappingSet slot: license",
+    "percent.sssom.tsv": "similarity_score must be number between 0 and 1, got 1.2",
+    "uri.sssom.tsv": "license must be Uri, got value GPL",
+    "array-value.sssom.tsv": "see_also must be Uri, got value http://example.org/%",
     empty: "Input is empty",
   }).forEach(([file, message]) => {
     it(`should emit error for ${file}`, done => {

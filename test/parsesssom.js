@@ -3,6 +3,8 @@ import { parseSSSOM } from "../index.js"
 
 import { example } from "./example.js"
 
+const validFiles = ["array.sssom.tsv","minimal.sssom.tsv"]
+
 describe("parseSSSOM", () => {
   Object.entries({
     "SSSOM/TSV": ["test/valid/example.sssom.tsv"],
@@ -14,4 +16,12 @@ describe("parseSSSOM", () => {
       expect(result).to.deep.equal(example)
     })
   })
+  
+  validFiles.forEach(file => {
+    it(file, async () => {
+      const result = await parseSSSOM(`test/valid/${file}`)
+      expect(result).to.be.a("object")
+    })
+  })
+
 })

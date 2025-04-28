@@ -1,0 +1,6 @@
+# curie_map:
+#  x: http://example.org/
+# mapping_set_id: https://example.org/mappings
+# license: https://creativecommons.org/licenses/by/4.0/
+subject_id	predicate_id	object_id	mapping_justification	similarity_score
+x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration	1.2
