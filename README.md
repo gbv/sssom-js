@@ -65,20 +65,12 @@ Formats `json` and `jskos` require to fully load the input into memory for proce
 ### API
 
 ~~~js
-import { parseSSSOM, parseTSV, parseJSON, TSVReader } from "sssom-js"
+import { parseSSSOM, TSVReader } from "sssom-js"
 ~~~
 
 #### parseSSSOM (input, options)
 
-This function parses SSSOM in format `options.from` (`json`, or `tsv` as default) from a stream or file and returns a mapping set. The result should directly be serializable as SSSOM/JSON.
-
-#### parseTSV
-
-Parse [SSSOM/TSV] from a stream or file and returns a mapping set.
-
-#### parseJSON
-
-Parse [SSSOM/JSON] from a stream or file and returns a mapping set.
+This asynchronous function parses SSSOM in format `options.from` (`json`, or `tsv` as default) from a stream or file and returns a mapping set on success. The result should directly be serializable as SSSOM/JSON.
 
 *Note that SSSOM/JSON has not been specified officially yet, so details may change!*
 
