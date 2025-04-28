@@ -9,10 +9,10 @@ const printJSON = data => console.log(JSON.stringify(data || {}, null, 2))
 const printNDJSON = data => console.log(JSON.stringify(data || {}))
 
 cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
-  .description("Parse and convert SSSOM/TSV")
-  .option("-v, --verbose           verbose error messages")
+  .description("Parse and convert SSSOM")
   .option(`-f, --from FORMAT       input format (${inputFormats.join(", ")})`)
   .option(`-t, --to FORMAT         output format (${outputFormats.join(", ")})`)
+  .option("-v, --verbose           verbose error messages")
   .action(async (args, options) => {
     const input = args.length ? args.shift() : "-"
     if (args.length) {
