@@ -84,7 +84,19 @@ Parse [SSSOM/JSON] from a stream or file and returns a mapping set.
 
 #### TSVReader
 
-This event emitter parses [SSSOM/TSV] from a stream and emits `metadata` and `mapping` events.
+This event emitter parses [SSSOM/TSV] from a stream and emits `metadata` and `mapping` events:
+
+~~~js
+import fs from "fs"
+import { TSVReader } from "./index.js"
+
+const input = fs.createReadStream("test/valid/minimal.sssom.tsv")
+new TSVReader(input)
+  .on("metadata", console.log)
+  .on("mapping", console.log)
+  .on("error", console.error)
+  .on("end", console.log)
+~~~
 
 ## Maintainers
 
