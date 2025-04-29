@@ -65,7 +65,7 @@ Formats `json` and `jskos` require to fully load the input into memory for proce
 ### API
 
 ~~~js
-import { parseSSSOM, TSVReader } from "sssom-js"
+import { parseSSSOM, TSVReader, toJskosRegistry, toJskosMapping } from "sssom-js"
 ~~~
 
 #### parseSSSOM (input, options)
@@ -102,6 +102,14 @@ new TSVReader(input)
   .on("error", console.error)
   .on("end", console.log)
 ~~~
+
+#### toJskosRegistry
+
+Convert a parsed MappingSet to a [JSKOS Registry](https://gbv.github.io/jskos/#registries) object.
+
+#### toJskosMapping
+
+Convert a parsed Mapping to a [JSKOS Concept Mapping](https://gbv.github.io/jskos/#concept-mapping) object.
 
 ## Maintainers
 

@@ -1,0 +1,148 @@
+{
+  "uri": "https://w3id.org/sssom/tutorial/example1.sssom.tsv",
+  "license": [
+    {
+      "uri": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "mappings": [
+    {
+      "type": [
+        "http://www.w3.org/2004/02/skos/core#exactMatch"
+      ],
+      "from": {
+        "memberSet": [
+          {
+            "uri": "https://kewl-foodie.inc/food/F001",
+            "prefLabel": {
+              "und": "apple"
+            }
+          }
+        ]
+      },
+      "to": {
+        "memberSet": [
+          {
+            "uri": "http://purl.obolibrary.org/obo/FOODON_00002473",
+            "prefLabel": {
+              "und": "apple (whole)"
+            }
+          }
+        ]
+      },
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
+      "mappingRelevance": 0.95,
+      "note": {
+        "und": [
+          "We could map to FOODON:03310788 instead to cover sliced apples, but only \"whole\" apple types exist."
+        ]
+      },
+      "creator": [
+        {
+          "uri": "https://orcid.org/0000-0002-7356-1779"
+        }
+      ]
+    },
+    {
+      "type": [
+        "http://www.w3.org/2004/02/skos/core#exactMatch"
+      ],
+      "from": {
+        "memberSet": [
+          {
+            "uri": "https://kewl-foodie.inc/food/F002",
+            "prefLabel": {
+              "und": "gala"
+            }
+          }
+        ]
+      },
+      "to": {
+        "memberSet": [
+          {
+            "uri": "http://purl.obolibrary.org/obo/FOODON_00003348",
+            "prefLabel": {
+              "und": "Gala apple (whole)"
+            }
+          }
+        ]
+      },
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
+      "mappingRelevance": 1,
+      "creator": [
+        {
+          "uri": "https://orcid.org/0000-0002-7356-1779"
+        }
+      ]
+    },
+    {
+      "type": [
+        "http://www.w3.org/2004/02/skos/core#exactMatch"
+      ],
+      "from": {
+        "memberSet": [
+          {
+            "uri": "https://kewl-foodie.inc/food/F003",
+            "prefLabel": {
+              "und": "pink"
+            }
+          }
+        ]
+      },
+      "to": {
+        "memberSet": [
+          {
+            "uri": "http://purl.obolibrary.org/obo/FOODON_00004186",
+            "prefLabel": {
+              "und": "Pink apple (whole)"
+            }
+          }
+        ]
+      },
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
+      "mappingRelevance": 0.9,
+      "note": {
+        "und": [
+          "We could map to FOODON:00004187 instead which more specifically refers to \"raw\" Pink apples. Decided against to be consistent with other mapping choices."
+        ]
+      },
+      "creator": [
+        {
+          "uri": "https://orcid.org/0000-0002-7356-1779"
+        }
+      ]
+    },
+    {
+      "type": [
+        "http://www.w3.org/2004/02/skos/core#broadMatch"
+      ],
+      "from": {
+        "memberSet": [
+          {
+            "uri": "https://kewl-foodie.inc/food/F004",
+            "prefLabel": {
+              "und": "braeburn"
+            }
+          }
+        ]
+      },
+      "to": {
+        "memberSet": [
+          {
+            "uri": "http://purl.obolibrary.org/obo/FOODON_00002473",
+            "prefLabel": {
+              "und": "apple (whole)"
+            }
+          }
+        ]
+      },
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
+      "mappingRelevance": 1,
+      "creator": [
+        {
+          "uri": "https://orcid.org/0000-0002-7356-1779"
+        }
+      ]
+    }
+  ]
+}

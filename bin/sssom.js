@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
 import cli from "../lib/cli.js"
-import { parseSSSOM, inputFormats } from "../index.js"
-import { set2jskos, mapping2jskos } from "../lib/jskos.js"
+import { parseSSSOM, inputFormats, toJskosRegistry, toJskosMapping } from "../index.js"
 
 const outputFormats = ["json","ndjson","jskos","ndjskos"]
 const printJSON = data => console.log(JSON.stringify(data || {}, null, 2))
@@ -28,11 +27,11 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
       options.mappingHandler = printNDJSON
       return await parseSSSOM(input, options)
     } else if (options.to === "ndjskos") {
-      options.metadataHandler = metadata => printNDJSON(set2jskos(metadata))
-      options.mappingHandler = mapping => printNDJSON(mapping2jskos(mapping))
+      options.metadataHandler = metadata => printNDJSON(toJskosRegistry(metadata))
+      options.mappingHandler = mapping => printNDJSON(toJskosMapping(mapping))
       return await parseSSSOM(input, options)
     } else if (options.to === "jskos") {      
-      printJSON(set2jskos(await parseSSSOM(input, options)))
+      printJSON(toJskosRegistry(await parseSSSOM(input, options)))
     } else {
       printJSON(await parseSSSOM(input, options))
     }

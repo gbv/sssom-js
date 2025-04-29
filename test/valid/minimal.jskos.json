@@ -1,0 +1,30 @@
+{
+  "uri": "https://example.org/mappings",
+  "license": [
+    {
+      "uri": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "mappings": [
+    {
+      "type": [
+        "http://www.w3.org/2004/02/skos/core#exactMatch"
+      ],
+      "from": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/1"
+          }
+        ]
+      },
+      "to": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/2"
+          }
+        ]
+      },
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration"
+    }
+  ]
+}
