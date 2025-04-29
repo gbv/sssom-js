@@ -41,11 +41,12 @@ Usage: sssom [options] [<mappings-file> [<metadata-file>]]
 Parse and convert SSSOM
 
 Options:
-  -f, --from FORMAT  input format (tsv, json)
-  -t, --to FORMAT    output format (json, ndjson, jskos, ndjskos)
-  -v, --verbose      verbose error messages
-  -h, --help         output usage information
-  -V, --version      output the version number
+  -f, --from FORMAT    input format (tsv, json)
+  -t, --to FORMAT      output format (json, ndjson, jskos, ndjskos)
+  -p, --prefixes FILE  additional CURIE prefixes (JSON file)
+  -v, --verbose        verbose error messages
+  -h, --help           output usage information
+  -V, --version        output the version number
 ~~~
 
 The following formats are supported:
@@ -78,6 +79,8 @@ This asynchronous function parses SSSOM in format `options.from` (`json`, or `ts
 import { parseSSSOM } from "sssom-js"
 const { mappings, ...metadata } = await parseSSSOM(process.stdin)
 ~~~
+
+Option `prefixes` can be used to extend `curie_map` with additional prefixes.
 
 To parse from a string use `Readable.from`:
 
