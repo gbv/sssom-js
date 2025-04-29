@@ -76,15 +76,15 @@ This asynchronous function parses SSSOM in format `options.from` (`json`, or `ts
 
 ~~~js
 import { parseSSSOM } from "sssom-js"
-
 const { mappings, ...metadata } = await parseSSSOM(process.stdin)
 ~~~
 
-To parse from a string:
+To parse from a string use `Readable.from`:
 
 ~~~js
 import { Readable } from "stream"
-Readable.from(inputString, { encoding: 'utf8' }
+const input = Readable.from("# mapping_set_id: ...")
+const { mappings, ...metadata } = await parseSSSOM(input)
 ~~~
 
 #### TSVReader
