@@ -74,13 +74,26 @@ This asynchronous function parses SSSOM in format `options.from` (`json`, or `ts
 
 *Note that SSSOM/JSON has not been specified officially yet, so details may change!*
 
+~~~js
+import { parseSSSOM } from "sssom-js"
+
+const { mappings, ...metadata } = await parseSSSOM(process.stdin)
+~~~
+
+To parse from a string:
+
+~~~js
+import { Readable } from "stream"
+Readable.from(inputString, { encoding: 'utf8' }
+~~~
+
 #### TSVReader
 
 This event emitter parses [SSSOM/TSV] from a stream and emits `metadata` and `mapping` events:
 
 ~~~js
 import fs from "fs"
-import { TSVReader } from "./index.js"
+import { TSVReader } from "sssom-js"
 
 const input = fs.createReadStream("test/valid/minimal.sssom.tsv")
 new TSVReader(input)
