@@ -1,6 +1,6 @@
 {
   "name": "sssom-js",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Simple Standard for Sharing Ontology Mappings (SSOM) JavaScript library",
   "keywords": [
     "crosswalk",
