@@ -1,0 +1,10 @@
+# curie_map:
+#  FOODON: http://purl.obolibrary.org/obo/FOODON_
+#  KF_FOOD: https://kewl-foodie.inc/food/
+#  orcid: https://orcid.org/
+# mapping_set_id: http://example.org/mapping_set
+# mapping_set_description: description
+# mapping_provider: http://example.org/mapping_provider
+# license: https://creativecommons.org/licenses/by/4.0/
+# mapping_date: 2022-05-02
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	author_id	confidence	comment
