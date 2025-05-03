@@ -17,7 +17,7 @@ describe("TSVReader", () => {
     "license.sssom.tsv": "Missing MappingSet slot: license",
     "percent.sssom.tsv": "similarity_score must be number between 0 and 1, got 1.2",
     "uri.sssom.tsv": "license must be Uri, got value GPL",
-    "array-value.sssom.tsv": "see_also must be Uri, got value http://example.org/%",
+    "array-value.sssom.tsv": "see_also must be Uri, got value //example.org/",
     "date.sssom.tsv": "mapping_date must be Date, got value 2020-13-01",
     "enum.sssom.tsv": "Invalid subject_type value x",
     "eol.sssom.tsv": "Missing MappingSet slot: mapping_set_id",
