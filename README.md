@@ -63,6 +63,13 @@ If not specified, formats are guessed from file name with fallback to `tsv` (fro
 
 Formats `json` and `jskos` require to fully load the input into memory for processing, the other formats support streaming processing.
 
+If you want to allow all CURIE prefixes from [Bioregistry](https://bioregistry.io) without explicitly defining them in `curie_map` you can download and convert the current list for instance with command line tools `curl` and `jq` this way (requires local copy of file [bioregistry.jq](bioregistry.jq)) and then reference result file `bioregistry.json` with option `--prefixes`:
+
+~~~
+curl -sL https://w3id.org/biopragmatics/bioregistry.epm.json | \
+jq -Sf bioregistry.jq > bioregistry.json
+~~~
+
 ### API
 
 ~~~js
