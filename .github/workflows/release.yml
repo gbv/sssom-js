@@ -5,9 +5,10 @@ on:
     tags:
       - v*
   workflow_run:
-    workflows: [test]
+    workflows: [Test]
     branches: [main]
-    types: [completes]
+    types:
+      - completed
 
 jobs:
   release:
