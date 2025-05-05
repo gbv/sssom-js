@@ -9,13 +9,13 @@ describe("TSVReader", () => {
   afterEach(() => reader.removeAllListeners())
 
   Object.entries({
-    "missing-mapping-slot.sssom.tsv": "Missing mapping slot in line 3: mapping_justification",
-    "missing-mapping-slots.sssom.tsv": "Missing mapping slots in line 3: predicate_id, mapping_justification",
-    "metadata-block.sssom.tsv": "Metadata line 2 has wrong number of space characters!",
-    "empty-line.sssom.tsv": "Missing mapping slots in line 7: subject_id, predicate_id, object_id, mapping_justification",
-    "curie.sssom.tsv": "Unknown or invalid CURIE 'x:1' in line 4",
+    "missing-mapping-slot.sssom.tsv": "Missing mapping slot at line 3: mapping_justification",
+    "missing-mapping-slots.sssom.tsv": "Missing mapping slots at line 3: predicate_id, mapping_justification",
+    "metadata-block.sssom.tsv": "Wrong number of prefix space characters at line 2",
+    "empty-line.sssom.tsv": "Missing mapping slots at line 7: subject_id, predicate_id, object_id, mapping_justification",
+    "curie.sssom.tsv": "Unknown or invalid CURIE 'x:1' at line 4",
     "license.sssom.tsv": "Missing MappingSet slot: license",
-    "percent.sssom.tsv": "similarity_score must be number between 0 and 1, got 1.2",
+    "percent.sssom.tsv": "similarity_score must be number between 0 and 1, got 1.2 at line 6",
     "uri.sssom.tsv": "license must be Uri, got value GPL",
     "array-value.sssom.tsv": "see_also must be Uri, got value //example.org/",
     "date.sssom.tsv": "mapping_date must be Date, got value 2020-13-01",
@@ -26,7 +26,7 @@ describe("TSVReader", () => {
     it(`should emit error for ${file}`, done => {
       reader = new TSVReader(fs.createReadStream(`test/invalid/${file}`))
       reader.on("error", err => {
-        expect(err.message).to.equal(message)
+        expect(err.toString()).to.equal(message)
         done()
       })
     })
