@@ -9,14 +9,13 @@ This Node package provides methods and a command line client to process mappings
 
 It implements parsing SSSOM (TSV and JSON) with validation and transformation to other SSSOM serializations and to [JSKOS] format.
 
-[Propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots) is not supported yet.
-
 # Table of Contents
 
 - [Install](#install)
 - [Usage](#usage)
   - [Command line](#command-line)
   - [API](#api)  
+- [Limitations](#limitations)
 - [Maintainers](#maintainers)
 - [Contribute](#contribute)
 - [License](#license)
@@ -120,6 +119,10 @@ Convert a parsed MappingSet to a [JSKOS Registry](https://gbv.github.io/jskos/#r
 #### toJskosMapping
 
 Convert a parsed Mapping to a [JSKOS Concept Mapping](https://gbv.github.io/jskos/#concept-mapping) object.
+
+## Limitations
+
+[Propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots) is not supported yet.
 
 ## Maintainers
 
