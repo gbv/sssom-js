@@ -42,6 +42,7 @@ Parse and convert SSSOM
 Options:
   -f, --from FORMAT  input format (tsv, json)
   -t, --to FORMAT    output format (json, ndjson, jskos, ndjskos)
+  -p, --propagate    add propagatable slots to mappings
   -c, --curie FILE   additional CURIE map (JSON or YAML file)
   -v, --verbose      verbose error messages
   -h, --help         output usage information
