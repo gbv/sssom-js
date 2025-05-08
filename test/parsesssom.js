@@ -16,8 +16,8 @@ describe("parseSSSOM", () => {
     })
   })
 
-  it("prefixes", async () => {
-    const result = await parseSSSOM("test/invalid/curie.sssom.tsv", { prefixes: { x: "ex:"} } )
+  it("curie", async () => {
+    const result = await parseSSSOM("test/invalid/curie.sssom.tsv", { curie: { x: "ex:"} } )
     expect(result).to.be.a("object")
   })
 

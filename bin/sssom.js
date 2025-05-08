@@ -11,7 +11,7 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
   .description("Parse and convert SSSOM")
   .option(`-f, --from FORMAT       input format (${inputFormats.join(", ")})`)
   .option(`-t, --to FORMAT         output format (${outputFormats.join(", ")})`)
-  .option("-p, --prefixes FILE     additional CURIE prefixes (JSON file)")
+  .option("-c, --curie FILE        additional CURIE map (JSON or YAML file)")
   .option("-v, --verbose           verbose error messages")
   .action(async (args, options) => {
     const input = args.length ? args.shift() : "-"
