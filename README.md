@@ -89,12 +89,12 @@ const { mappings, ...metadata } = await parseSSSOM(process.stdin)
 
 Option `prefixes` can be used to extend `curie_map` with additional prefixes.
 
-To parse from a string use `Readable.from`:
+#### parseSSSOMString (input, options)
+
+This is a utility function to parse SSSOM from a string. The implementation is:
 
 ~~~js
-import { Readable } from "stream"
-const input = Readable.from("# mapping_set_id: ...")
-const { mappings, ...metadata } = await parseSSSOM(input)
+parseSSSOMString = (input, options={}) => parseSSSOM(Readable.from(input), options)
 ~~~
 
 #### TSVReader
