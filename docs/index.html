@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSSOM Validation and Transformation</title>
+    <meta name="description" content="Web service to validate data with support of multiple schema languages">
+    <link href="entireframework.min.css" rel="stylesheet" type="text/css" />
+    <link href="stylesheet.css" rel="stylesheet" type="text/css" />
+    <link href="codemirror.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="codemirror.js"></script>
+    <script type="text/javascript" src="javascript.js"></script>
+    <script type="text/javascript" src="sssom.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="back">SSSOM Validation and Transformation</h1>
+      <p>
+        <a href="https://mapping-commons.github.io/sssom/">Simple Standard for Sharing Ontological Mappings</a>        (SSSOM) is a data format for sets of mappings between knowledge organization systems.
+      </p>
+      <form>
+        <textarea id="sssom-input" placeholder="Enter SSSOM TSV here" class="smooth" style="width: 100%;"># curie_map:
+#  x: http://example.org/
+# mapping_set_id: https://example.org/mappings
+# license: https://creativecommons.org/licenses/by/4.0/
+subject_id	predicate_id	object_id	mapping_justification
+x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
+        <input type="button" value="Validate" onClick="validate()" />
+        <div id="status"></div>
+      </form>
+
+      <h3>JSKOS</h3>
+      <div id="jskos-output"></div>
+    
+      <!-- show JSON with syntax highlighting here -->
+      <footer class="container">
+        <p>
+          Implementation based on <a href="https://www.npmjs.com/package/sssom-js" target="_blank">sssom-js</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+  <script type="text/javascript" src="app.js"></script>
+</html>

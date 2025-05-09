@@ -1,0 +1,96 @@
+a:link, a:visited {
+  text-decoration: none;
+  color: rgb(96, 143, 219);
+}
+a:hover, a:active {
+  text-decoration: underline;
+}
+dt {
+  font-weight: bold;
+}
+code {
+  color: #d63384;
+  word-wrap: break-word;
+}
+a > code {
+  color: rgb(96, 143, 219);
+}
+footer {
+  padding-top: 2em;
+  color: #666;
+}
+dd {
+  margin-left: 0em;
+  margin-bottom: 0.5em;
+}
+ul {
+  margin-left: 0em;
+  padding-left: 1em;
+  list-style-type: '– ';
+}
+li {
+  margin: 0.5em;
+}
+ul.inline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+}
+ul.inline > li {
+  display: inline;
+  margin: 0em;
+}
+ul.inline.spaced > li:not(:last-child) {
+  margin-right: 0.5em;
+}
+ul.inline.commas > li:not(:last-child)::after {
+  content: ', ';
+}
+h1 {
+  font-size: 2.5em;
+}
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 0.5em;
+}
+.infobox {
+  float: right;
+  position: relative;
+  text-align: right;
+}
+.infobox > h2 {
+  margin: -1.5em 0 0 0;
+}
+.infobox > ul {
+  list-style-type: none;
+}
+h3 {
+  padding-top: 1em;
+}
+pre {
+  background-color: #f7f7f9;
+  padding: 1em;
+  margin: 0.3em 0;
+}
+pre > code {
+  color: #000;
+}
+input, label {
+  display: inline-block;
+}
+form {
+  padding: 0.5em 0em 0em 0em;
+}
+.msg {
+  background: #def;
+  border-color: #59d;
+}
+.msg.valid {
+  border-color: #2d2;
+  background: #dfd;
+}
+.msg.invalid {
+  border-color: #e44;
+	background: #fdd;
+}

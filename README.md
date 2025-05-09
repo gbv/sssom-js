@@ -91,7 +91,7 @@ Option `prefixes` can be used to extend `curie_map` with additional prefixes.
 
 #### parseSSSOMString (input, options)
 
-This is a utility function to parse SSSOM from a string. The implementation is:
+This is a utility function to parse SSSOM from a string. Equivalent implementation:
 
 ~~~js
 parseSSSOMString = (input, options={}) => parseSSSOM(Readable.from(input), options)
