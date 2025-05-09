@@ -2,6 +2,9 @@ import path from "path"
 import NodePolyfillPlugin from "node-polyfill-webpack-plugin"
 import webpack from "webpack"
 
+//import { createRequire } from "node:module"
+//const { version } = createRequire(import.meta.url)("./package.json")
+
 export default {
   entry: "./index.js",
   output: {
@@ -20,6 +23,7 @@ export default {
       process: {
         nextTick: (cb, ...args) => setTimeout(() => cb(...args), 0),
       },
+      //packageVersion: version
     }),
   ],
 }

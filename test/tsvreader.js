@@ -21,7 +21,7 @@ describe("TSVReader", () => {
     "date.sssom.tsv": "mapping_date must be Date: 2020-13-01",
     "enum.sssom.tsv": "Invalid subject_type: x",
     "eol.sssom.tsv": "Missing MappingSet slot: mapping_set_id",
-    "empty.sssom.tsv": "Input is empty",
+    "empty.sssom.tsv": "Input is empty at line 1",
   }).forEach(([file, message]) => {
     it(`should emit error for ${file}`, done => {
       reader = new TSVReader(fs.createReadStream(`test/invalid/${file}`))

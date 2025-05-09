@@ -1,29 +1,45 @@
-const sssomCm = CodeMirror.fromTextArea(document.getElementById("sssom-input"), {
+const element = id => document.getElementById(id)
+
+const sssomCm = CodeMirror.fromTextArea(element("sssom-input"), {
   mode: "text/tab-separated-values",
-  theme: "default",
   lineNumbers: true,
+  gutters: ["CodeMirror-lint-markers"],
+  matchBrackets: true,
 })
   
-const jskosCm = CodeMirror(document.getElementById("jskos-output"), {
+const jskosCm = CodeMirror(element("jskos-output"), {
   mode: "javascript",
-  theme: "default",
   lineNumbers: false,
   readOnly: true,
 })
 
-const parseInput = (options) => SSSOM.parseSSSOMString(sssomCm.getValue())
-
+var marker
 function validate () {
-  document.getElementById("status").textContent = "..."
+  element("status").textContent = "..."
+  const editor = element("sssom-input").nextSibling
+  editor.classList.remove("valid")
+  editor.classList.remove("invalid")
   jskosCm.setValue("")
 
-  parseInput().then(sssom => {
-    console.log("OK")
-    document.getElementById("status").textContent = "OK"
+  if (marker) marker.clear()
+
+  const sssomTsv = sssomCm.getValue()
+  SSSOM.parseSSSOMString(sssomTsv).then(sssom => {
+    editor.classList.add("valid")
+    element("status").textContent = "Valid SSSOM/TSV"
     const jskos = SSSOM.toJskosRegistry(sssom)
     jskosCm.setValue(JSON.stringify(jskos, null, 2))
   }).catch(e => {
-    console.error(e)
-    document.getElementById("status").textContent = `${e}`
+    var line = e.position?.line
+    if (line) {
+      line--
+      const lines = sssomTsv.split('\n')
+      const ch = lines[line-1].length
+      marker = sssomCm.getDoc().markText({line,ch:0},{line,ch},{css: "background-color: #fcc"});
+    }
+    editor.classList.add("invalid")
+    element("status").textContent = `${e}`
   })
 }
+
+validate()

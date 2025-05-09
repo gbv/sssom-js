@@ -16,7 +16,10 @@
     <div class="container">
       <h1 class="back">SSSOM Validation and Transformation</h1>
       <p>
-        <a href="https://mapping-commons.github.io/sssom/">Simple Standard for Sharing Ontological Mappings</a>        (SSSOM) is a data format for sets of mappings between knowledge organization systems.
+        This page validates mappings in 
+        <a href="https://mapping-commons.github.io/sssom/spec-formats-tsv/">SSSOM/TSV</a>
+        format and transforms the result to 
+        <a href="https://gbv.github.io/jskos/#concept-mappings">JSKOS Mappings</a> on success.
       </p>
       <form>
         <textarea id="sssom-input" placeholder="Enter SSSOM TSV here" class="smooth" style="width: 100%;"># curie_map:
@@ -25,14 +28,14 @@
 # license: https://creativecommons.org/licenses/by/4.0/
 subject_id	predicate_id	object_id	mapping_justification
 x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
-        <input type="button" value="Validate" onClick="validate()" />
-        <div id="status"></div>
-      </form>
+        <div>
+          <input type="button" value="Validate and Transform" onClick="validate()" />
+          <span id="status"></span>
+        </div>
 
+      </form>
       <h3>JSKOS</h3>
       <div id="jskos-output"></div>
-    
-      <!-- show JSON with syntax highlighting here -->
       <footer class="container">
         <p>
           Implementation based on <a href="https://www.npmjs.com/package/sssom-js" target="_blank">sssom-js</a>
