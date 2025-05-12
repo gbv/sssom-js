@@ -32,9 +32,7 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
       options.metadataHandler = metadata => printNDJSON(toJskosRegistry(metadata))
       options.mappingHandler = mapping => printNDJSON(toJskosMapping(mapping))
       return await parseSSSOM(input, options)
-    } else if (options.to === "jskos") {      
-      printJSON(toJskosRegistry(await parseSSSOM(input, options)))
-    } else {
+    } else { // jskos or sssom/json
       printJSON(await parseSSSOM(input, options))
     }
   })

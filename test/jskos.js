@@ -1,6 +1,6 @@
 import { expect } from "chai"
 import fs from "fs"
-import { parseSSSOM, toJskosRegistry } from "../index.js"
+import { parseSSSOM } from "../index.js"
 
 import { createRequire } from "node:module"
 const require = createRequire(import.meta.url)
@@ -13,7 +13,7 @@ describe("SSSOM to JSKOS", () => {
     const tsv = "test/valid/" + file.replace(".jskos.json",".sssom.tsv")
     it(file, async () => {
       const result = await parseSSSOM(tsv, { to: "jskos" })
-      expect(toJskosRegistry(result)).to.deep.equal(jskos)
+      expect(result).to.deep.equal(jskos)
     })
   }
 })

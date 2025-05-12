@@ -78,20 +78,26 @@ import { parseSSSOM, TSVReader, toJskosRegistry, toJskosMapping } from "sssom-js
 
 #### parseSSSOM (input, options)
 
-This asynchronous function parses SSSOM in format `options.from` (`json`, or `tsv` as default) from a stream or file and returns a mapping set on success. The result should directly be serializable as SSSOM/JSON.
-
-*Note that SSSOM/JSON has not been specified officially yet, so details may change!*
+This asynchronous function parses SSSOM in format `options.from` (`json`, or `tsv` as default) from a stream or file and returns a mapping set on success. The result should directly be serializable as SSSOM/JSON (or to JSKOS with option `to` set to `jskos`).
 
 ~~~js
 import { parseSSSOM } from "sssom-js"
 const { mappings, ...metadata } = await parseSSSOM(process.stdin)
 ~~~
 
-Option `prefixes` can be used to extend `curie_map` with additional prefixes.
+##### Options
+
+- **from** (string, `tsv` by default): input format
+- **to** (string): response format (`sssom` by default or `jskos`)
+- **metadata** (string or object): mapping set metadata (external metadata mode) or file to read from
+- **curie** (string or object) additional CURIE map or file to read from
+- **propagation** (boolean, false by default): enables [propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots)
+- **metadataHandler** (function) called for parsed metadata
+- **mappingHandler** (function) called for each parsed mapping
 
 #### parseSSSOMString (input, options)
 
-This is a utility function to parse SSSOM from a string. Equivalent implementation:
+This is a utility function to parse SSSOM from a string. Equivalent implementation in NodeJS:
 
 ~~~js
 parseSSSOMString = (input, options={}) => parseSSSOM(Readable.from(input), options)
@@ -123,7 +129,10 @@ Convert a parsed Mapping to a [JSKOS Concept Mapping](https://gbv.github.io/jsko
 
 ## Limitations
 
-[Propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots) is not supported yet.
+- [SSSOM/JSON] has not officially been specified yet, so the format used by this package may change
+- Validation of CURIEs may be limited for some edge cases (see [issue #15](https://github.com/gbv/sssom-js/issues/15)) 
+
+This package 
 
 ## Maintainers
 
