@@ -39,6 +39,7 @@
   "dependencies": {
     "@geneontology/curie-util-es5": "^1.2.4",
     "csv-parser": "^3.2.0",
+    "ncname": "^3.0.0",
     "yaml": "^2.7.1"
   },
   "engines": {
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "chai": "^5.2.0",
+    "chai-as-promised": "^8.0.1",
     "eslint": "^9.23.0",
     "eslint-config-gbv": "^2.6.0",
     "http-server": "^14.1.1",

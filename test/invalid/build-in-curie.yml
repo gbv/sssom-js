@@ -1,0 +1,6 @@
+---
+curie_map:
+  # Overriding build-in prefixes is not allowed
+  rdf: http://example.org
+mapping_set_id: http://example.org/
+license: http://example.org/license

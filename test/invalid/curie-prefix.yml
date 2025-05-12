@@ -1,0 +1,5 @@
+---
+curie_map:
+  $: http://example.org
+mapping_set_id: http://example.org/
+license: http://example.org/license

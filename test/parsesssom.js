@@ -1,9 +1,15 @@
-import { expect } from "chai"
-import { parseSSSOM } from "../index.js"
+import * as chai from "chai"
+import chaiAsPromised from "chai-as-promised"
+chai.use(chaiAsPromised)
+const { expect } = chai
 
+// import { DetailledError } from "../lib/error.js"
+import { parseSSSOM } from "../index.js"
 import { example } from "./example.js"
 
 const metadata = "test/valid/example.sssom.yml"
+
+chai.config.truncateThreshold = 0
 
 const validFiles = ["array.sssom.tsv","minimal.sssom.tsv"]
 describe("parseSSSOM", () => {
@@ -35,4 +41,18 @@ describe("parseSSSOM", () => {
       expect(result).to.be.a("object")
     })
   })
+
+  // FIXME: chai-as-promised seems to not compare as expected
+  let file = "build-in-curie.yml"
+  let message = "IRI prefix must not be changed"
+  //const error = new DetailledError(message, { position: { jsonpointer: "/curie_map/rdf" }, value: "http://example.org" }) 
+  let error = message
+  it(`should emit error for ${file}`, async () =>
+    expect(parseSSSOM("", { metadata: `test/invalid/${file}` })).to.eventually.be.rejectedWith(error))
+
+  file = "curie-prefix.yml"
+  error = "Invalid prefix"
+  it(`should emit error for ${file}`, async () =>
+    expect(parseSSSOM("", { metadata: `test/invalid/${file}` })).to.eventually.be.rejectedWith(error))
+
 })
