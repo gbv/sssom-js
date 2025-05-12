@@ -44,6 +44,7 @@ Options:
   -t, --to FORMAT    output format (json, ndjson, jskos, ndjskos)
   -p, --propagate    add propagatable slots to mappings
   -c, --curie FILE   additional CURIE map (JSON or YAML file)
+  -e, --empty        allow empty mappings block in SSSOM/TSV
   -v, --verbose      verbose error messages
   -h, --help         output usage information
   -V, --version      output the version number
@@ -85,6 +86,12 @@ import { parseSSSOM } from "sssom-js"
 const { mappings, ...metadata } = await parseSSSOM(process.stdin)
 ~~~
 
+An untruthy `input` value will skip processing of mappings so only the mapping set is returned:
+
+~~~js
+const metadata = await parseSSSOM(false, { metadata: "metadata.sssom.yaml" })
+~~~
+
 ##### Options
 
 - **from** (string, `tsv` by default): input format
@@ -92,6 +99,7 @@ const { mappings, ...metadata } = await parseSSSOM(process.stdin)
 - **metadata** (string or object): mapping set metadata (external metadata mode) or file to read from
 - **curie** (string or object) additional CURIE map or file to read from
 - **propagation** (boolean, false by default): enables [propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots)
+- **empty** (boolean, false by default): allow empty mappings block in SSSOM/TSV (but still read and validate the metadata block)
 - **metadataHandler** (function) called for parsed metadata
 - **mappingHandler** (function) called for each parsed mapping
 
@@ -131,8 +139,8 @@ Convert a parsed Mapping to a [JSKOS Concept Mapping](https://gbv.github.io/jsko
 
 - [SSSOM/JSON] has not officially been specified yet, so the format used by this package may change
 - Validation of CURIEs may be limited for some edge cases (see [issue #15](https://github.com/gbv/sssom-js/issues/15)) 
-
-This package 
+- [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not supported
+- [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported and its mapping set slot `extension_definition` is ignored
 
 ## Maintainers
 
