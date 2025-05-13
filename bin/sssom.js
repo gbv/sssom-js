@@ -13,6 +13,8 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
   .option(`-t, --to FORMAT    output format (${outputFormats.join(", ")})`)
   .option("-p, --propagate    add propagatable slots to mappings")
   .option("-c, --curie FILE   additional CURIE map (JSON or YAML file)")
+  .option("-e, --empty        allow empty mappings block in SSSOM/TSV")
+  .option("-m, --mappings     emit mappings only")
   .option("-v, --verbose      verbose error messages")
   .action(async (args, options) => {
     const input = args.length ? args.shift() : "-"
@@ -25,11 +27,12 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
     }
 
     if (options.to === "ndjson") {
-      options.metadataHandler = printNDJSON
+      options.metadataHandler = options.mappings ? null : printNDJSON
       options.mappingHandler = printNDJSON
       return await parseSSSOM(input, options)
     } else if (options.to === "ndjskos") {
-      options.metadataHandler = metadata => printNDJSON(toJskosRegistry(metadata))
+      options.metadataHandler =  options.mappings
+        ? null : metadata => printNDJSON(toJskosRegistry(metadata))
       options.mappingHandler = mapping => printNDJSON(toJskosMapping(mapping))
       return await parseSSSOM(input, options)
     } else { // jskos or sssom/json

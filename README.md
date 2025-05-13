@@ -45,6 +45,7 @@ Options:
   -p, --propagate    add propagatable slots to mappings
   -c, --curie FILE   additional CURIE map (JSON or YAML file)
   -e, --empty        allow empty mappings block in SSSOM/TSV
+  -m, --mappings     emit mappings only
   -v, --verbose      verbose error messages
   -h, --help         output usage information
   -V, --version      output the version number
