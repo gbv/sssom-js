@@ -5,7 +5,10 @@ import webpack from "webpack"
 //import { createRequire } from "node:module"
 //const { version } = createRequire(import.meta.url)("./package.json")
 
-export default {
+const mode = "production"
+//(const mode = "development"
+
+const config = {
   entry: "./index.js",
   output: {
     filename: "sssom.js",
@@ -13,7 +16,7 @@ export default {
     library: "SSSOM",
     libraryTarget: "var",
   },
-  mode: "production",
+  mode,
   plugins: [
     new NodePolyfillPlugin({
       onlyAliases: ["fs", "stream", "Buffer", "Readable"],
@@ -27,3 +30,10 @@ export default {
     }),
   ],
 }
+
+if (mode === "development") {
+  config.devtool = "eval-source-map"
+}
+
+export default config
+

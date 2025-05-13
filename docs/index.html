@@ -20,6 +20,9 @@
         <a href="https://mapping-commons.github.io/sssom/spec-formats-tsv/">SSSOM/TSV</a>
         format and transforms the result to 
         <a href="https://gbv.github.io/jskos/#concept-mappings">JSKOS Mappings</a> on success.
+        The 
+        <a href="https://www.npmjs.com/package/sssom-js#command-line">command line client</a>
+        supports more options.
       </p>
       <form>
         <textarea id="sssom-input" placeholder="Enter SSSOM TSV here" class="smooth" style="width: 100%;"># curie_map:
@@ -30,12 +33,24 @@ subject_id	predicate_id	object_id	mapping_justification
 x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
         <div>
           <input type="button" value="Validate and Transform" onClick="validate()" />
-          <span id="status"></span>
+          <span id="status" class="valid"></span>
         </div>
-
       </form>
-      <h3>JSKOS</h3>
-      <div id="jskos-output"></div>
+      <h2>
+        <label>Result</label>
+        <a onClick="copyResult(event)" title="Copy to clipboard">⧉</a>
+        <small>
+        <select id="to" name="to" onChange="validate()">
+          <option value="json">SSSOM/JSON</option>
+          <option value="jskos">JSKOS</option>
+          <option value="ndjson">NDJSON SSSOM</option>
+          <option value="ndjskos">NDJSON JSKOS</option>
+        </select>
+        <input type="checkbox" id="mappingsOnly" onChange="validate()" />
+        <label for="mappingsOnly" style="font-weight: normal">mappings only</label>
+        </small>
+      </h2>
+      <div id="result"></div>
       <footer class="container">
         <p>
           Implementation based on <a href="https://www.npmjs.com/package/sssom-js" target="_blank">sssom-js</a>

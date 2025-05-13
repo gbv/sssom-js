@@ -1,45 +1,71 @@
-const element = id => document.getElementById(id)
+/* global CodeMirror, SSSOM */
+const $ = id => document.getElementById(id)
 
-const sssomCm = CodeMirror.fromTextArea(element("sssom-input"), {
+const cmInput = CodeMirror.fromTextArea($("sssom-input"), {
   mode: "text/tab-separated-values",
   lineNumbers: true,
   gutters: ["CodeMirror-lint-markers"],
   matchBrackets: true,
 })
   
-const jskosCm = CodeMirror(element("jskos-output"), {
+const cmResult = CodeMirror($("result"), {
   mode: "javascript",
-  lineNumbers: false,
+  lineNumbers: true,
   readOnly: true,
 })
 
-var marker
+function copyResult(e) { // eslint-disable-line no-unused-vars
+  if (e.which == 1) {
+    navigator.clipboard.writeText(cmResult.getValue())
+  }
+}
+
+let marker
+
 function validate () {
-  element("status").textContent = "..."
-  const editor = element("sssom-input").nextSibling
-  editor.classList.remove("valid")
-  editor.classList.remove("invalid")
-  jskosCm.setValue("")
+  const input = cmInput.getValue()
+  const editor = $("sssom-input").nextSibling
+  const resultFormat = $("to").value
+  const options = {
+    to: ["jskos","ndjskos"].includes(resultFormat) ? "jskos" : "json",
+    mappings: $("mappingsOnly").checked,
+  }
 
-  if (marker) marker.clear()
-
-  const sssomTsv = sssomCm.getValue()
-  SSSOM.parseSSSOMString(sssomTsv).then(sssom => {
-    editor.classList.add("valid")
-    element("status").textContent = "Valid SSSOM/TSV"
-    const jskos = SSSOM.toJskosRegistry(sssom)
-    jskosCm.setValue(JSON.stringify(jskos, null, 2))
-  }).catch(e => {
-    var line = e.position?.line
+  const showError = err => {
+    cmResult.setValue("")
+      
+    let line = err.position?.line
     if (line) {
       line--
-      const lines = sssomTsv.split('\n')
-      const ch = lines[line-1].length
-      marker = sssomCm.getDoc().markText({line,ch:0},{line,ch},{css: "background-color: #fcc"});
+      const lines = input.split("\n")
+      const ch = lines[line].length
+      marker = cmInput.getDoc().markText({line,ch:0},{line,ch},{css: "background-color: #fcc"})
     }
     editor.classList.add("invalid")
-    element("status").textContent = `${e}`
-  })
+    $("status").textContent = `${err}`
+    $("status").classList.replace("valid","invalid")
+  }
+
+  const showResult = result => {
+    editor.classList.add("valid")
+    $("status").textContent = "Input is valid"
+    $("status").classList.replace("invalid","valid")
+
+    if (resultFormat === "ndjson" || resultFormat === "ndjskos") {
+      const { mappings, ...metadata } = result
+      const lines = options.mappings ? mappings : [ metadata, ...mappings ]
+      cmResult.setValue(lines.map(JSON.stringify).join("\n"))
+    } else {
+      cmResult.setValue(JSON.stringify(result, null, 2))
+    }
+  }
+
+  if (marker) {
+    marker.clear()
+  }
+  SSSOM.parseSSSOMString(input, options).then(showResult).catch(showError)
 }
+
+cmInput.on("change",validate)
 
 validate()
