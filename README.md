@@ -15,6 +15,8 @@ It implements parsing SSSOM (TSV and JSON) with validation and transformation to
 - [Usage](#usage)
   - [Command line](#command-line)
   - [API](#api)  
+  - [Validation errors](#validation-errors)
+  - [Web application](#web-application)
 - [Limitations](#limitations)
 - [Maintainers](#maintainers)
 - [Contribute](#contribute)
@@ -47,6 +49,7 @@ Options:
   -e, --empty        allow empty mappings block in SSSOM/TSV
   -m, --mappings     emit mappings only
   -v, --verbose      verbose error messages
+  -x, --errors       emit errors in JSON
   -h, --help         output usage information
   -V, --version      output the version number
 ~~~
@@ -135,6 +138,20 @@ Convert a parsed MappingSet to a [JSKOS Registry](https://gbv.github.io/jskos/#r
 #### toJskosMapping
 
 Convert a parsed Mapping to a [JSKOS Concept Mapping](https://gbv.github.io/jskos/#concept-mapping) object.
+
+## Validation errors
+
+Validation error objects (emitted as JSON objects with command line option `-x, --errors`) habe three fields:
+
+- `message` an error message
+- `value` an optional value that caused the error
+- `position` an optional object mapping locator formats to error locations. The following locator formats can be found:
+  - `line`: a line number (given as string)
+  - `jsonpointer`: a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to the malformed YAML or JSON element
+
+## Web application
+
+A web form to validate and transform SSSOM/TSV is made available at <https://gbv.github.io/sssom-js/>. This application is not included in the package release at npm.
 
 ## Limitations
 

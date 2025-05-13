@@ -16,6 +16,7 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
   .option("-e, --empty        allow empty mappings block in SSSOM/TSV")
   .option("-m, --mappings     emit mappings only")
   .option("-v, --verbose      verbose error messages")
+  .option("-x, --errors       JSON error messages")
   .action(async (args, options) => {
     const input = args.length ? args.shift() : "-"
     if (args.length) {
@@ -41,6 +42,11 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
   })
   .parse(process.argv)
   .catch(e => {
-    console.error(cli.options.verbose ? e : `${e}`)
+    if (cli.options.errors) {
+      const { message, value, position } = e
+      console.error(JSON.stringify({ message, value, position },null,2))
+    } else {
+      console.error(cli.options.verbose ? e : `${e}`)
+    }
     process.exit(1)
   })
