@@ -1,0 +1,7 @@
+# curie_map:
+#  ex: http://example.org/
+# mapping_set_id: ex:mappings
+# license: ex:license
+# creator_id: ex:creator
+# object_source: ex:source
+subject_id	predicate_id	object_id	mapping_justification

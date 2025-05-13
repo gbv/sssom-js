@@ -5,7 +5,7 @@ const { expect } = chai
 
 // import { DetailledError } from "../lib/error.js"
 import { parseSSSOM } from "../index.js"
-import { example } from "./example.js"
+import { example, require } from "./example.js"
 
 const metadata = "test/valid/example.sssom.yml"
 
@@ -27,6 +27,11 @@ describe("parseSSSOM", () => {
   it("curie", async () => {
     const result = await parseSSSOM("test/invalid/curie.sssom.tsv", { curie: { x: "ex:"} } )
     expect(result).to.be.a("object")
+  })
+
+  it("curie expansion", async () => {
+    const result = await parseSSSOM("test/valid/curie-expand.sssom.tsv")
+    expect(result).to.deep.equal(require("./valid/curie-expand.sssom.json"))
   })
 
   it("metadata only, falsy input", async () => {
