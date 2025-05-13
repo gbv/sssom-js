@@ -43,3 +43,8 @@ input, label {
 #result > .CodeMirror {
   height: fit-content !important;
 }
+.cm-tab {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAdnJLH8AAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAI1JREFUSMft1TEKwgAMheGvdhTBE3gAFxdxFUGos8d19AyOIji6qINIEVGXOBYnoYG+KRAC+fNCQqe/a4FhU7KXAOCIeVOyTABwwQsTXFGHI3UWADjHtsxwiuafUKD6UfzAFssWgPTDjQ3uX4AsGmGKPQ64ZbpEJVYBAQPJJr+OuMh4RsfYRfzu3mLb9AHY7xVxWir3mgAAAABJRU5ErkJggg==);
+  background-position: right;
+  background-repeat: no-repeat;
+}
