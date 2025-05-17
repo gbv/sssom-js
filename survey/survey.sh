@@ -11,7 +11,7 @@ do ((i++)) || continue  # skip header
     file="$n/$file"
 
     echo -n "$n,$url,"
-    if [[ ! -s "$file" ]]; then
+    if [[ ! -s "$file" || "${1:-}" -eq $n ]]; then
         curl "$download" 2>/dev/null > "$file" || {
             echo "MISSING,"
             continue
