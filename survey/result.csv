@@ -1,0 +1,26 @@
+n,url,status,message
+1,https://zenodo.org/records/10936294,INVALID,"Missing MappingSet slot: mapping_set_id"
+2,https://zenodo.org/records/15208251,INVALID,"Missing MappingSet slot: mapping_set_id"
+3,https://zenodo.org/records/8371881,INVALID,"Missing MappingSet slot: mapping_set_id"
+4,https://zenodo.org/records/8371883,INVALID,"Missing MappingSet slot: mapping_set_id"
+5,https://zenodo.org/records/13851334,INVALID,"All mapping items must start at the same column at line 5, column 1:\n\n - orcid: \t0000-0001-5334-4542\n object_source: obo:chebi\n^\n"
+6,https://github.com/jmillanacosta/mappings_enm/tree/master/sssom,INVALID,"Missing Mapping slot: subject_id"
+7,https://github.com/brain-bican/metadata-schemas/blob/dev/docs/mappings/gene_mapping_mouse.csv,INVALID,"Missing MappingSet slot: mapping_set_id"
+8,https://f1000research.com/articles/13-1102,MISSING,
+9,https://github.com/cns-iu/onto-llm-mapping/tree/main/output-data,MISSING,
+10,https://download.rgd.mcw.edu/ontology/mappings/,INVALID,"mapping_provider must be Uri"
+11,https://download.rgd.mcw.edu/ontology/mappings/,INVALID,"mapping_provider must be Uri"
+12,https://github.com/berkeleybop/artificial-intelligence-ontology/tree/main/src/mappings,INVALID,"mapping_set_id must be Uri"
+13,https://github.com/tdwg/gbwg/tree/main/dwc-mixs/mapping,INVALID,"Unknown or invalid CURIE"
+14,https://github.com/tdwg/mids/tree/main/source/mappings,INVALID,"Missing MappingSet slot: mapping_set_id"
+15,https://github.com/bge-barcoding/StayingMapped/tree/main/sssom-mapping,INVALID,"Missing MappingSet slot: mapping_set_id"
+16,https://github.com/bridge2ai/clive/blob/main/tests/input/basic.tsv,INVALID,
+17,https://github.com/MIT-LCP/mimic-code/tree/main/mimic-iv/concepts/concept_map,INVALID,"Missing MappingSet slot: mapping_set_id"
+18,https://github.com/microbiomedata/nmdc-schema/tree/main/sssom,MISSING,
+19,https://github.com/geneontology/pathways2GO/tree/master/exchange/src/main/resources/YeastCyc,INVALID,"Missing MappingSet slot: mapping_set_id"
+20,https://zenodo.org/records/10716098,INVALID,"Missing MappingSet slot: mapping_set_id"
+21,https://github.com/jvfe/wikidata_panglaodb/tree/877f109b152b4a57b41c6009d545cb650f2fc36c/improvements/results,INVALID,"Missing MappingSet slot: mapping_set_id"
+22,https://zenodo.org/records/13333068,INVALID,"Missing MappingSet slot: mapping_set_id"
+23,https://entrepot.recherche.data.gouv.fr/file.xhtml?persistentId=doi:10.57745/ABWBFZ,MISSING,
+24,https://zenodo.org/records/10368990,INVALID,"Missing MappingSet slot: mapping_set_id"
+25,https://zenodo.org/records/8428561,INVALID,"Missing MappingSet slot: mapping_set_id"
