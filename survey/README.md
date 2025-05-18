@@ -12,7 +12,8 @@ Their files are downloaded and validated with a Bash script and the result is wr
 ./survey.sh > result.csv
 ~~~
 
-## TODO
+Some data sets need to be downloaded manually, otherwise they are marked as "MISSING":
 
-- Some data sets need to be downloaded manually, otherwise they are marked as "MISSING"
-- Support external metadata mode by adding another `metadata` column to the sources file
+- 8: https://doi.org/10.57745/ZLJYQO
+- 23: https://doi.org/10.57745/ZLJYQO
+- 25: https://doi.org/10.5281/zenodo.4323555

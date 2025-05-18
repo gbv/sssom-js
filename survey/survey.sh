@@ -1,8 +1,14 @@
 #!/usr/bin/bash
 
+download=
+if [[ "${1:-}" -eq "-f" ]]; then
+  shift
+  download=true
+fi
+
 echo n,url,status,message
 
-while IFS=$'\t' read -r url download file
+while IFS=$'\t' read -r url download file metadata
 do ((i++)) || continue  # skip header
     ((n++))
     [[ "${1:-n}" -ne $n ]] && continue  # selected source only
@@ -11,21 +17,27 @@ do ((i++)) || continue  # skip header
     file="$n/$file"
 
     echo -n "$n,$url,"
-    if [[ ! -s "$file" || "${1:-}" -eq $n ]]; then
-        curl "$download" 2>/dev/null > "$file" || {
-            echo "MISSING,"
-            continue
-        }
+    if [[ "$download" != "-" ]]; then 
+        if [[ ! -s "$file" || $download = true ]]; then
+            curl -s "$download" > "$file"
+        fi
+    fi
+    if [[ -n "$metadata" ]]; then
+        if [[ ! -s "$n/metadata.yaml" || $download = true ]]; then
+            curl -s "$metadata" > "$n/metadata.yml"
+        fi
+    fi
+    
+    [[ -s "$file" ]] || { echo "MISSING,"; continue; }
+    if [[ -n "$metadata" ]]; then
+        [[ -s "$n/metadata.yml" ]] || { echo "MISSING-METADATA,"; continue; }
     fi
 
     validate() {
-        ../bin/sssom.js -t ndjson -x "$file" > "$n/mappings.ndjson" 2> $n/error.json
-        if [[ $? ]]; then
-            echo "INVALID,$(jq .message $n/error.json)"
-            rm -f $n/mappings.ndjson
+        if [[ -s "$n/metadata.yml" ]]; then
+            ../bin/sssom.js -t ndjson -x "$file" "$n/metadata.yml" > "$n/mappings.ndjson" 2> $n/error.json
         else
-            echo "OK,$(wc -l $n/mappings.ndjson)"
-            rm -f $n/error.json
+            ../bin/sssom.js -t ndjson -x "$file" > "$n/mappings.ndjson" 2> $n/error.json
         fi
     }
 
@@ -34,5 +46,14 @@ do ((i++)) || continue  # skip header
     else
         validate
     fi
+
+    if [[ -s "$n/error.json" ]]; then
+        echo "INVALID,$(jq .message $n/error.json)"
+        rm -f $n/mappings.ndjson
+    else
+        echo "OK,$(wc -l < $n/mappings.ndjson) mappings"
+        rm -f $n/error.json
+    fi
+
 done < sources.tsv
 
