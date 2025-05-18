@@ -6,7 +6,7 @@ n,url,status,message
 5,https://doi.org/10.5281/zenodo.13851333,INVALID,"All mapping items must start at the same column at line 5, column 1:\n\n - orcid: \t0000-0001-5334-4542\n object_source: obo:chebi\n^\n"
 6,https://github.com/jmillanacosta/mappings_enm/tree/master/sssom,INVALID,"Missing MappingSet slot: mapping_set_id"
 7,https://github.com/brain-bican/metadata-schemas/blob/dev/docs/mappings/gene_mapping_mouse.csv,INVALID,"Missing MappingSet slot: mapping_set_id"
-8,https://doi.org/10.57745/ZLJYQO,INVALID,"Missing closing \"quote at line 1, column 65:\n\nmapping_set_id: \"https://doi.org/10.57745/ZLJYQO”\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n                                                                ^\n"
+8,https://doi.org/10.57745/ZLJYQO,INVALID,"Missing closing ""quote at line 1, column 65:\n\nmapping_set_id: ""https://doi.org/10.57745/ZLJYQO”\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n                                                                ^\n"
 9,https://github.com/cns-iu/onto-llm-mapping/tree/main/output-data,MISSING,
 10,https://download.rgd.mcw.edu/ontology/mappings/,INVALID,"mapping_provider must be Uri"
 11,https://download.rgd.mcw.edu/ontology/mappings/,INVALID,"mapping_provider must be Uri"
@@ -21,6 +21,6 @@ n,url,status,message
 20,https://doi.org/10.5281/zenodo.10716097,INVALID,"Missing MappingSet slot: mapping_set_id"
 21,https://github.com/jvfe/wikidata_panglaodb/tree/877f109b152b4a57b41c6009d545cb650f2fc36c/improvements/results,INVALID,"Missing MappingSet slot: mapping_set_id"
 22,https://doi.org/10.5281/zenodo.10137939,INVALID,"Missing MappingSet slot: mapping_set_id"
-23,https://doi.org/10.57745/ABWBFZ,INVALID,"Implicit keys need to be on a single line at line 1, column 1:\n\nmapping_set_id:\"FCU_TAXREF_LD_MANUAL_2023_03\"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n^\n"
+23,https://doi.org/10.57745/ABWBFZ,INVALID,"Implicit keys need to be on a single line at line 1, column 1:\n\nmapping_set_id:""FCU_TAXREF_LD_MANUAL_2023_03""\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n^\n"
 24,https://doi.org/10.5281/zenodo.10368989,INVALID,"Missing MappingSet slot: mapping_set_id"
 25,https://doi.org/10.5281/zenodo.4323555,OK,52561 mappings

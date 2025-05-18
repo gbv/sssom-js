@@ -48,7 +48,7 @@ do ((i++)) || continue  # skip header
     fi
 
     if [[ -s "$n/error.json" ]]; then
-        echo "INVALID,$(jq .message $n/error.json)"
+        echo "INVALID,$(jq .message $n/error.json | sed 's/\\"/""/g')"
         rm -f $n/mappings.ndjson
     else
         echo "OK,$(wc -l < $n/mappings.ndjson) mappings"
