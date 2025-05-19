@@ -44,12 +44,13 @@ Parse and convert SSSOM
 Options:
   -f, --from FORMAT  input format (tsv, json)
   -t, --to FORMAT    output format (json, ndjson, jskos, ndjskos)
+  -o, --output       output file (default: - for stdout)
   -p, --propagate    add propagatable slots to mappings
   -c, --curie FILE   additional CURIE map (JSON or YAML file)
   -e, --empty        allow empty mappings block in SSSOM/TSV
-  -m, --mappings     emit mappings only
+  -m, --mappings     write mappings only
   -v, --verbose      verbose error messages
-  -x, --errors       emit errors in JSON
+  -x, --errors       JSON error messages
   -h, --help         output usage information
   -V, --version      output the version number
 ~~~
@@ -141,11 +142,11 @@ Convert a parsed Mapping to a [JSKOS Concept Mapping](https://gbv.github.io/jsko
 
 ## Validation errors
 
-Validation error objects (emitted as JSON objects with command line option `-x, --errors`) habe three fields:
+Validation error objects (emitted as JSON objects with command line option `-x, --errors`) have three fields:
 
 - `message` an error message
 - `value` an optional value that caused the error
-- `position` an optional object mapping locator formats to error locations. The following locator formats can be found:
+- `position` an optional object mapping locator types to error locations. The following locator types are used:
   - `line`: a line number (given as string)
   - `jsonpointer`: a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to the malformed YAML or JSON element
 
