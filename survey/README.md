@@ -18,14 +18,12 @@ Some data sets need to be downloaded manually, otherwise they are marked as "MIS
 - 23: https://doi.org/10.57745/ZLJYQO
 - 25: https://doi.org/10.5281/zenodo.4323555
 
-## See also
+## Mapping Commons
 
-[Mapping Commons](https://mapping-commons.github.io/) pulls together mappings from various sources in SSSOM/TSV format. These mapping files are not included in the survey yet.
+[Mapping Commons](https://mapping-commons.github.io/) also pulls together mappings from various sources in SSSOM/TSV format. These mapping files are validated independently with this script:
 
 ~~~sh
-mkdir mapping-commons
-cd mapping-commons
-wget https://github.com/mapping-commons/mapping-commons.github.io/raw/refs/heads/main/data/mapping-data.json
-jq -r .registries[].mapping_sets[].mapping_set_id mapping-data.json | xargs -L 1 wget '{}'
-for f in *.tsv; do echo $f; ../../bin/sssom.js -t ndjson $f | wc -l; done
+./mapping-commons.sh
 ~~~
+
+The result is written into file [mapping-commons.tsv](mapping-commons.tsv).
