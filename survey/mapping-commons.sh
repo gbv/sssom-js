@@ -8,17 +8,16 @@ wget -nc https://github.com/mapping-commons/mapping-commons.github.io/raw/refs/h
 jq -r .registries[].mapping_sets[].mapping_set_id mapping-data.json | xargs -L1 wget
 
 validate() {
+    echo -e "file\tmappings\terror"
     for sssom in *.tsv; do
         jskos=${sssom%.html}.ndjson
-        error=$(../../bin/sssom.js -t jskos -o "$jskos" $sssom || rm -f "$jskos" 2>&1)
-        echo -n "$sssom"
-        echo -ne '\t'
+        error=$((../../bin/sssom.js -t jskos -o "$jskos" $sssom || rm -f "$jskos") 2>&1)
         mappings=0
         [[ -f "$jskos" ]] && mappings=$(jq '.mappings|length' "$jskos" | tr -d '\n')
+        echo -n "$sssom"
         echo -ne "\t$mappings\t"
         echo "$error"
     done
 }
 
-echo -e "file\terror\tmappings"
 validate | tee ../mapping-commons.tsv
