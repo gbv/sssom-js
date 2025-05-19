@@ -157,7 +157,6 @@ A web form to validate and transform SSSOM/TSV is made available at <https://gbv
 ## Limitations
 
 - [SSSOM/JSON] has not officially been specified yet, so the format used by this package may change
-- Validation of CURIEs may be limited for some edge cases (see [issue #15](https://github.com/gbv/sssom-js/issues/15)) 
 - [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not supported
 - [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported and its mapping set slot `extension_definition` is ignored
 - The transformation of SSSOM to JSKOS does not support the following mapping slots (yet):
@@ -167,6 +166,10 @@ A web form to validate and transform SSSOM/TSV is made available at <https://gbv
   - [`license`](https://w3id.org/sssom/license) as individual JSKOS mappings (in contrast to sets of mappings) have no license
   - [`see_also`](https://w3id.org/sssom/see_also) and [`other`](https://w3id.org/sssom/other) having no clear semantics
   - slots that carry information about automatic mapping algorithms (see [this issue](https://github.com/gbv/jskos/issues/152))
+
+## Survey
+
+Directory [`survey`](survey) contains a survey of published SSSOM data with validation results. See [dev branch](https://github.com/gbv/sssom-js/tree/dev/survey) for most recent update.
 
 ## Maintainers
 
