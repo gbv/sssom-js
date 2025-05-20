@@ -1,11 +1,16 @@
 {
-  "uri": "https://w3id.org/sssom/tutorial/example1.sssom.tsv",
-  "created": "2022-05-02",
   "license": [
     {
       "uri": "https://creativecommons.org/licenses/by/4.0/"
     }
   ],
+  "created": "2022-05-02",
+  "uri": "https://w3id.org/sssom/tutorial/example1.sssom.tsv",
+  "definition": {
+    "und": [
+      "Manually curated alignment of KEWL FOODIE INC internal food and nutrition database with Food Ontology (FOODON). Intended to be used for ontological analysis and grouping of KEWL FOODIE INC related data."
+    ]
+  },
   "mappings": [
     {
       "type": [
@@ -31,13 +36,13 @@
           }
         ]
       },
-      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
-      "mappingRelevance": 0.95,
       "note": {
         "und": [
           "We could map to FOODON:03310788 instead to cover sliced apples, but only \"whole\" apple types exist."
         ]
       },
+      "mappingRelevance": 0.95,
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "creator": [
         {
           "uri": "https://orcid.org/0000-0002-7356-1779"
@@ -68,8 +73,8 @@
           }
         ]
       },
-      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "mappingRelevance": 1,
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "creator": [
         {
           "uri": "https://orcid.org/0000-0002-7356-1779"
@@ -100,13 +105,13 @@
           }
         ]
       },
-      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
-      "mappingRelevance": 0.9,
       "note": {
         "und": [
           "We could map to FOODON:00004187 instead which more specifically refers to \"raw\" Pink apples. Decided against to be consistent with other mapping choices."
         ]
       },
+      "mappingRelevance": 0.9,
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "creator": [
         {
           "uri": "https://orcid.org/0000-0002-7356-1779"
@@ -137,8 +142,8 @@
           }
         ]
       },
-      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "mappingRelevance": 1,
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "creator": [
         {
           "uri": "https://orcid.org/0000-0002-7356-1779"

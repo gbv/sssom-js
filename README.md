@@ -18,6 +18,7 @@ It implements parsing SSSOM (TSV and JSON) with validation and transformation to
   - [Validation errors](#validation-errors)
   - [Web application](#web-application)
 - [Limitations](#limitations)
+- [Transformation to JSKOS](#transformation-to-jskos)
 - [Maintainers](#maintainers)
 - [Contribute](#contribute)
 - [License](#license)
@@ -159,13 +160,19 @@ A web form to validate and transform SSSOM/TSV is made available at <https://gbv
 - [SSSOM/JSON] has not officially been specified yet, so the format used by this package may change
 - [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not supported
 - [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported and its mapping set slot `extension_definition` is ignored
-- The transformation of SSSOM to JSKOS does not support the following mapping slots (yet):
-  - [`subject_category`](https://mapping-commons.github.io/sssom/subject_category/) and [`object_category`](https://mapping-commons.github.io/sssom/object_category/)
-  - [`predicate_label`](https://w3id.org/sssom/predicate_label) and [`predicate_modifier`](https://w3id.org/sssom/predicate_modifier)
-  - [`reviewer_id`](https://w3id.org/sssom/reviewer_id) and [`reviewer_label`](https://w3id.org/sssom/reviewer_label)
-  - [`license`](https://w3id.org/sssom/license) as individual JSKOS mappings (in contrast to sets of mappings) have no license
-  - [`see_also`](https://w3id.org/sssom/see_also) and [`other`](https://w3id.org/sssom/other) having no clear semantics
-  - slots that carry information about automatic mapping algorithms (see [this issue](https://github.com/gbv/jskos/issues/152))
+
+## Transformation to JSKOS
+
+The transformation of SSSOM to JSKOS does not support the following mapping slots (yet):
+
+- [`subject_category`](https://mapping-commons.github.io/sssom/subject_category/) and [`object_category`](https://mapping-commons.github.io/sssom/object_category/)
+- [`predicate_type`](https://mapping-commons.github.io/sssom/predicate_type/), [`predicate_label`](https://w3id.org/sssom/predicate_label) and [`predicate_modifier`](https://w3id.org/sssom/predicate_modifier)
+- [`reviewer_id`](https://w3id.org/sssom/reviewer_id) and [`reviewer_label`](https://w3id.org/sssom/reviewer_label)
+- [`license`](https://w3id.org/sssom/license) as individual JSKOS mappings (in contrast to sets of mappings) have no license
+- [`see_also`](https://w3id.org/sssom/see_also) and [`other`](https://w3id.org/sssom/other) having no clear semantics
+- slots that carry information about automatic mapping algorithms (see [this issue](https://github.com/gbv/jskos/issues/152))
+
+Slot `creator_id`/`creator_label` and `author_id`/`author_label` are merged into JSKOS field `creator`
 
 ## Survey
 
