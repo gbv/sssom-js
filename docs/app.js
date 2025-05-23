@@ -30,6 +30,7 @@ function validate () {
     from: $("from").value,
     to: ["jskos","ndjskos"].includes(resultFormat) ? "jskos" : "json",
     mappings: $("mappingsOnly").checked,
+    liberal: $("liberal").checked,
   }
 
   const showError = err => {

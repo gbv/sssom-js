@@ -32,6 +32,16 @@ describe("TSVReader", () => {
     })
   })
 
+  for (let file of ["test/invalid/license.sssom.tsv"]) {
+    it(`should parse liberal: ${file}`, done => {
+      const reader = new TSVReader(fs.createReadStream(file), { liberal: true })
+      reader.on("end", res => {
+        expect(res).to.be.ok
+        done()
+      })
+    })
+  }
+
   it("should parse example SSSOM/TSV", done => {
     reader = new TSVReader(fs.createReadStream("test/valid/example.sssom.tsv"))
     const result = { mappings: [] }

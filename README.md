@@ -48,7 +48,7 @@ Options:
   -o, --output       output file (default: - for stdout)
   -p, --propagate    add propagatable slots to mappings
   -c, --curie FILE   additional CURIE map (JSON or YAML file)
-  -e, --empty        allow empty mappings block in SSSOM/TSV
+  -l, --liberal      parse less strict than the specification
   -m, --mappings     write mappings only
   -v, --verbose      emit error verbosely
   -j, --json-errors  emit errors detailled in JSON
@@ -70,6 +70,10 @@ format   | description   | support
 If not specified, formats are guessed from file name with fallback to `tsv` (from) and `ndjson` (to).
 
 Formats `json` and `jskos` require to fully load the input into memory for processing, the other formats support streaming processing.
+
+Liberal processing allows:
+
+- empty/missing mappings block
 
 If you want to allow all CURIE prefixes from [Bioregistry](https://bioregistry.io) without explicitly defining them in `curie_map` you can download and convert the current list for instance with command line tools `curl` and `jq` this way (requires local copy of file [bioregistry.jq](bioregistry.jq)) and then reference result file `bioregistry.json` with option `--curie`:
 
@@ -106,7 +110,9 @@ const metadata = await parseSSSOM(false, { metadata: "metadata.sssom.yaml" })
 - **metadata** (string or object): mapping set metadata (external metadata mode) or file to read from
 - **curie** (string or object) additional CURIE map or file to read from
 - **propagation** (boolean, false by default): enables [propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots)
-- **empty** (boolean, false by default): allow empty mappings block in SSSOM/TSV (but still read and validate the metadata block)
+- **liberal** (boolean, false by default):
+  - allow empty mappings block in SSSOM/TSV (but still read and validate the metadata block)
+  - do not require mapping set slots (neither `mapping_set_id` nor `license`)
 - **metadataHandler** (function) called for parsed metadata
 - **mappingHandler** (function) called for each parsed mapping
 
