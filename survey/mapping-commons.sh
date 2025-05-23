@@ -4,8 +4,11 @@ set -euo pipefail
 mkdir -p mapping-commons
 cd mapping-commons
 
-wget -nc https://github.com/mapping-commons/mapping-commons.github.io/raw/refs/heads/main/data/mapping-data.json
-jq -r .registries[].mapping_sets[].mapping_set_id mapping-data.json | xargs -L1 wget
+if [[ ${1:-} = "download" ]]
+then
+  wget -nc https://github.com/mapping-commons/mapping-commons.github.io/raw/refs/heads/main/data/mapping-data.json
+  jq -r .registries[].mapping_sets[].mapping_set_id mapping-data.json | xargs -L1 wget
+fi
 
 validate() {
     echo -e "file\tmappings\terror"

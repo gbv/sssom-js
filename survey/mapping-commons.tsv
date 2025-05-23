@@ -1,25 +1,25 @@
 file	mappings	error
 fars_obo_omop.cpath.sssom.tsv	0	mapping_set_id must be Uri: fars_obo_omop
 fars_obo_omop_invert.cpath.sssom.tsv	0	mapping_set_id must be Uri: fars_obo_omop_invert
-hp_doid_pistoia.sssom.tsv	0	mapping_set_id must be Uri: hp_doid_pistoia
-ma_uberon_pat_impc.sssom.tsv	0	mapping_set_id must be Uri: ma_uberon_pat_impc
+hp_doid_pistoia.sssom.tsv	1291	
+ma_uberon_pat_impc.sssom.tsv	47	
 mondo_hasdbxref_hp.sssom.tsv	0	Unknown or invalid CURIE at line 16: http://purl.obolibrary.org/obo/mondo.owl
 mondo_hasdbxref_icd10cm.sssom.tsv	0	Unknown or invalid CURIE at line 17: https://www.icd10data.com/
 mondo_hp_lexical.sssom.tsv	0	Unknown or invalid CURIE at line 16: http://purl.obolibrary.org/obo/hp.owl
 mondo.sssom.tsv	106552	
-mp_doid_pistoia.sssom.tsv	0	mapping_set_id must be Uri: mp_doid_pistoia
-mp_hp_eye_impc.sssom.tsv	0	mapping_set_id must be Uri: mp_hp_eye_impc
-mp_hp_hwt_impc.sssom.tsv	0	mapping_set_id must be Uri: mp_hp_hwt_impc
+mp_doid_pistoia.sssom.tsv	290	
+mp_hp_eye_impc.sssom.tsv	47	
+mp_hp_hwt_impc.sssom.tsv	6	
 mp_hp_mgi_all.sssom.tsv	1561	
-mp_hp_owt_impc.sssom.tsv	0	mapping_set_id must be Uri: mp_hp_owt_impc
-mp_hp_pat_impc.sssom.tsv	0	mapping_set_id must be Uri: mp_hp_pat_impc
-mp_hp_pistoia.sssom.tsv	0	mapping_set_id must be Uri: mp_hp_pistoia
-mp_hp_xry_impc.sssom.tsv	0	mapping_set_id must be Uri: mp_hp_xry_impc
+mp_hp_owt_impc.sssom.tsv	33	
+mp_hp_pat_impc.sssom.tsv	188	
+mp_hp_pistoia.sssom.tsv	1671	
+mp_hp_xry_impc.sssom.tsv	57	
 obo_omop.cpath.sssom.tsv	0	mapping_set_id must be Uri: cpath_obo_omop
 obo_omop_invert.cpath.sssom.tsv	0	mapping_set_id must be Uri: cpath_obo_omop_invert
 omop2obo_condition.sssom.tsv	0	Missing Mapping slot: subject_id at line 35920
 omop2obo_drug_exposure.sssom.tsv	0	Missing Mapping slot: subject_id at line 9063
 omop2obo_measurement.sssom.tsv	0	Missing Mapping slot: subject_id at line 12910
-ordo_doid_pistoia.sssom.tsv	0	mapping_set_id must be Uri: ordo_doid_pistoia
-ordo_mp_pistoia.sssom.tsv	0	mapping_set_id must be Uri: ordo_mp_pistoia
-pato_hp_pat_impc.sssom.tsv	0	mapping_set_id must be Uri: pato_hp_pat_impc
+ordo_doid_pistoia.sssom.tsv	3350	
+ordo_mp_pistoia.sssom.tsv	138	
+pato_hp_pat_impc.sssom.tsv	36	
