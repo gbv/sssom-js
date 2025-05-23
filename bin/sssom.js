@@ -15,8 +15,8 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
   .option("-c, --curie FILE   additional CURIE map (JSON or YAML file)")
   .option("-e, --empty        allow empty mappings block in SSSOM/TSV")
   .option("-m, --mappings     write mappings only")
-  .option("-v, --verbose      verbose error messages")
-  .option("-x, --errors       JSON error messages")
+  .option("-v, --verbose      emit error verbosely")
+  .option("-j, --json-errors  emit errors detailled in JSON")
   .action(async (args, options) => {
     const input = args.length ? args.shift() : "-"
     if (args.length) {
@@ -50,7 +50,7 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
   })
   .parse(process.argv)
   .catch(e => {
-    if (cli.options.errors) {
+    if (cli.options["json-errors"]) {
       const { message, value, position } = e
       console.error(JSON.stringify({ message, value, position },null,2))
     } else {

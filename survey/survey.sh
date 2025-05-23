@@ -35,9 +35,9 @@ do ((i++)) || continue  # skip header
 
     validate() {
         if [[ -s "$n/metadata.yml" ]]; then
-            ../bin/sssom.js -t ndjson -x "$@" "$n/metadata.yml" > "$n/mappings.ndjson" 2> $n/error.json
+            ../bin/sssom.js -t ndjson -j "$@" "$n/metadata.yml" > "$n/mappings.ndjson" 2> $n/error.json
         else
-            ../bin/sssom.js -t ndjson -x "$@" > "$n/mappings.ndjson" 2> $n/error.json
+            ../bin/sssom.js -t ndjson -j "$@" > "$n/mappings.ndjson" 2> $n/error.json
         fi
     }
 

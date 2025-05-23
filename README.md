@@ -50,8 +50,8 @@ Options:
   -c, --curie FILE   additional CURIE map (JSON or YAML file)
   -e, --empty        allow empty mappings block in SSSOM/TSV
   -m, --mappings     write mappings only
-  -v, --verbose      verbose error messages
-  -x, --errors       JSON error messages
+  -v, --verbose      emit error verbosely
+  -j, --json-errors  emit errors detailled in JSON
   -h, --help         output usage information
   -V, --version      output the version number
 ~~~
