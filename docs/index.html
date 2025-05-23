@@ -33,6 +33,11 @@ subject_id	predicate_id	object_id	mapping_justification
 x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
         <div>
           <input type="button" value="Validate and Transform" onClick="validate()" />
+          <select id="from" name="from" onChange="validate()">
+            <option value="tsv">SSSOM/TSV</option>
+            <option value="csv">SSSOM/CSV</option>
+            <option value="json">SSSOM/JSON</option>
+          </select>
           <span id="status" class="valid"></span>
         </div>
       </form>

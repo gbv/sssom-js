@@ -27,6 +27,7 @@ function validate () {
   const editor = $("sssom-input").nextSibling
   const resultFormat = $("to").value
   const options = {
+    from: $("from").value,
     to: ["jskos","ndjskos"].includes(resultFormat) ? "jskos" : "json",
     mappings: $("mappingsOnly").checked,
   }
