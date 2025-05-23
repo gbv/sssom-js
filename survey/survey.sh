@@ -35,16 +35,18 @@ do ((i++)) || continue  # skip header
 
     validate() {
         if [[ -s "$n/metadata.yml" ]]; then
-            ../bin/sssom.js -t ndjson -x "$file" "$n/metadata.yml" > "$n/mappings.ndjson" 2> $n/error.json
+            ../bin/sssom.js -t ndjson -x "$@" "$n/metadata.yml" > "$n/mappings.ndjson" 2> $n/error.json
         else
-            ../bin/sssom.js -t ndjson -x "$file" > "$n/mappings.ndjson" 2> $n/error.json
+            ../bin/sssom.js -t ndjson -x "$@" > "$n/mappings.ndjson" 2> $n/error.json
         fi
     }
 
     if [[ "$file" == *.gz ]]; then
-        zcat "$file" | validate
+        format="${file%.*}"
+        format="${format##*.}"
+        zcat "$file" | validate -f $format "-"
     else
-        validate
+        validate "$file"
     fi
 
     if [[ -s "$n/error.json" ]]; then
