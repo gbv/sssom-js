@@ -7,7 +7,7 @@
 
 This Node package provides methods and a command line client to process mappings in [SSSOM] format.
 
-It implements parsing SSSOM (TSV and JSON) with validation and transformation to other SSSOM serializations and to [JSKOS] format.
+It implements parsing SSSOM (TSV, CSV and JSON) with validation and transformation to other SSSOM serializations and to [JSKOS] format.
 
 # Table of Contents
 
@@ -43,7 +43,7 @@ Usage: sssom [options] [<mappings-file> [<metadata-file>]]
 Parse and convert SSSOM
 
 Options:
-  -f, --from FORMAT  input format (tsv, json)
+  -f, --from FORMAT  input format (tsv, csv, json)
   -t, --to FORMAT    output format (json, ndjson, jskos, ndjskos)
   -o, --output       output file (default: - for stdout)
   -p, --propagate    add propagatable slots to mappings
@@ -61,6 +61,7 @@ The following formats are supported:
 format   | description   | support
 ---------|---------------|---------
 `tsv`    | [SSSOM/TSV]   | from
+`csv`    | SSSOM/CSV     | from
 `json`   | [SSSOM/JSON]  | from & to
 `ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to
 `jskos`  | [JSKOS]       | to
@@ -131,6 +132,12 @@ new TSVReader(input)
   .on("mapping", console.log)
   .on("error", console.error)
   .on("end", console.log)
+~~~
+
+Options can be given with a second optional argument object:
+
+~~~js
+new TSVReader(input, { delimiter: "," }) // SSSOM/CSV
 ~~~
 
 #### toJskosRegistry

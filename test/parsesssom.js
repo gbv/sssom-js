@@ -15,6 +15,7 @@ const validFiles = ["array.sssom.tsv","minimal.sssom.tsv"]
 describe("parseSSSOM", () => {
   Object.entries({
     "SSSOM/TSV": ["test/valid/example.sssom.tsv"],
+    "SSSOM/CSV": ["test/valid/example.sssom.csv"],
     "SSSOM/JSON": ["test/valid/example.sssom.json", { from: "json" }],
     "SSSOM/JSON with external metadata": ["test/valid/example.mappings.json", { metadata }],
   }).forEach(([test, args]) => {
