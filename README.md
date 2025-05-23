@@ -7,7 +7,7 @@
 
 This Node package provides methods and a command line client to process mappings in [SSSOM] format.
 
-It implements parsing SSSOM (TSV, CSV and JSON) with validation and transformation to other SSSOM serializations and to [JSKOS] format.
+It implements parsing variants of SSSOM (TSV, CSV and JSON) with validation and transformation to other SSSOM serializations and to [JSKOS] format.
 
 # Table of Contents
 
@@ -164,9 +164,12 @@ A web form to validate and transform SSSOM/TSV is made available at <https://gbv
 
 ## Limitations
 
-- [SSSOM/JSON] has not officially been specified yet, so the format used by this package may change
+This library follows the [SSSOM specification](https://mapping-commons.github.io/sssom/spec-intro/) as close as possible, but it does not aim to be a fully compliant implementation. The latter would require to also comply to [LinkML](https://w3id.org/linkml/specification), a specification much more complex then needed for SSSOM and not fully been implemented in JavaScript yet. In particular:
+
+- All slots of [type Uri](https://mapping-commons.github.io/sssom/Uri/) must be absolute URIs as defined in [RFC 3986](http://tools.ietf.org/html/rfc3986)
 - [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not supported
-- [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported and its mapping set slot `extension_definition` is ignored
+- [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported (mapping set slot `extension_definition` is ignored)
+- [SSSOM/JSON], the JSON serialization of SSSOM has not been specified yet, so it may differ from the JSON format used in this library
 
 ## Transformation to JSKOS
 
