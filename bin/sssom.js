@@ -8,15 +8,16 @@ const outputFormats = ["json","ndjson","jskos","ndjskos"]
 
 cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
   .description("Parse and convert SSSOM")
-  .option(`-f, --from FORMAT  input format (${inputFormats.join(", ")})`)
-  .option(`-t, --to FORMAT    output format (${outputFormats.join(", ")})`)
-  .option("-o, --output FILE  output file (default: - for stdout)")
-  .option("-p, --propagate    add propagatable slots to mappings")
-  .option("-c, --curie FILE   additional CURIE map (JSON or YAML file)")
-  .option("-l, --liberal      parse less strict than the specification")
-  .option("-m, --mappings     write mappings only")
-  .option("-v, --verbose      emit error verbosely")
-  .option("-j, --json-errors  emit errors detailled in JSON")
+  .option(`-f, --from FORMAT   input format (${inputFormats.join(", ")})`)
+  .option(`-t, --to FORMAT     output format (${outputFormats.join(", ")})`)
+  .option("-o, --output FILE   output file (default: - for stdout)")
+  .option("-p, --propagate     add propagatable slots to mappings")
+  .option("-c, --curie FILE    additional CURIE map (JSON or YAML file)")
+  .option("-l, --liberal       parse less strict than the specification")
+  .option("-s, --schemes FILE  JSKOS concept schemes to detect")
+  .option("-m, --mappings      write mappings only")
+  .option("-v, --verbose       emit error verbosely")
+  .option("-j, --json-errors   emit errors detailled in JSON")
   .action(async (args, options) => {
     const input = args.length ? args.shift() : "-"
     if (args.length) {
@@ -33,6 +34,15 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
 
     if (!outputFormats.includes(options.to ??= "ndjson")) {
       throw new Error(`Unsupported output format ${options.to}`)
+    }
+
+    if (options.schemes) {
+      const json = fs.readFileSync(options.schemes).toString() // TODO: allow "-"
+      if (json.match(/^\s*\[/)) { // JSON array
+        options.schemes = JSON.parse(json)
+      } else { // NDJSON
+        options.schemes = json.split("\n").filter(line => !line.match(/^\s*$/)).map(JSON.parse)
+      }
     }
 
     if (options.to === "ndjson") {
