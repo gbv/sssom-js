@@ -131,13 +131,17 @@ Convert a parsed Mapping to a [JSKOS Concept Mapping](https://gbv.github.io/jsko
 
 ### Options
 
-- **metadata** (string or object): mapping set metadata (external metadata mode) or file to read from
-- **curie** (string or object) additional CURIE map or file to read from
-- **propagation** (boolean, false by default): enables [propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots)
+- [from/to](#fromto)
+- [metadata](#metadata)
+- [propagate](#propagate) (boolean, false by default): 
+- [curie](#curie)
+- [liberal](#liberal)
+- schemes
+- mappings
 
 #### from/to
 
-Input format and output format given as string. The following formats are supported so far:
+Input format and output format of the mappings, given as string. The following formats are supported so far:
 
 format   | description   | support
 ---------|---------------|---------
@@ -151,6 +155,10 @@ format   | description   | support
 If not specified, formats are guessed from file name with fallback to `tsv` (from) and `ndjson` (to).
 
 Formats `json` and `jskos` require to fully load the input into memory for processing, the other formats support streaming processing.
+
+#### metadata
+
+Mapping set metadata file in JSON or YAML format for external metadata mode. Is passed as second argument in the command line client or as named option in the API. The API also accepts a parsed object.
 
 #### liberal
 
@@ -167,6 +175,10 @@ If you want to allow all CURIE prefixes from [Bioregistry](https://bioregistry.i
 curl -sL https://w3id.org/biopragmatics/bioregistry.epm.json | \
 jq -Sf bioregistry.jq > bioregistry.json
 ~~~
+
+#### propagate
+
+Enables [propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots).
 
 ### Validation errors
 
