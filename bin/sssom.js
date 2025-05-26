@@ -3,8 +3,14 @@
 import cli from "../lib/cli.js"
 import fs from "fs"
 import { parseSSSOM, inputFormats, toJskosRegistry, toJskosMapping } from "../index.js"
+import { buildIn } from "../lib/curiemap.js"
 
 const outputFormats = ["json","ndjson","jskos","ndjskos"]
+
+const { jsonld2rdf } = await import("jsonld2rdf").catch(()=>({}))
+if (jsonld2rdf) {
+  outputFormats.push("nt","ttl")
+}
 
 cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
   .description("Parse and convert SSSOM")
@@ -53,9 +59,21 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
       if (!options.mappings) options.metadataHandler = metadata => ndjson(toJskosRegistry(metadata, options))
       options.mappingHandler = mapping => ndjson(toJskosMapping(mapping, options))
       return await parseSSSOM(input, options)
-    } else { // jskos or sssom/json
+    } else {
       const result = await parseSSSOM(input, options)
-      output.write(JSON.stringify(result || {}, null, 2)+"\n")
+      if (options.to === "nt" || options.to === "ttl") {
+        const { default: context } = await import("../context.json",  { with: { type: "json" } })
+        var prefixes
+        if (options.to === "ttl") {
+          prefixes = {
+            ...buildIn, // TODO: use curie_map?
+          }
+          for (let s of ["dct","pav","prov"]) prefixes[s] = context[s]
+        }
+        output.write(await jsonld2rdf(result, { context, prefixes }))
+      } else {
+        output.write(JSON.stringify(result || {}, null, 2)+"\n")
+      }
     }
   })
   .parse(process.argv)
