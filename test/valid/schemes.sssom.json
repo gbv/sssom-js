@@ -1,0 +1,65 @@
+{
+  "license": [
+    {
+      "uri": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "uri": "https://example.org/mappings",
+  "mappings": [
+    {
+      "type": [
+        "http://www.w3.org/2004/02/skos/core#exactMatch"
+      ],
+      "from": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/foo1",
+            "inScheme": [
+              {
+                "uri": "http://example.org/ontology/foo"
+              }
+            ]
+          }
+        ]
+      },
+      "to": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/bar2",
+            "inScheme": [
+              {
+                "uri": "http://example.org/ontology/bar"
+              }
+            ]
+          }
+        ]
+      },
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration"
+    },
+    {
+      "type": [
+        "http://www.w3.org/2004/02/skos/core#exactMatch"
+      ],
+      "from": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/foo3",
+            "inScheme": [
+              {
+                "uri": "http://example.org/ontology/foo"
+              }
+            ]
+          }
+        ]
+      },
+      "to": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/doz4"
+          }
+        ]
+      },
+      "justification": "https://w3id.org/semapv/vocab/ManualMappingCuration"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# curie_map:
+#  x: http://example.org/foo
+#  y: http://example.org/bar
+#  z: http://example.org/doz
+# mapping_set_id: https://example.org/mappings
+# license: https://creativecommons.org/licenses/by/4.0/
+subject_id	predicate_id	object_id	mapping_justification
+x:1	skos:exactMatch	y:2	semapv:ManualMappingCuration
+x:3	skos:exactMatch	z:4	semapv:ManualMappingCuration

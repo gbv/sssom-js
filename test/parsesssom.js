@@ -11,7 +11,8 @@ const metadata = "test/valid/example.sssom.yml"
 
 chai.config.truncateThreshold = 0
 
-const validFiles = ["array.sssom.tsv","minimal.sssom.tsv"]
+const validFiles = ["array.sssom.tsv","minimal.sssom.tsv","schemes.sssom.tsv"]
+
 describe("parseSSSOM", () => {
   Object.entries({
     "SSSOM/TSV": ["test/valid/example.sssom.tsv"],

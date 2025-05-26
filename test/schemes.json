@@ -1,0 +1,4 @@
+[
+  { "uri": "http://example.org/ontology/foo", "namespace": "http://example.org/foo" },
+  { "uri": "http://example.org/ontology/bar", "namespace": "http://example.org/bar" }
+]

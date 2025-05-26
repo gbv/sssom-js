@@ -15,6 +15,7 @@ It implements parsing variants of SSSOM (TSV, CSV and JSON) with validation and 
 - [Usage](#usage)
   - [Command line](#command-line)
   - [API](#api)  
+  - [Options](#options)
   - [Validation errors](#validation-errors)
   - [Web application](#web-application)
 - [Limitations](#limitations)
@@ -43,44 +44,21 @@ Usage: sssom [options] [<mappings-file> [<metadata-file>]]
 Parse and convert SSSOM
 
 Options:
-  -f, --from FORMAT  input format (tsv, csv, json)
-  -t, --to FORMAT    output format (json, ndjson, jskos, ndjskos)
-  -o, --output       output file (default: - for stdout)
-  -p, --propagate    add propagatable slots to mappings
-  -c, --curie FILE   additional CURIE map (JSON or YAML file)
-  -l, --liberal      parse less strict than the specification
-  -m, --mappings     write mappings only
-  -v, --verbose      emit error verbosely
-  -j, --json-errors  emit errors detailled in JSON
-  -h, --help         output usage information
-  -V, --version      output the version number
+  -f, --from FORMAT   input format (csv, tsv, json)
+  -t, --to FORMAT     output format (json, ndjson, jskos, ndjskos)
+  -o, --output FILE   output file (default: - for stdout)
+  -p, --propagate     add propagatable slots to mappings
+  -c, --curie FILE    additional CURIE map (JSON or YAML file)
+  -l, --liberal       parse less strict than the specification
+  -s, --schemes FILE  JSKOS concept schemes to detect
+  -m, --mappings      write mappings only
+  -v, --verbose       emit error verbosely
+  -j, --json-errors   emit errors detailled in JSON
+  -h, --help          output usage information
+  -V, --version       output the version number
 ~~~
 
-The following formats are supported:
-
-format   | description   | support
----------|---------------|---------
-`tsv`    | [SSSOM/TSV]   | from
-`csv`    | SSSOM/CSV     | from
-`json`   | [SSSOM/JSON]  | from & to
-`ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to
-`jskos`  | [JSKOS]       | to
-`ndjskos`| metadata and mappings on individual lines (JSKOS) | to 
-
-If not specified, formats are guessed from file name with fallback to `tsv` (from) and `ndjson` (to).
-
-Formats `json` and `jskos` require to fully load the input into memory for processing, the other formats support streaming processing.
-
-Liberal processing allows:
-
-- empty/missing mappings block
-
-If you want to allow all CURIE prefixes from [Bioregistry](https://bioregistry.io) without explicitly defining them in `curie_map` you can download and convert the current list for instance with command line tools `curl` and `jq` this way (requires local copy of file [bioregistry.jq](bioregistry.jq)) and then reference result file `bioregistry.json` with option `--curie`:
-
-~~~
-curl -sL https://w3id.org/biopragmatics/bioregistry.epm.json | \
-jq -Sf bioregistry.jq > bioregistry.json
-~~~
+See below for a more detailled description of [options](#options) common to the command line client and the internal API.
 
 ### API
 
@@ -90,7 +68,7 @@ import { parseSSSOM, TSVReader, toJskosRegistry, toJskosMapping } from "sssom-js
 
 #### parseSSSOM (input, options)
 
-This asynchronous function parses SSSOM in format `options.from` (`json`, or `tsv` as default) from a stream or file and returns a mapping set on success. The result should directly be serializable as SSSOM/JSON (or to JSKOS with option `to` set to `jskos`).
+This asynchronous function parses SSSOM in an [input format](#fromto) from a stream or file and returns a mapping set on success. The result should directly be serializable as SSSOM/JSON (or as JSKOS with option `to` set to `jskos`).
 
 ~~~js
 import { parseSSSOM } from "sssom-js"
@@ -103,16 +81,8 @@ An untruthy `input` value will skip processing of mappings so only the mapping s
 const metadata = await parseSSSOM(false, { metadata: "metadata.sssom.yaml" })
 ~~~
 
-##### Options
+See below for a description of [common options](#options). Additional options are:
 
-- **from** (string, `tsv` by default): input format
-- **to** (string): response format (`sssom` by default or `jskos`)
-- **metadata** (string or object): mapping set metadata (external metadata mode) or file to read from
-- **curie** (string or object) additional CURIE map or file to read from
-- **propagation** (boolean, false by default): enables [propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots)
-- **liberal** (boolean, false by default):
-  - allow empty mappings block in SSSOM/TSV (but still read and validate the metadata block)
-  - do not require mapping set slots (neither `mapping_set_id` nor `license`)
 - **metadataHandler** (function) called for parsed metadata
 - **mappingHandler** (function) called for each parsed mapping
 
@@ -138,13 +108,18 @@ new TSVReader(input)
   .on("mapping", console.log)
   .on("error", console.error)
   .on("end", console.log)
+
+new TSVReader(input, { delimiter: "," }) // parse SSSOM/CSV
 ~~~
 
-Options can be given with a second optional argument object:
+The following parsing options can be given with a second optional argument object:
 
-~~~js
-new TSVReader(input, { delimiter: "," }) // SSSOM/CSV
-~~~
+- **metadata** (must be an object)
+- **curie** (must be an object)
+- **propagate** (boolean)
+- **liberal** (boolean)
+- **delimiter** (string)
+- **storeMappings** (boolean) whether to store parsed mappings and include them in the result
 
 #### toJskosRegistry
 
@@ -154,7 +129,46 @@ Convert a parsed MappingSet to a [JSKOS Registry](https://gbv.github.io/jskos/#r
 
 Convert a parsed Mapping to a [JSKOS Concept Mapping](https://gbv.github.io/jskos/#concept-mapping) object.
 
-## Validation errors
+### Options
+
+- **metadata** (string or object): mapping set metadata (external metadata mode) or file to read from
+- **curie** (string or object) additional CURIE map or file to read from
+- **propagation** (boolean, false by default): enables [propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots)
+
+#### from/to
+
+Input format and output format given as string. The following formats are supported so far:
+
+format   | description   | support
+---------|---------------|---------
+`tsv`    | [SSSOM/TSV]   | from
+`csv`    | SSSOM/CSV     | from
+`json`   | [SSSOM/JSON]  | from & to
+`ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to
+`jskos`  | [JSKOS]       | to
+`ndjskos`| metadata and mappings on individual lines (JSKOS) | to 
+
+If not specified, formats are guessed from file name with fallback to `tsv` (from) and `ndjson` (to).
+
+Formats `json` and `jskos` require to fully load the input into memory for processing, the other formats support streaming processing.
+
+#### liberal
+
+Enabling liberal parsing will
+
+- allow empty mappings block in SSSOM/TSV (but still read and validate the metadata block)
+- not require mapping set slots (neither `mapping_set_id` nor `license`) so the metadata block can be empty
+
+#### curie
+
+If you want to allow all CURIE prefixes from [Bioregistry](https://bioregistry.io) without explicitly defining them in `curie_map` you can download and convert the current list for instance with command line tools `curl` and `jq` this way (requires local copy of file [bioregistry.jq](bioregistry.jq)) and then reference result file `bioregistry.json` with option `--curie`:
+
+~~~
+curl -sL https://w3id.org/biopragmatics/bioregistry.epm.json | \
+jq -Sf bioregistry.jq > bioregistry.json
+~~~
+
+### Validation errors
 
 Validation error objects (emitted as JSON objects with command line option `-x, --errors`) have three fields:
 
@@ -164,7 +178,7 @@ Validation error objects (emitted as JSON objects with command line option `-x, 
   - `line`: a line number (given as string)
   - `jsonpointer`: a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to the malformed YAML or JSON element
 
-## Web application
+### Web application
 
 A web form to validate and transform SSSOM/TSV is made available at <https://gbv.github.io/sssom-js/>. This application is not included in the package release at npm.
 

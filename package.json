@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "csv-parser": "^3.2.0",
-    "namespace-lookup": "^0.1.0",
+    "namespace-lookup": "^0.2.1",
     "ncname": "^3.0.0",
     "yaml": "^2.7.1"
   },

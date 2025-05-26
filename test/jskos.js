@@ -17,3 +17,15 @@ describe("SSSOM to JSKOS", () => {
     })
   }
 })
+
+describe("SSSOM with schemes", () => {
+  const schemes = [
+    { uri: "http://example.org/ontology/foo", namespace: "http://example.org/foo" },
+    { uri: "http://example.org/ontology/bar", namespace: "http://example.org/bar" },
+  ]
+  const tsv = "test/valid/schemes.sssom.tsv"
+  it(tsv, async () => {
+    const result = await parseSSSOM(tsv, { to: "jskos", schemes })
+    expect(result).to.deep.equal(require("./valid/schemes.sssom.json"))
+  })
+})
