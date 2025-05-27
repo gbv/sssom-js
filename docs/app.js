@@ -56,8 +56,16 @@ function validate () {
     if (resultFormat === "ndjson" || resultFormat === "ndjskos") {
       const { mappings, ...metadata } = result
       const lines = options.mappings ? mappings : [ metadata, ...mappings ]
+      cmResult.setOption("mode", "javascript")
       cmResult.setValue(lines.map(JSON.stringify).join("\n"))
+    } else if (resultFormat === "nt" || resultFormat === "ttl") {
+      result["@context"] = rdfContext
+      jsonld.toRDF(result, {format: 'application/n-quads'}).then(rdf => cmResult.setValue(rdf))
+      //cmResult.setValue(JSON.stringify(result, null, 2))
+      // TODO: syntax highlight ttl
+      cmResult.setOption("mode", "turtle")
     } else {
+      cmResult.setOption("mode", "javascript")
       cmResult.setValue(JSON.stringify(result, null, 2))
     }
   }
@@ -71,3 +79,17 @@ function validate () {
 cmInput.on("change",validate)
 
 validate()
+
+if (window.JsonLdProcessor) {
+  fetch("context.json").then(res => res.json()).then(context => {
+    window.rdfContext = context
+    let opt = document.createElement("option")
+    opt.value = "nt"
+    opt.textContent = "NTriples"
+    $("to").appendChild(opt)
+    //opt = document.createElement("option")
+    //opt.value = "ttl"
+    //opt.textContent = "Turtle"
+    //$("to").appendChild(opt)
+  })
+}
