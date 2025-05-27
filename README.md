@@ -49,7 +49,7 @@ Options:
   -o, --output FILE   output file (default: - for stdout)
   -p, --propagate     add propagatable slots to mappings
   -c, --curie FILE    additional CURIE map (JSON or YAML file)
-  -l, --liberal       parse less strict than the specification
+  -b, --liberal       parse less strict than the specification
   -s, --schemes FILE  JSKOS concept schemes to detect
   -m, --mappings      write mappings only
   -v, --verbose       emit error verbosely
