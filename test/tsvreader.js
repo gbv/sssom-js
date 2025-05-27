@@ -32,7 +32,7 @@ describe("TSVReader", () => {
     })
   })
 
-  for (let file of ["test/invalid/license.sssom.tsv"]) {
+  for (let file of ["test/invalid/license.sssom.tsv", "test/invalid/liberal.sssom.tsv"]) {
     it(`should parse liberal: ${file}`, done => {
       const reader = new TSVReader(fs.createReadStream(file), { liberal: true })
       reader.on("end", res => {

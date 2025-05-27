@@ -1,0 +1,4 @@
+# curie_map:
+#  x: http://example.org/
+subject_id	predicate_id	object_id
+x:1	skos:exactMatch	x:2

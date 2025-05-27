@@ -166,6 +166,7 @@ Enabling liberal parsing will
 
 - allow empty mappings block in SSSOM/TSV (but still read and validate the metadata block)
 - not require mapping set slots (neither `mapping_set_id` nor `license`) so the metadata block can be empty
+- not require mapping slot `mapping_justification`
 
 #### curie
 
