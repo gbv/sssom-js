@@ -26,11 +26,19 @@ It implements parsing variants of SSSOM (TSV, CSV and JSON) with validation and 
 
 ## Install 
 
+Requires Node.js >= 20.19.
+
 ```bash
 npm install sssom-js
 ```
 
-Requires Node.js >= 20.19.
+For RDF export in the command line client also install [jsonld2rdf].
+
+```
+npm install jsonld2rdf
+```
+
+[jsonld2rdf]: https://www.npmjs.com/package/jsonld2rdf
 
 ## Usage
 
@@ -151,6 +159,8 @@ format   | description   | support
 `ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to
 `jskos`  | [JSKOS]       | to
 `ndjskos`| metadata and mappings on individual lines (JSKOS) | to 
+`nt`     | NTriples      | to (requires [jsonld2rdf])
+`ttl`    | RDF/Turtle    | to (requires [jsonld2rdf])
 
 If not specified, formats are guessed from file name with fallback to `tsv` (from) and `ndjson` (to).
 
@@ -201,8 +211,13 @@ This library follows the [SSSOM specification](https://mapping-commons.github.io
 
 - All slots of [type Uri](https://mapping-commons.github.io/sssom/Uri/) must be absolute URIs as defined in [RFC 3986](http://tools.ietf.org/html/rfc3986)
 - [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not supported
-- [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported (mapping set slot `extension_definition` is ignored)
+- [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported:
+  - mapping set slot `extension_definition` is ignored
+  - mapping set slot `other` is read and validated but not used
 - [SSSOM/JSON], the JSON serialization of SSSOM has not been specified yet, so it may differ from the JSON format used in this library
+- Transformation to RDF lacks `creator_label` and `author_label`
+- Propagation silently overwrites existing mapping slots instead of raising an error
+- There is an additional non-SSSOM mapping slot `mapping_id`
 
 ## Transformation to JSKOS
 

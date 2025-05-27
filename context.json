@@ -1,0 +1,31 @@
+{
+  "dct": "http://purl.org/dc/terms/",
+  "sssom": "https://w3id.org/sssom/",
+  "owl": "http://www.w3.org/2002/07/owl#",
+  "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+  "prov": "http://www.w3.org/ns/prov#",
+  "mappings": {
+    "@id": "sssom:mappings",
+    "@context": {
+      "owl": "http://www.w3.org/2002/07/owl#",
+      "mapping_id": "@id",
+      "subject_id": { "@id": "owl:annotatedSource", "@type": "@id" },
+      "object_id": { "@id": "owl:annotatedTarget", "@type": "@id" },
+      "predicate_id": { "@id": "owl:annotatedProperty", "@type": "@id" },
+      "mapping_justification": { "@id": "sssom:mapping_justification", "@type": "@id" },
+      "similarity_score": { "@id": "sssom:similarity_score", "@type": "xsd:double" }
+    }
+  },
+  "mapping_set_id": "@id",
+  "mapping_set_version": { "@id": "owl:versionInfo" },
+  "mapping_set_source": { "@type": "@id", "@id": "prov:wasDerivedFrom" },
+  "mapping_set_title": { "@id": "dct:title" },
+  "mapping_set_description": "dct:description",
+  "comment": { "@id": "rdfs:comment" },
+  "creator_id": { "@id": "dct:creator", "@type": "@id" },
+  "license": { "@id": "dct:license", "@type": "@id" },
+  "publication_date": { "@type": "xsd:date", "@id": "dct:issued" },
+  "see_also": { "@id": "rdfs:seeAlso", "@type": "@id" },
+  "mapping_date": { "@type": "xsd:date", "@id": "dct:created" },
+  "mapping_provider": { "@id": "sssom:mapping_provider", "@type": "@id" }
+}

@@ -1,10 +1,22 @@
 # curie_map:
 #  orcid: https://orcid.org/
+#  x: http://example.org/
 # mapping_set_id: http://example.org/mapping_set
 # mapping_set_version: 1.2.3
+# mapping_set_source: http://example.org/another_set
+# mapping_set_title: Test Mapping Set
 # mapping_set_description: description
 # mapping_provider: http://example.org/mapping_provider
 # license: https://creativecommons.org/licenses/by/4.0/
 # mapping_date: 2025-01-02
 # publication_date: 2025-03-04
-subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification
+# comment: hello
+# other: a|b
+# creator_id: orcid:0000-0002-1825-0097
+# creator_label: Josiah Carberry
+# see_also: http://example.com
+# mapping_tool: http://example.org/software
+# mapping_tool_version: "7.0"
+mapping_id	subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	similarity_score
+x:m1	x:a	a	x:predicate	x:1	1	semapv:LexicalMatching	0.2
+	x:b	b	x:predicate	x:2	2	semapv:LexicalMatching	1.0
