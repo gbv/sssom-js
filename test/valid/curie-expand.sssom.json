@@ -4,8 +4,8 @@
   },
   "mapping_set_id": "ex:mappings",
   "license": "ex:license",
-  "creator_id": [
-    "http://example.org/creator"
+  "creator": [
+    { "id": "http://example.org/creator" }
   ],
   "object_source": "http://example.org/source",
   "mappings": []

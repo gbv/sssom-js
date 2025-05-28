@@ -13,7 +13,15 @@
       "object_id": { "@id": "owl:annotatedTarget", "@type": "@id" },
       "predicate_id": { "@id": "owl:annotatedProperty", "@type": "@id" },
       "mapping_justification": { "@id": "sssom:mapping_justification", "@type": "@id" },
-      "similarity_score": { "@id": "sssom:similarity_score", "@type": "xsd:double" }
+      "similarity_score": { "@id": "sssom:similarity_score", "@type": "xsd:double" },
+      "author": {
+        "@id": "dct:creator",
+        "@context": { "id": "@id", "label": "rdfs:label" }
+      },
+      "reviewer": {
+        "@id": "dct:contributor",
+        "@context": { "id": "@id", "label": "rdfs:label" }
+      }
     }
   },
   "mapping_set_id": "@id",
@@ -22,7 +30,10 @@
   "mapping_set_title": { "@id": "dct:title" },
   "mapping_set_description": "dct:description",
   "comment": { "@id": "rdfs:comment" },
-  "creator_id": { "@id": "dct:creator", "@type": "@id" },
+  "creator": {
+    "@id": "dct:creator",
+    "@context": { "id": "@id", "label": "rdfs:label" }
+  },
   "license": { "@id": "dct:license", "@type": "@id" },
   "publication_date": { "@type": "xsd:date", "@id": "dct:issued" },
   "see_also": { "@id": "rdfs:seeAlso", "@type": "@id" },

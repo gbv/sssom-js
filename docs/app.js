@@ -43,12 +43,13 @@ function validate () {
       const ch = lines[line].length
       marker = cmInput.getDoc().markText({line,ch:0},{line,ch},{css: "background-color: #fcc"})
     }
-    editor.classList.add("invalid")
+    editor.classList.replace("valid","invalid")
     $("status").textContent = `${err}`
     $("status").classList.replace("valid","invalid")
   }
 
   const showResult = result => {
+    editor.classList.replace("invalid","valid")
     editor.classList.add("valid")
     $("status").textContent = "Input is valid"
     $("status").classList.replace("invalid","valid")
@@ -61,8 +62,6 @@ function validate () {
     } else if (resultFormat === "nt" || resultFormat === "ttl") {
       result["@context"] = window.rdfContext
       window.jsonld.toRDF(result, {format: "application/n-quads"}).then(rdf => cmResult.setValue(rdf))
-      //cmResult.setValue(JSON.stringify(result, null, 2))
-      // TODO: syntax highlight ttl
       cmResult.setOption("mode", "turtle")
     } else {
       cmResult.setOption("mode", "javascript")

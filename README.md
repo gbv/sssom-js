@@ -155,7 +155,7 @@ format   | description   | support
 ---------|---------------|---------
 `tsv`    | [SSSOM/TSV]   | from
 `csv`    | SSSOM/CSV     | from
-`json`   | [SSSOM/JSON]  | from & to
+`json`   | [SSSOM/JSON]/JSON-LD  | from & to
 `ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to
 `jskos`  | [JSKOS]       | to
 `ndjskos`| metadata and mappings on individual lines (JSKOS) | to 
@@ -209,12 +209,12 @@ A web form to validate and transform SSSOM/TSV is made available at <https://gbv
 
 This library follows the [SSSOM specification](https://mapping-commons.github.io/sssom/spec-intro/) as close as possible, but it does not aim to be a fully compliant implementation. The latter would require to also comply to [LinkML](https://w3id.org/linkml/specification), a specification much more complex then needed for SSSOM and not fully been implemented in JavaScript yet. In particular:
 
-- All slots of [type Uri](https://mapping-commons.github.io/sssom/Uri/) must be absolute URIs as defined in [RFC 3986](http://tools.ietf.org/html/rfc3986)
+- All slots of [type Uri](https://mapping-commons.github.io/sssom/Uri/) must be **absolute** URIs as defined in [RFC 3986](http://tools.ietf.org/html/rfc3986)
 - [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not supported
 - [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported:
   - mapping set slot `extension_definition` is ignored
   - mapping set slot `other` is read and validated but not used
-- [SSSOM/JSON], the JSON serialization of SSSOM has not been specified yet, so it may differ from the JSON format used in this library
+- [SSSOM/JSON], the JSON serialization of SSSOM has not been specified yet, so it may differ from the JSON(-LD) format used in this library
 - Transformation to RDF lacks `creator_label` and `author_label`
 - Propagation silently overwrites existing mapping slots instead of raising an error
 - There is an additional non-SSSOM mapping slot `mapping_id`

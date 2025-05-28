@@ -1,6 +1,6 @@
 {
   "mapping_set_id": "https://example.org/mappings",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "creator_label": ["a|b"],
+  "creator": [ { "label": "a|b" } ],
   "mappings": []
 }

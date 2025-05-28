@@ -6,7 +6,7 @@ import webpack from "webpack"
 //const { version } = createRequire(import.meta.url)("./package.json")
 
 const mode = "production"
-//(const mode = "development"
+//const mode = "development"
 
 const config = {
   entry: "./index.js",
