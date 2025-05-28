@@ -16,11 +16,13 @@
       "object_id": "http://purl.obolibrary.org/obo/FOODON_00002473",
       "object_label": "apple (whole)",
       "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
-      "author_id": [
-        "https://orcid.org/0000-0002-7356-1779"
-      ],
       "confidence": 0.95,
-      "comment": "We could map to FOODON:03310788 instead to cover sliced apples, but only \"whole\" apple types exist."
+      "comment": "We could map to FOODON:03310788 instead to cover sliced apples, but only \"whole\" apple types exist.",
+      "author": [
+        {
+          "id": "https://orcid.org/0000-0002-7356-1779"
+        }
+      ]
     },
     {
       "subject_id": "https://kewl-foodie.inc/food/F002",
@@ -29,10 +31,12 @@
       "object_id": "http://purl.obolibrary.org/obo/FOODON_00003348",
       "object_label": "Gala apple (whole)",
       "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
-      "author_id": [
-        "https://orcid.org/0000-0002-7356-1779"
-      ],
-      "confidence": 1
+      "confidence": 1,
+      "author": [
+        {
+          "id": "https://orcid.org/0000-0002-7356-1779"
+        }
+      ]
     },
     {
       "subject_id": "https://kewl-foodie.inc/food/F003",
@@ -41,11 +45,13 @@
       "object_id": "http://purl.obolibrary.org/obo/FOODON_00004186",
       "object_label": "Pink apple (whole)",
       "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
-      "author_id": [
-        "https://orcid.org/0000-0002-7356-1779"
-      ],
       "confidence": 0.9,
-      "comment": "We could map to FOODON:00004187 instead which more specifically refers to \"raw\" Pink apples. Decided against to be consistent with other mapping choices."
+      "comment": "We could map to FOODON:00004187 instead which more specifically refers to \"raw\" Pink apples. Decided against to be consistent with other mapping choices.",
+      "author": [
+        {
+          "id": "https://orcid.org/0000-0002-7356-1779"
+        }
+      ]
     },
     {
       "subject_id": "https://kewl-foodie.inc/food/F004",
@@ -54,10 +60,12 @@
       "object_id": "http://purl.obolibrary.org/obo/FOODON_00002473",
       "object_label": "apple (whole)",
       "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
-      "author_id": [
-        "https://orcid.org/0000-0002-7356-1779"
-      ],
-      "confidence": 1
+      "confidence": 1,
+      "author": [
+        {
+          "id": "https://orcid.org/0000-0002-7356-1779"
+        }
+      ]
     }
   ]
 }

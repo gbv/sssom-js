@@ -59,8 +59,8 @@ function validate () {
       cmResult.setOption("mode", "javascript")
       cmResult.setValue(lines.map(JSON.stringify).join("\n"))
     } else if (resultFormat === "nt" || resultFormat === "ttl") {
-      result["@context"] = rdfContext
-      jsonld.toRDF(result, {format: 'application/n-quads'}).then(rdf => cmResult.setValue(rdf))
+      result["@context"] = window.rdfContext
+      window.jsonld.toRDF(result, {format: "application/n-quads"}).then(rdf => cmResult.setValue(rdf))
       //cmResult.setValue(JSON.stringify(result, null, 2))
       // TODO: syntax highlight ttl
       cmResult.setOption("mode", "turtle")
@@ -80,7 +80,7 @@ cmInput.on("change",validate)
 
 validate()
 
-if (window.JsonLdProcessor) {
+if (window.jsonld) {
   fetch("context.json").then(res => res.json()).then(context => {
     window.rdfContext = context
     let opt = document.createElement("option")
