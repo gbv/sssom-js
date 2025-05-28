@@ -22,6 +22,7 @@ describe("TSVReader", () => {
     "enum.sssom.tsv": "Invalid subject_type: x",
     "eol.sssom.tsv": "Missing MappingSet slot: mapping_set_id",
     "empty.sssom.tsv": "Input is empty at line 1",
+    "metadata-only.sssom.tsv": "Missing mappings block",
   }).forEach(([file, message]) => {
     it(`should emit error for ${file}`, done => {
       reader = new TSVReader(fs.createReadStream(`test/invalid/${file}`))
