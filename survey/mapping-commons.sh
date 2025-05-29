@@ -13,10 +13,11 @@ fi
 validate() {
     echo -e "file\tmappings\terror"
     for sssom in *.tsv; do
-        jskos=${sssom%.html}.ndjson
-        error=$((../../bin/sssom.js -t jskos -o "$jskos" $sssom || rm -f "$jskos") 2>&1)
+        jskos=${sssom%.tsv}.jskos.ndjson
+        error=$((../../bin/sssom.js -m -t ndjskos -o "$jskos" $sssom || rm -f "$jskos") 2>&1)
         mappings=0
-        [[ -f "$jskos" ]] && mappings=$(jq '.mappings|length' "$jskos" | tr -d '\n')
+        # [[ -f "$jskos" ]] && mappings=$(jq '.mappings|length' "$jskos" | tr -d '\n')
+        [[ -f "$jskos" ]] && mappings=$(wc -l < "$jskos" | tr -d '\n')
         echo -n "$sssom"
         echo -ne "\t$mappings\t"
         echo "$error"
