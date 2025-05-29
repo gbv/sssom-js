@@ -5,7 +5,7 @@ import fs from "fs"
 import { parseSSSOM, inputFormats, toJskosRegistry, toJskosMapping } from "../index.js"
 import { buildIn } from "../lib/curiemap.js"
 
-const outputFormats = ["json","ndjson","jskos","ndjskos"]
+const outputFormats = ["json","ndjson","jskos","ndjskos","nq"]
 
 const { jsonld2rdf } = await import("jsonld2rdf").catch(()=>({}))
 if (jsonld2rdf) {
@@ -58,6 +58,16 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
     } else if (options.to === "ndjskos") {
       if (!options.mappings) options.metadataHandler = metadata => ndjson(toJskosRegistry(metadata, options))
       options.mappingHandler = mapping => ndjson(toJskosMapping(mapping, options))
+      return await parseSSSOM(input, options)
+    } else if (options.to === "nq") {
+      let graph
+      options.metadataHandler = metadata => { graph = metadata.mapping_set_id }
+      options.mappingHandler = ({subject_id, predicate_id, object_id}) => {
+        const statement = [subject_id, predicate_id, object_id]
+        if (graph) statement.push(graph)
+        // We only support URI, so no escaping is required
+        output.write(statement.map(uri => `<${uri}>`).join(" ")+" . \n")
+      }
       return await parseSSSOM(input, options)
     } else {
       const result = await parseSSSOM(input, options)

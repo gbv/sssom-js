@@ -59,6 +59,16 @@ function validate () {
       const lines = options.mappings ? mappings : [ metadata, ...mappings ]
       cmResult.setOption("mode", "javascript")
       cmResult.setValue(lines.map(JSON.stringify).join("\n"))
+    } else if (resultFormat === "nq") {
+      cmResult.setValue(result.mappings.map(({subject_id, predicate_id, object_id}) => {
+        const statement = [subject_id, predicate_id, object_id]
+        if (result.mapping_set_id) {
+          statement.push(result.mapping_set_id)
+        }
+        // We only support URI, so no escaping is required
+        return statement.map(uri => `<${uri}>`).join(" ") + " . \n"
+      }).join(""))
+      cmResult.setOption("mode", "turtle")
     } else if (resultFormat === "nt" || resultFormat === "ttl") {
       result["@context"] = window.rdfContext
       window.jsonld.toRDF(result, {format: "application/n-quads"}).then(rdf => cmResult.setValue(rdf))

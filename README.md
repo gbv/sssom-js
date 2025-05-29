@@ -53,7 +53,7 @@ Parse and convert SSSOM
 
 Options:
   -f, --from FORMAT   input format (csv, tsv, json)
-  -t, --to FORMAT     output format (json, ndjson, jskos, ndjskos)
+  -t, --to FORMAT     output format (json, ndjson, jskos, ndjskos, nq)
   -o, --output FILE   output file (default: - for stdout)
   -p, --propagate     add propagatable slots to mappings
   -c, --curie FILE    additional CURIE map (JSON or YAML file)
@@ -159,12 +159,19 @@ format   | description   | support
 `ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to
 `jskos`  | [JSKOS]       | to
 `ndjskos`| metadata and mappings on individual lines (JSKOS) | to 
-`nt`     | NTriples      | to (requires [jsonld2rdf])
-`ttl`    | RDF/Turtle    | to (requires [jsonld2rdf])
+`nq`     | [NQuads] of raw mappings | to
+`nt`     | [NTriples]      | to (requires [jsonld2rdf])
+`ttl`    | [RDF/Turtle]    | to (requires [jsonld2rdf])
+
+[NQuads]: https://www.w3.org/TR/n-quads/
+[NTriples]: https://www.w3.org/TR/n-triples/
+[RDF/Turtle]: https://www.w3.org/TR/turtle/
 
 If not specified, formats are guessed from file name with fallback to `tsv` (from) and `ndjson` (to).
 
-Formats `json` and `jskos` require to fully load the input into memory for processing, the other formats support streaming processing.
+Formats `json`, `jskos`, `nt`, and `ttl` require to fully load the input into memory for processing, the other formats support streaming processing.
+
+NQuads format (`nq`) is limited to the raw mapping statements without metadata and additional slots except `subject_id`, `predicate_id`, `object_id`, and optional `mapping_set_id`. Combine with option `-m, --mappings` to omit the latter, resulting in NTriples format of raw mappings.
 
 #### metadata
 
