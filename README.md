@@ -228,16 +228,85 @@ This library follows the [SSSOM specification](https://mapping-commons.github.io
 
 ## Transformation to JSKOS
 
-The transformation of SSSOM to JSKOS does not support the following mapping slots (yet):
+The following correspondence has not fully been implemented yet.
+Some JSKOS fields will only be available since version 0.7.0 of JSKOS specification.
 
-- [`subject_category`](https://mapping-commons.github.io/sssom/subject_category/) and [`object_category`](https://mapping-commons.github.io/sssom/object_category/)
-- [`predicate_type`](https://mapping-commons.github.io/sssom/predicate_type/), [`predicate_label`](https://w3id.org/sssom/predicate_label) and [`predicate_modifier`](https://w3id.org/sssom/predicate_modifier)
-- [`reviewer_id`](https://w3id.org/sssom/reviewer_id) and [`reviewer_label`](https://w3id.org/sssom/reviewer_label)
-- [`license`](https://w3id.org/sssom/license) as individual JSKOS mappings (in contrast to sets of mappings) have no license
-- [`see_also`](https://w3id.org/sssom/see_also) and [`other`](https://w3id.org/sssom/other) having no clear semantics
-- slots that carry information about automatic mapping algorithms (see [this issue](https://github.com/gbv/jskos/issues/152))
+### Common slots
 
-Slot `creator_id`/`creator_label` and `author_id`/`author_label` are merged into JSKOS field `creator`
+SSSOM slot | JSKOS field
+------------|------------
+[comment](https://w3id.org/sssom/comment) | `note.und[]`
+[creator_id](https://w3id.org/sssom/creator_id) | `contributor[].uri`
+[creator_label](https://w3id.org/sssom/creator_label) | `contributor[].prefLabel.und`
+[publication_date](https://w3id.org/sssom/publication_date) | `published`
+[see_also](https://w3id.org/sssom/see_also) | ?
+[other](https://w3id.org/sssom/other) | -
+
+### Propagatable slots
+
+SSSOM slot | JSKOS field
+-----------|------------
+[mapping_date](https://w3id.org/sssom/mapping_date) | `created`
+[mapping_provider](https://w3id.org/sssom/mapping_provider) |`publisher`
+[mapping_tool](https://w3id.org/sssom/mapping_tool) | `tool` (0.7.0)
+[mapping_tool_version](https://w3id.org/sssom/mapping_tool_version) | `tool[].version` (0.7.0)
+[object_source](https://w3id.org/sssom/object_source) | `to.memberSet[].inScheme[].uri`
+[object_source_version](https://w3id.org/sssom/object_source_version) | `to.memberSet[].inScheme[].version` (0.7.0)
+[object_type](https://w3id.org/sssom/object_type) | `from.memberSet[].type` (URI, limited list)
+[subject_source](https://w3id.org/sssom/subject_source) | `from.memberSet[].inScheme`
+[subject_source_version](https://w3id.org/sssom/subject_source_version) | `from.memberSet[].inScheme[].version` (0.7.0)
+[subject_type](https://w3id.org/sssom/subject_type) | `from.memberSet[].type` (URI, limited list)
+[predicate_type](https://w3id.org/sssom/predicate_type) | -
+[object_match_field](https://w3id.org/sssom/object_match_field) | - (see #152)
+[object_preprocessing](https://w3id.org/sssom/object_preprocessing) | - (see #152)
+[subject_match_field](https://w3id.org/sssom/subject_match_field) | - (see #152)
+[subject_preprocessing](https://w3id.org/sssom/subject_preprocessing) | - (see #152)
+[similarity_measure](https://w3id.org/sssom/similarity_measure) | - (see #152)
+
+### Mapping set slots
+
+SSSOM slot | JSKOS field
+-----------|------------
+[curie_map](https://w3id.org/sssom/curie_map) | -
+[license](https://w3id.org/sssom/license) | `license.uri`
+[mappings](https://w3id.org/sssom/mappings) | `mappings` (of a registry or concordance)
+[mapping_set_id](https://w3id.org/sssom/mapping_set_id) | `uri`
+[mapping_set_version](https://w3id.org/sssom/mapping_version) | `version` (0.7.0)
+[mapping_set_source](https://w3id.org/sssom/mapping_source) | `source`
+[mapping_set_title](https://w3id.org/sssom/mapping_title) | `prefLabel.und`
+[mapping_set_description](https://w3id.org/sssom/mapping_description) | `definition`
+[issue_tracker](https://w3id.org/sssom/issue_tracker) | `issueTracker` (0.7.0)
+[predicate_label](https://w3id.org/sssom/predicate_label) | -
+[extension_definitions](https://w3id.org/sssom/extension_definitions/) | -
+
+### Mapping slots
+
+SSSOM slot | JSKOS field
+------------|------------
+mapping_id | uri
+[subject_id](https://w3id.org/sssom/subject_id) | `from.memberSet[].uri`
+[subject_label](https://w3id.org/sssom/subject_label) | `from.memberSet[].prefLabel`
+[subject_category](https://w3id.org/sssom/subject_category) | -
+[predicate_id](https://w3id.org/sssom/predicate_id) | `type`
+[predicate_label](https://w3id.org/sssom/predicate_label) | - (implied by `type`)
+[object_id](https://w3id.org/sssom/object_id) | `to.memberSet[].uri`
+[object_label](https://w3id.org/sssom/object_label) | `to.memberSet[].prefLabel`
+[object_category](https://w3id.org/sssom/object_category) | -
+[mapping_justification](https://w3id.org/sssom/mapping_justification) | `justification` (0.7.0)
+[author_id](https://w3id.org/sssom/author_id) | `creator[].uri`
+[author_label](https://w3id.org/sssom/author_label) | `creator[].prefLabel`
+[reviewer_id](https://w3id.org/sssom/reviewer_id) | `annotations[].creator.id`
+[reviewer_label](https://w3id.org/sssom/reviewer_label) | `annotations[].creator.name`
+[mapping_source](https://w3id.org/sssom/mapping_source) | `source`
+[confidence](https://w3id.org/sssom/confidence) | `mappingRelevance`
+[curation_rule](https://w3id.org/sssom/curation_rule/) | `guidelines` (0.7.0)
+[curation_rule_text](https://w3id.org/sssom/curation_rule_text/) | `guidelines[].prefLabel` (0.7.0)
+[issue_tracker_item](https://w3id.org/sssom/issue_tracker_item) | `issue` (0.7.0)
+[license](https://w3id.org/sssom/license) | - (only for mapping sets)
+[predicate_modifier](https://w3id.org/sssom/predicate_modifier) | -
+[mapping_cardinality](https://w3id.org/sssom/mapping_cardinality) | -
+[match_string](https://w3id.org/sssom/match_string) | - (see #152)
+[similarity_score](https://w3id.org/sssom/similarity_score) | - (see #152)
 
 ## Survey
 
