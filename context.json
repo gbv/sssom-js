@@ -15,7 +15,7 @@
       "mapping_justification": { "@id": "sssom:mapping_justification", "@type": "@id" },
       "similarity_score": { "@id": "sssom:similarity_score", "@type": "xsd:double" },
       "author": {
-        "@id": "dct:creator",
+        "@id": "dct:contributor",
         "@context": { "id": "@id", "label": "rdfs:label" }
       },
       "reviewer": {
