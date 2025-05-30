@@ -238,8 +238,8 @@ SSSOM slot | JSKOS field
 SSSOM slot | JSKOS field
 -----------|------------
 [mapping_date](https://w3id.org/sssom/mapping_date) | `created`
-[mapping_provider](https://w3id.org/sssom/mapping_provider) |`publisher`
-[mapping_tool](https://w3id.org/sssom/mapping_tool) | `tool` (0.7.0)
+[mapping_provider](https://w3id.org/sssom/mapping_provider) |`publisher[].url`
+[mapping_tool](https://w3id.org/sssom/mapping_tool) | `tool[].prefLabel.und` (0.7.0)
 [mapping_tool_version](https://w3id.org/sssom/mapping_tool_version) | `tool[].version` (0.7.0)
 [object_source](https://w3id.org/sssom/object_source) | `to.memberSet[].inScheme[].uri`
 [object_source_version](https://w3id.org/sssom/object_source_version) | `to.memberSet[].inScheme[].version` (0.7.0)
