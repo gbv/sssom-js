@@ -7,19 +7,20 @@
 
 This Node package provides methods and a command line client to process mappings in [SSSOM] format.
 
-It implements parsing variants of SSSOM (TSV, CSV and JSON) with validation and transformation to other SSSOM serializations and to [JSKOS] format.
+It implements parsing variants of SSSOM (TSV, CSV and JSON) with validation and transformation to multiple [formats](#formats), including [JSKOS] and RDF.
 
 # Table of Contents
 
 - [Install](#install)
 - [Usage](#usage)
-  - [Command line](#command-line)
+  - [Command line](#command-line)  
+  - [Web interface](#web-interface)
   - [API](#api)  
-  - [Options](#options)
-  - [Validation errors](#validation-errors)
-  - [Web application](#web-application)
+- [Options](#options)
+- [Validation errors](#validation-errors)
+- [Formats](#formats)
+  - [JSKOS](#jskos)
 - [Limitations](#limitations)
-- [Transformation to JSKOS](#transformation-to-jskos)
 - [Maintainers](#maintainers)
 - [Contribute](#contribute)
 - [License](#license)
@@ -38,35 +39,37 @@ For RDF export in the command line client also install [jsonld2rdf].
 npm install jsonld2rdf
 ```
 
-[jsonld2rdf]: https://www.npmjs.com/package/jsonld2rdf
+The [web interface](#web-interface) can be deployed on any web server by copying [directory docs/](https://github.com/gbv/sssom-js/tree/main/docs) of the source code repository.
 
 ## Usage
 
 ### Command line
 
-The package includes the command line client `sssom`:
+The package includes a command line client to parse and convert SSSOM. Usage and options:
 
 ~~~
-Usage: sssom [options] [<mappings-file> [<metadata-file>]] 
-
-Parse and convert SSSOM
-
-Options:
-  -f, --from FORMAT   input format (csv, tsv, json)
-  -t, --to FORMAT     output format (json, ndjson, jskos, ndjskos, nq)
-  -o, --output FILE   output file (default: - for stdout)
-  -p, --propagate     add propagatable slots to mappings
-  -c, --curie FILE    additional CURIE map (JSON or YAML file)
-  -b, --liberal       parse less strict than the specification
-  -s, --schemes FILE  JSKOS concept schemes to detect
-  -m, --mappings      write mappings only
-  -v, --verbose       emit error verbosely
-  -j, --json-errors   emit errors detailled in JSON
-  -h, --help          output usage information
-  -V, --version       output the version number
+sssom [options] [<mappings-file> [<metadata-file>]] 
 ~~~
 
-See below for a more detailled description of [options](#options) common to the command line client and the internal API.
+short| long             | argument | description
+-----|------------------|----------|-------------
+`-f` | `--from`         | format   | input [format](#formats) (`csv`, `tsv`, `json`)
+`-t` | `--to`           | format   | output [format](#formats) (`json`, `ndjson`, `jskos`, `ndjskos`, `nq`, `nt`, `ttl`)
+`-o` | `--output`       | file     | output filename or default `-` for stdout
+`-p` | `--propagate`    |          | [add propagatable slots](#propagate) to mappings
+`-b` | `--liberal`      |          | parse [less strict](#liberal) than the specification
+`-c` | `--curie`        | file     | additional [CURIE map](#curie) (JSON or YAML file)
+`-s` | `--schemes`      | file     | JSKOS concept [schemes](#schemes) to detect
+`-m` | `--mappings`     |          | emit [mappings only](#mappings)
+`-v` | `--verbose`      |          | emit error verbosely
+`-j` | `--json-errors`  |          | emit errors detailled in JSON
+`-h` | `--help`         |          | emit usage information
+`-V` | `--version`      |          | emit the version number
+~~~
+
+### Web interface
+
+A web interface to validate and transform SSSOM/TSV is made available at <https://gbv.github.io/sssom-js/>. The application is not included in the package release at npm.
 
 ### API
 
@@ -76,7 +79,7 @@ import { parseSSSOM, TSVReader, toJskosRegistry, toJskosMapping } from "sssom-js
 
 #### parseSSSOM (input, options)
 
-This asynchronous function parses SSSOM in an [input format](#fromto) from a stream or file and returns a mapping set on success. The result should directly be serializable as SSSOM/JSON (or as JSKOS with option `to` set to `jskos`).
+This asynchronous function parses SSSOM in an [input format](#formats) from a stream or file and returns a mapping set on success. The result should directly be serializable as SSSOM/JSON (or as JSKOS with option `to` set to `jskos`).
 
 ~~~js
 import { parseSSSOM } from "sssom-js"
@@ -137,31 +140,70 @@ Convert a parsed MappingSet to a [JSKOS Registry](https://gbv.github.io/jskos/#r
 
 Convert a parsed Mapping to a [JSKOS Concept Mapping](https://gbv.github.io/jskos/#concept-mapping) object.
 
-### Options
+## Options
 
-- [from/to](#fromto)
-- [metadata](#metadata)
-- [propagate](#propagate) (boolean, false by default): 
-- [curie](#curie)
-- [liberal](#liberal)
-- schemes
-- mappings
+The following options are supported by both the [command line client](#command-line), and the [API](#api):
 
-#### from/to
+### propagate
 
-Input format and output format of the mappings, given as string. The following formats are supported so far:
+Enables [propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots). False by default.
 
-format   | description   | support
----------|---------------|---------
-`tsv`    | [SSSOM/TSV]   | from
-`csv`    | SSSOM/CSV     | from
-`json`   | [SSSOM/JSON]/JSON-LD  | from & to
-`ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to
-`jskos`  | [JSKOS]       | to
-`ndjskos`| metadata and mappings on individual lines (JSKOS) | to 
-`nq`     | [NQuads] of raw mappings | to
-`nt`     | [NTriples]      | to (requires [jsonld2rdf])
-`ttl`    | [RDF/Turtle]    | to (requires [jsonld2rdf])
+### liberal
+
+Enabling liberal parsing will
+
+- allow empty mappings block in SSSOM/TSV (but still read and validate the metadata block)
+- not require mapping set slots (neither `mapping_set_id` nor `license`) so the metadata block can be empty
+- not require mapping slot `mapping_justification`
+
+### curie
+
+If you want to allow all CURIE prefixes from [Bioregistry](https://bioregistry.io) without explicitly defining them in `curie_map` you can download and convert the current list for instance with command line tools `curl` and `jq` this way (requires local copy of file [bioregistry.jq](bioregistry.jq)) and then reference result file `bioregistry.json` with option `--curie`:
+
+~~~
+curl -sL https://w3id.org/biopragmatics/bioregistry.epm.json | \
+jq -Sf bioregistry.jq > bioregistry.json
+~~~
+
+### schemes
+
+JSKOS Concept Schemes to detect when transforming to JSKOS
+
+### mappings
+
+Emit mappings only. Metadata is parsed and validated nevertheless.
+
+### metadata
+
+Mapping set metadata file in JSON or YAML format for external metadata mode. Is passed as second argument in the command line client or as named option in the API. The API also accepts a parsed object.
+
+## Validation errors
+
+Validation errors are objects with three fields:
+
+- `message` an error message
+- `value` an optional value that caused the error
+- `position` an optional object mapping locator types to error locations. The following locator types are used:
+  - `line`: a line number (given as string)
+  - `jsonpointer`: a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to the malformed YAML or JSON element
+
+## Formats
+
+Input format and output format can be specified via [command line options](#command-line) `from` and `to`, and in the [web interface](#web-interface). 
+
+of the mappings, given as string. The following formats are supported so far:
+
+format   | description   | from | to | API
+---------|---------------|------|----|-----
+`tsv`    | [SSSOM/TSV]   | yes  | -  | yes
+`csv`    | SSSOM/CSV     | yes  | -  | yes
+`json`   | [SSSOM/JSON]/JSON-LD | yes | yes | yes
+`ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to | -
+`jskos`  | [JSKOS]       | -    | to | yes |
+`ndjskos`| metadata and mappings on individual lines (JSKOS) | to | -
+`nq`     | [NQuads] of raw mappings | - | to | -
+`nt`     | [NTriples]      | - | to (requires [jsonld2rdf]) | -
+`ttl`    | [RDF/Turtle]    | - | to (requires [jsonld2rdf]) | -
 
 [NQuads]: https://www.w3.org/TR/n-quads/
 [NTriples]: https://www.w3.org/TR/n-triples/
@@ -173,65 +215,14 @@ Formats `json`, `jskos`, `nt`, and `ttl` require to fully load the input into me
 
 NQuads format (`nq`) is limited to the raw mapping statements without metadata and additional slots except `subject_id`, `predicate_id`, `object_id`, and optional `mapping_set_id`. Combine with option `-m, --mappings` to omit the latter, resulting in NTriples format of raw mappings.
 
-#### metadata
+### JSKOS
 
-Mapping set metadata file in JSON or YAML format for external metadata mode. Is passed as second argument in the command line client or as named option in the API. The API also accepts a parsed object.
+The [JSKOS data format](https://gbv.github.io/jskos/) is used in terminology applications for controlled vocabularies and their mappings. 
 
-#### liberal
-
-Enabling liberal parsing will
-
-- allow empty mappings block in SSSOM/TSV (but still read and validate the metadata block)
-- not require mapping set slots (neither `mapping_set_id` nor `license`) so the metadata block can be empty
-- not require mapping slot `mapping_justification`
-
-#### curie
-
-If you want to allow all CURIE prefixes from [Bioregistry](https://bioregistry.io) without explicitly defining them in `curie_map` you can download and convert the current list for instance with command line tools `curl` and `jq` this way (requires local copy of file [bioregistry.jq](bioregistry.jq)) and then reference result file `bioregistry.json` with option `--curie`:
-
-~~~
-curl -sL https://w3id.org/biopragmatics/bioregistry.epm.json | \
-jq -Sf bioregistry.jq > bioregistry.json
-~~~
-
-#### propagate
-
-Enables [propagation of mapping set slots](https://mapping-commons.github.io/sssom/spec-model/#propagation-of-mapping-set-slots).
-
-### Validation errors
-
-Validation error objects (emitted as JSON objects with command line option `-x, --errors`) have three fields:
-
-- `message` an error message
-- `value` an optional value that caused the error
-- `position` an optional object mapping locator types to error locations. The following locator types are used:
-  - `line`: a line number (given as string)
-  - `jsonpointer`: a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to the malformed YAML or JSON element
-
-### Web application
-
-A web form to validate and transform SSSOM/TSV is made available at <https://gbv.github.io/sssom-js/>. This application is not included in the package release at npm.
-
-## Limitations
-
-This library follows the [SSSOM specification](https://mapping-commons.github.io/sssom/spec-intro/) as close as possible, but it does not aim to be a fully compliant implementation. The latter would require to also comply to [LinkML](https://w3id.org/linkml/specification), a specification much more complex then needed for SSSOM and not fully been implemented in JavaScript yet. In particular:
-
-- All slots of [type Uri](https://mapping-commons.github.io/sssom/Uri/) must be **absolute** URIs as defined in [RFC 3986](http://tools.ietf.org/html/rfc3986)
-- [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not supported
-- [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported:
-  - mapping set slot `extension_definition` is ignored
-  - mapping set slot `other` is read and validated but not used
-- [SSSOM/JSON], the JSON serialization of SSSOM has not been specified yet, so it may differ from the JSON(-LD) format used in this library
-- Transformation to RDF lacks `creator_label` and `author_label`
-- Propagation silently overwrites existing mapping slots instead of raising an error
-- There is an additional non-SSSOM mapping slot `mapping_id`
-
-## Transformation to JSKOS
-
-The following correspondence has not fully been implemented yet.
+The following correspondence between SSSOM and JSKOS has not fully been implemented yet.
 Some JSKOS fields will only be available since version 0.7.0 of JSKOS specification.
 
-### Common slots
+#### Common slots
 
 SSSOM slot | JSKOS field
 ------------|------------
@@ -242,7 +233,7 @@ SSSOM slot | JSKOS field
 [see_also](https://w3id.org/sssom/see_also) | ?
 [other](https://w3id.org/sssom/other) | -
 
-### Propagatable slots
+#### Propagatable slots
 
 SSSOM slot | JSKOS field
 -----------|------------
@@ -263,7 +254,7 @@ SSSOM slot | JSKOS field
 [subject_preprocessing](https://w3id.org/sssom/subject_preprocessing) | - (see #152)
 [similarity_measure](https://w3id.org/sssom/similarity_measure) | - (see #152)
 
-### Mapping set slots
+#### Mapping set slots
 
 SSSOM slot | JSKOS field
 -----------|------------
@@ -279,7 +270,7 @@ SSSOM slot | JSKOS field
 [predicate_label](https://w3id.org/sssom/predicate_label) | -
 [extension_definitions](https://w3id.org/sssom/extension_definitions/) | -
 
-### Mapping slots
+#### Mapping slots
 
 SSSOM slot | JSKOS field
 ------------|------------
@@ -308,6 +299,20 @@ mapping_id | uri
 [match_string](https://w3id.org/sssom/match_string) | - (see #152)
 [similarity_score](https://w3id.org/sssom/similarity_score) | - (see #152)
 
+## Limitations
+
+This library follows the [SSSOM specification](https://mapping-commons.github.io/sssom/spec-intro/) as close as possible, but it does not aim to be a fully compliant implementation. The latter would require to also comply to [LinkML](https://w3id.org/linkml/specification), a specification much more complex then needed for SSSOM and not fully been implemented in JavaScript yet. In particular:
+
+- All slots of [type Uri](https://mapping-commons.github.io/sssom/Uri/) must be **absolute** URIs as defined in [RFC 3986](http://tools.ietf.org/html/rfc3986)
+- [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not supported
+- [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported:
+  - mapping set slot `extension_definition` is ignored
+  - mapping set slot `other` is read and validated but not used
+- [SSSOM/JSON], the JSON serialization of SSSOM has not been specified yet, so it may differ from the JSON(-LD) format used in this library
+- Transformation to RDF lacks `creator_label` and `author_label`
+- Propagation silently overwrites existing mapping slots instead of raising an error
+- There is an additional non-SSSOM mapping slot `mapping_id`. Uniqueness is *not* checked.
+
 ## Survey
 
 Directory [`survey`](survey) contains a survey of published SSSOM data with validation results. See [dev branch](https://github.com/gbv/sssom-js/tree/dev/survey) for most recent update.
@@ -328,3 +333,5 @@ MIT license
 [SSSOM/TSV]: https://mapping-commons.github.io/sssom/spec-formats-tsv/
 [SSSOM/JSON]: https://mapping-commons.github.io/sssom/spec-formats-json/
 [JSKOS]: https://gbv.github.io/jskos/
+[jsonld2rdf]: https://www.npmjs.com/package/jsonld2rdf
+
