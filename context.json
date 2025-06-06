@@ -4,6 +4,7 @@
   "owl": "http://www.w3.org/2002/07/owl#",
   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
   "prov": "http://www.w3.org/ns/prov#",
+  "pav": "http://purl.org/pav/",
   "mappings": {
     "@id": "sssom:mappings",
     "@context": {
@@ -14,14 +15,12 @@
       "predicate_id": { "@id": "owl:annotatedProperty", "@type": "@id" },
       "mapping_justification": { "@id": "sssom:mapping_justification", "@type": "@id" },
       "similarity_score": { "@id": "sssom:similarity_score", "@type": "xsd:double" },
-      "author": {
-        "@id": "dct:contributor",
-        "@context": { "id": "@id", "label": "rdfs:label" }
-      },
-      "reviewer": {
-        "@id": "dct:contributor",
-        "@context": { "id": "@id", "label": "rdfs:label" }
-      }
+      "creator_id": { "@type": "@id", "@id": "dct:creator" },
+      "creator_label": { "@id": "dct:creator" },
+      "author_id": { "@type": "@id", "@id": "pav:authoredBy" },
+      "author_label": { "@id": "pav:authoredBy" },
+      "reviewer_id": { "@type": "@id", "@id": "dct:contributor" },
+      "reviewer_label": { "@id": "dct:contributor" }
     }
   },
   "mapping_set_id": "@id",
@@ -30,10 +29,8 @@
   "mapping_set_title": { "@id": "dct:title" },
   "mapping_set_description": "dct:description",
   "comment": { "@id": "rdfs:comment" },
-  "creator": {
-    "@id": "dct:creator",
-    "@context": { "id": "@id", "label": "rdfs:label" }
-  },
+  "creator_id": { "@type": "@id", "@id": "dct:creator" },
+  "creator_label": { "@id": "dct:creator" },
   "license": { "@id": "dct:license", "@type": "@id" },
   "publication_date": { "@type": "xsd:date", "@id": "dct:issued" },
   "see_also": { "@id": "rdfs:seeAlso", "@type": "@id" },
