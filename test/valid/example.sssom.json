@@ -18,11 +18,7 @@
       "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "confidence": 0.95,
       "comment": "We could map to FOODON:03310788 instead to cover sliced apples, but only \"whole\" apple types exist.",
-      "author": [
-        {
-          "id": "https://orcid.org/0000-0002-7356-1779"
-        }
-      ]
+      "author_id": [ "https://orcid.org/0000-0002-7356-1779" ]
     },
     {
       "subject_id": "https://kewl-foodie.inc/food/F002",
@@ -32,11 +28,7 @@
       "object_label": "Gala apple (whole)",
       "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "confidence": 1,
-      "author": [
-        {
-          "id": "https://orcid.org/0000-0002-7356-1779"
-        }
-      ]
+      "author_id": [ "https://orcid.org/0000-0002-7356-1779" ]
     },
     {
       "subject_id": "https://kewl-foodie.inc/food/F003",
@@ -47,11 +39,7 @@
       "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "confidence": 0.9,
       "comment": "We could map to FOODON:00004187 instead which more specifically refers to \"raw\" Pink apples. Decided against to be consistent with other mapping choices.",
-      "author": [
-        {
-          "id": "https://orcid.org/0000-0002-7356-1779"
-        }
-      ]
+      "author_id": [ "https://orcid.org/0000-0002-7356-1779" ]
     },
     {
       "subject_id": "https://kewl-foodie.inc/food/F004",
@@ -61,11 +49,7 @@
       "object_label": "apple (whole)",
       "mapping_justification": "https://w3id.org/semapv/vocab/ManualMappingCuration",
       "confidence": 1,
-      "author": [
-        {
-          "id": "https://orcid.org/0000-0002-7356-1779"
-        }
-      ]
+      "author_id": [ "https://orcid.org/0000-0002-7356-1779" ]
     }
   ]
 }
