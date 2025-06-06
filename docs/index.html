@@ -40,24 +40,29 @@ x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
             <option value="csv">SSSOM/CSV</option>
             <option value="json">SSSOM/JSON</option>
           </select>
+          to
+          <select id="to" name="to" onChange="validate()">
+            <option value="json">SSSOM/JSON</option>
+            <option value="jskos">JSKOS</option>
+            <option value="ndjson">NDJSON SSSOM</option>
+            <option value="ndjskos">NDJSON JSKOS</option>
+            <option value="nq">NQuads (raw mapping statements)</option>
+          </select>
+          with
+          <label for="language">language code</label>
+          <input type="text" id="language" maxLength="3" size="3" style="width:2em;" onChange="validate()" />
+          and
           <input type="checkbox" id="liberal" onChange="validate()" />
           <label for="liberal">liberal</label>
-          <span id="status" class="valid"></span>
+          <input type="checkbox" id="mappingsOnly" onChange="validate()" />
+          <label for="mappingsOnly" style="font-weight: normal">mappings only</label>
         </div>
       </form>
       <h2>
         <label>Result</label>
         <a onClick="copyResult(event)" title="Copy to clipboard">⧉</a>
         <small>
-        <select id="to" name="to" onChange="validate()">
-          <option value="json">SSSOM/JSON</option>
-          <option value="jskos">JSKOS</option>
-          <option value="ndjson">NDJSON SSSOM</option>
-          <option value="ndjskos">NDJSON JSKOS</option>
-          <option value="nq">NQuads (raw mapping statements)</option>
-        </select>
-        <input type="checkbox" id="mappingsOnly" onChange="validate()" />
-        <label for="mappingsOnly" style="font-weight: normal">mappings only</label>
+        <span id="status" class="valid"></span>
         </small>
       </h2>
       <div id="result"></div>
