@@ -27,22 +27,26 @@
         supports more options.
       </p>
       <form>
+        <div style="text-align:center">
+          Paste
+          <select id="from" name="from" onChange="validate()">
+            <option value="tsv">SSSOM/TSV</option>
+            <option value="csv">SSSOM/CSV</option>
+            <option value="json">SSSOM/JSON</option>
+          </select>
+          or upload file: <input type="file" id="fromFile" onChange="uploadInput(event)" />
+        </div>
         <textarea id="sssom-input" placeholder="Enter SSSOM TSV here" class="smooth" style="width: 100%;"># curie_map:
 #  x: http://example.org/
 # mapping_set_id: https://example.org/mappings
 # license: https://creativecommons.org/licenses/by/4.0/
 subject_id	predicate_id	object_id	mapping_justification
 x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
-        <div>
+        <p style="text-align:center">
           <input type="button" value="Validate and Transform" onClick="validate()" />
-          <select id="from" name="from" onChange="validate()">
-            <option value="tsv">SSSOM/TSV</option>
-            <option value="csv">SSSOM/CSV</option>
-            <option value="json">SSSOM/JSON</option>
-          </select>
           to
           <select id="to" name="to" onChange="validate()">
-            <option value="json">SSSOM/JSON</option>
+            <option value="json">SSSOM/JSON (JSON-LD)</option>
             <option value="jskos">JSKOS</option>
             <option value="ndjson">NDJSON SSSOM</option>
             <option value="ndjskos">NDJSON JSKOS</option>
@@ -52,11 +56,11 @@ x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
           <label for="language">language code</label>
           <input type="text" id="language" maxLength="3" size="3" style="width:2em;" onChange="validate()" />
           and
-          <input type="checkbox" id="liberal" onChange="validate()" />
-          <label for="liberal">liberal</label>
           <input type="checkbox" id="mappingsOnly" onChange="validate()" />
           <label for="mappingsOnly" style="font-weight: normal">mappings only</label>
-        </div>
+          <input type="checkbox" id="liberal" onChange="validate()" />
+          <label for="liberal">liberal</label>
+        </p>
       </form>
       <h2>
         <label>Result</label>

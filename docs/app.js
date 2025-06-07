@@ -5,7 +5,6 @@ const cmInput = CodeMirror.fromTextArea($("sssom-input"), {
   mode: "text/tab-separated-values",
   lineNumbers: true,
   gutters: ["CodeMirror-lint-markers"],
-  matchBrackets: true,
 })
   
 const cmResult = CodeMirror($("result"), {
@@ -13,6 +12,17 @@ const cmResult = CodeMirror($("result"), {
   lineNumbers: true,
   readOnly: true,
 })
+
+async function uploadInput(e) { // eslint-disable-line no-unused-vars
+  const file = e.target.files.item(0)
+  const type = file.name.split(".").pop()
+  if (["tsv","csv","json"].includes(type)) {
+    $("from").removeEventListener("onchange",validate)
+    $("from").value = type
+  }
+  cmInput.setValue(await file.text())
+  $("from").addEventListener("onchange",validate)
+}
 
 function copyResult(e) { // eslint-disable-line no-unused-vars
   if (e.which == 1) {
