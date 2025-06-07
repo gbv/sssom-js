@@ -17,6 +17,6 @@
 # see_also: http://example.com
 # mapping_tool: http://example.org/software
 # mapping_tool_version: "7.0"
-mapping_id	subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	similarity_score	author_id	author_label
-x:m1	x:a	a	x:predicate	x:1	1	semapv:LexicalMatching	0.2		Alice
-	x:b	b	x:predicate	x:2	2	semapv:LexicalMatching	1.0	orcid:0000-0002-1825-0097	|Bob
+mapping_id	subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	similarity_score	author_id	author_label	reviewer_label
+x:m1	x:a	a	x:predicate	x:1	1	semapv:LexicalMatching	0.2		Alice	X
+	x:b	b	x:predicate	x:2	2	semapv:LexicalMatching	1.0	orcid:0000-0002-1825-0097	|Bob	
