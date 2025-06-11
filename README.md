@@ -184,8 +184,8 @@ Validation errors are objects with three fields:
 - `message` an error message
 - `value` an optional value that caused the error
 - `position` an optional object mapping locator types to error locations. The following locator types are used:
-  - `line`: a line number (given as string, starting with 1 for the first line)
-  - `jsonpointer`: a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to the malformed YAML or JSON element
+  - `line`: a line number given as string, starting with `1` for the first line.
+  - `jsonpointer`: a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to the malformed YAML or JSON element, for instance `/creator_id`.
   - `rfc5147`: line span conforming to [RFC 5147](http://tools.ietf.org/html/rfc5147), for instance `line=2,4` for line 3 (!) to 4.
 
 ## Formats

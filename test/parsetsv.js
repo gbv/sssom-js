@@ -5,7 +5,7 @@ import { example } from "./example.js"
 describe("parse SSSOM/TSV", () => {
   Object.entries({
     "one file": ["test/valid/example.sssom.tsv"],
-    "two files (external metadata mode)": ["test/valid/example.sssom.mappings.tsv", { metadata: "test/valid/example.sssom.yml" }],
+    "two files (external metadata mode)": ["test/valid/example.sssom.mappings.tsv", { metadata: "test/valid/example.metadata.yml" }],
   }).forEach(([test, [input, options]]) => {
     it(test, async () => {
       options ||= {}
