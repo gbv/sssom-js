@@ -1,0 +1,62 @@
+{
+  "curie_map": {
+    "orcid": "https://orcid.org/",
+    "x": "http://example.org/"
+  },
+  "mapping_set_id": "http://example.org/mapping_set",
+  "mapping_set_version": "1.2.3",
+  "mapping_set_source": "http://example.org/another_set",
+  "mapping_set_title": "Test Mapping Set",
+  "mapping_set_description": "description",
+  "mapping_provider": "http://example.org/mapping_provider",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "mapping_date": "2025-01-02",
+  "publication_date": "2025-03-04",
+  "comment": "hello",
+  "other": "a|b",
+  "creator_id": [
+    "https://orcid.org/0000-0002-1825-0097"
+  ],
+  "creator_label": [
+    "Josiah Carberry"
+  ],
+  "see_also": [
+    "http://example.com"
+  ],
+  "mapping_tool": "http://example.org/software.html",
+  "mapping_tool_id": "http://example.org/software",
+  "mapping_tool_version": "7.0",
+  "mappings": [
+    {
+      "mapping_id": "http://example.org/m1",
+      "subject_id": "http://example.org/a",
+      "subject_label": "a",
+      "predicate_id": "http://example.org/predicate",
+      "object_id": "http://example.org/1",
+      "object_label": "1",
+      "mapping_justification": "https://w3id.org/semapv/vocab/LexicalMatching",
+      "similarity_score": 0.2,
+      "author_label": [
+        "Alice"
+      ],
+      "reviewer_label": [
+        "X"
+      ]
+    },
+    {
+      "subject_id": "http://example.org/b",
+      "subject_label": "b",
+      "predicate_id": "http://example.org/predicate",
+      "object_id": "http://example.org/2",
+      "object_label": "2",
+      "mapping_justification": "https://w3id.org/semapv/vocab/LexicalMatching",
+      "similarity_score": 1,
+      "author_id": [
+        "https://orcid.org/0000-0002-1825-0097"
+      ],
+      "author_label": [
+        "Bob"
+      ]
+    }
+  ]
+}

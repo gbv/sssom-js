@@ -240,8 +240,9 @@ SSSOM slot | JSKOS field
 -----------|------------
 [mapping_date](https://w3id.org/sssom/mapping_date) | `created`
 [mapping_provider](https://w3id.org/sssom/mapping_provider) |`publisher[].url`
-[mapping_tool](https://w3id.org/sssom/mapping_tool) | `tool[].prefLabel.und` (0.7.0)
-[mapping_tool_version](https://w3id.org/sssom/mapping_tool_version) | `tool[].version` (0.7.0)
+[mapping_tool](https://w3id.org/sssom/mapping_tool) | `tool[].url`\* (0.7.0)
+[mapping_tool_id](https://w3id.org/sssom/mapping_tool_id) | `tool[].uri`\* (0.7.0)
+[mapping_tool_version](https://w3id.org/sssom/mapping_tool_version) | `tool[].version`\* (0.7.0)
 [object_source](https://w3id.org/sssom/object_source) | `to.memberSet[].inScheme[].uri`
 [object_source_version](https://w3id.org/sssom/object_source_version) | `to.memberSet[].inScheme[].version` (0.7.0)
 [object_type](https://w3id.org/sssom/object_type) | `from.memberSet[].type` (URI, limited list)
@@ -254,6 +255,8 @@ SSSOM slot | JSKOS field
 [subject_match_field](https://w3id.org/sssom/subject_match_field) | - (see #152)
 [subject_preprocessing](https://w3id.org/sssom/subject_preprocessing) | - (see #152)
 [similarity_measure](https://w3id.org/sssom/similarity_measure) | - (see #152)
+
+\* The correspondence of slots `mapping_tool` (ignored if not an http/https URL), `mapping_tool_id`, and `mapping_tool_version` is slightly more complicated.
 
 #### Mapping set slots
 

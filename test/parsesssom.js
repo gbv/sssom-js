@@ -50,6 +50,12 @@ describe("parseSSSOM", () => {
     })
   })
 
+  it("full example", async () => {
+    const tsv = await parseSSSOM("test/valid/full.sssom.tsv")
+    const json = await parseSSSOM("test/valid/full.sssom.json")
+    expect(tsv).to.deep.equal(json)
+  })
+
   // FIXME: chai-as-promised seems to not compare as expected
   let file = "build-in-curie.yml"
   let message = "IRI prefix must not be changed"
