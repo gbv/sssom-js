@@ -35,6 +35,8 @@
             <option value="json">SSSOM/JSON</option>
           </select>
           or upload file: <input type="file" id="fromFile" onChange="uploadInput(event)" />
+          <input type="checkbox" id="liberal" onChange="validate()" />
+          <label for="liberal">liberal parsing</label><sup><a href="https://github.com/gbv/sssom-js/tree/dev?tab=readme-ov-file#liberal" target="_blank">?</a></sup>
         </div>
         <textarea id="sssom-input" placeholder="Enter SSSOM TSV here" class="smooth" style="width: 100%;"># curie_map:
 #  x: http://example.org/
@@ -58,8 +60,8 @@ x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
           and
           <input type="checkbox" id="mappingsOnly" onChange="validate()" />
           <label for="mappingsOnly" style="font-weight: normal">mappings only</label>
-          <input type="checkbox" id="liberal" onChange="validate()" />
-          <label for="liberal">liberal</label>
+          <input type="checkbox" id="propagate" onChange="validate()" />
+          <label for="propagate">propagate slots</label>
         </p>
       </form>
       <h2>

@@ -41,6 +41,7 @@ function validate () {
     to: ["jskos","ndjskos"].includes(resultFormat) ? "jskos" : "json",
     mappings: $("mappingsOnly").checked,
     liberal: $("liberal").checked,
+    propagate: $("propagate").checked,
     language: $("language").value.toLowerCase(),
   }
 

@@ -65,7 +65,6 @@ short| long             | argument | description
 `-j` | `--json-errors`  |          | emit errors detailled in JSON
 `-h` | `--help`         |          | emit usage information
 `-V` | `--version`      |          | emit the version number
-~~~
 
 ### Web interface
 
