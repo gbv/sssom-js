@@ -19,6 +19,7 @@ It implements parsing variants of SSSOM (TSV, CSV and JSON) with validation and 
 - [Options](#options)
 - [Validation errors](#validation-errors)
 - [Formats](#formats)
+  - [RDF](#rdf)
   - [JSKOS](#jskos)
 - [Limitations](#limitations)
 - [Maintainers](#maintainers)
@@ -212,6 +213,29 @@ Formats `json`, `jskos`, `nt`, and `ttl` require to fully load the input into me
 
 NQuads format (`nq`) is limited to the raw mapping statements without metadata and additional slots except `subject_id`, `predicate_id`, `object_id`, and optional `mapping_set_id`. Combine with option `-m, --mappings` to omit the latter, resulting in NTriples format of raw mappings.
 
+### RDF
+
+RDF serialisation of SSSOM has not fully been specified yet. This package uses [a JSON-LD context](context.json) to transform SSSOM/JSON to SSSOM/RDF, except for NQuad (`nq`) output format that only consists of one triple per mapping.
+
+The following slots are not included because semantics are not clear (yet) or because their content better belongs to another place:
+
+- [other]
+- [mapping_tool], [mapping_tool_id] and [mapping_tool_version]
+- [subject_label], [subject_source], [subject_source_version], [subject_type], [object_source], [object_source_version], [object_type], [predicate_label]
+- [predicate_type], [object_category]
+- [object_match_field], [object_preprocessing], [subject_match_field], [subject_preprocessing], [similarity_measure], [match_string], [similarity_score] - see [this discussion](https://github.com/gbv/jskos/issues/152)
+- [extension_definitions]
+- [curation_rule_text]
+- [predicate_modifier]
+- [mapping_cardinality]
+
+The following slots will likely be included once a good existing predicate URI has been found:
+
+- [mapping_source]
+- [confidence]
+- [curation_rule]
+- [issue_tracker], [issue_tracker_item]
+
 ### JSKOS
 
 The [JSKOS data format](https://gbv.github.io/jskos/) is used in terminology applications for controlled vocabularies and their mappings. 
@@ -356,32 +380,6 @@ mapping_id | uri
 [mapping_cardinality]: https://w3id.org/sssom/mapping_cardinality
 [match_string]: https://w3id.org/sssom/match_string
 [similarity_score]: https://w3id.org/sssom/similarity_score
-
-### RDF
-
-RDF serialisation of SSSOM has not fully been specified yet. This package uses [a JSON-LD context](context.json) to transform SSSOM/JSON to SSSOM/RDF, except for NQuad (`nq`) output format that only consists of one triple per mapping.
-
-The following slots are not included because semantics are not clear (yet) or because their content better belongs to another place:
-
-- [other]
-- [mapping_tool], [mapping_tool_id] and [mapping_tool_version]
-- [object_source], [object_source_version], [object_type],
-- [subject_source], [subject_source_version], [subject_type],
-- [predicate_type]
-- [object_match_field], [object_preprocessing], [subject_match_field], [subject_preprocessing], [similarity_measure], [match_string], [similarity_score] - see [this discussion](https://github.com/gbv/jskos/issues/152)
-- [subject_label], [predicate_label]
-- [extension_definitions]
-- [object_category]
-- [mapping_source]
-- [curation_rule_text]
-- [predicate_modifier]
-- [mapping_cardinality]
-
-The following slots will likely be included once a good existing predicate URI has been found:
-
-- [confidence]
-- [curation_rule]
-- [issue_tracker], [issue_tracker_item]
 
 ## Limitations
 
