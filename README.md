@@ -197,10 +197,11 @@ format   | description   | from | to | API
 `ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to | -
 `jskos`  | [JSKOS]       | -    | to | yes |
 `ndjskos`| metadata and mappings on individual lines (JSKOS) | to | -
-`nq`     | [NQuads] of raw mappings | - | to | -
-`nt`     | [NTriples]      | - | to (requires [jsonld2rdf]) | -
-`ttl`    | [RDF/Turtle]    | - | to (requires [jsonld2rdf]) | -
+`nq`     | [NQuads] ([RDF]) of raw mappings | - | to | -
+`nt`     | [NTriples] ([RDF])               | - | to (requires [jsonld2rdf]) | -
+`ttl`    | [RDF/Turtle] ([RDF])             | - | to (requires [jsonld2rdf]) | -
 
+[RDF]: #rdf
 [NQuads]: https://www.w3.org/TR/n-quads/
 [NTriples]: https://www.w3.org/TR/n-triples/
 [RDF/Turtle]: https://www.w3.org/TR/turtle/
@@ -222,81 +223,165 @@ Some JSKOS fields will only be available since version 0.7.0 of JSKOS specificat
 
 SSSOM slot | JSKOS field
 ------------|------------
-[comment](https://w3id.org/sssom/comment) | `note.und[]`
-[creator_id](https://w3id.org/sssom/creator_id) | `contributor[].uri`
-[creator_label](https://w3id.org/sssom/creator_label) | `contributor[].prefLabel.und`
-[publication_date](https://w3id.org/sssom/publication_date) | `published`
-[see_also](https://w3id.org/sssom/see_also) | ?
-[other](https://w3id.org/sssom/other) | -
+[comment] | `note.und[]`
+[creator_id] | `contributor[].uri`
+[creator_label] | `contributor[].prefLabel.und`
+[publication_date] | `published`
+[see_also] | ?
+[other] | -
 
 #### Propagatable slots
 
 SSSOM slot | JSKOS field
 -----------|------------
-[mapping_date](https://w3id.org/sssom/mapping_date) | `created`
-[mapping_provider](https://w3id.org/sssom/mapping_provider) |`publisher[].url`
-[mapping_tool](https://w3id.org/sssom/mapping_tool) | `tool[].url`\* (0.7.0)
-[mapping_tool_id](https://w3id.org/sssom/mapping_tool_id) | `tool[].uri`\* (0.7.0)
-[mapping_tool_version](https://w3id.org/sssom/mapping_tool_version) | `tool[].version`\* (0.7.0)
-[object_source](https://w3id.org/sssom/object_source) | `to.memberSet[].inScheme[].uri`
-[object_source_version](https://w3id.org/sssom/object_source_version) | `to.memberSet[].inScheme[].version` (0.7.0)
-[object_type](https://w3id.org/sssom/object_type) | `from.memberSet[].type` (URI, limited list)
-[subject_source](https://w3id.org/sssom/subject_source) | `from.memberSet[].inScheme`
-[subject_source_version](https://w3id.org/sssom/subject_source_version) | `from.memberSet[].inScheme[].version` (0.7.0)
-[subject_type](https://w3id.org/sssom/subject_type) | `from.memberSet[].type` (URI, limited list)
-[predicate_type](https://w3id.org/sssom/predicate_type) | -
-[object_match_field](https://w3id.org/sssom/object_match_field) | - (see #152)
-[object_preprocessing](https://w3id.org/sssom/object_preprocessing) | - (see #152)
-[subject_match_field](https://w3id.org/sssom/subject_match_field) | - (see #152)
-[subject_preprocessing](https://w3id.org/sssom/subject_preprocessing) | - (see #152)
-[similarity_measure](https://w3id.org/sssom/similarity_measure) | - (see #152)
+[mapping_date] | `created`
+[mapping_provider] |`publisher[].url`
+[mapping_tool] | `tool[].url`\* (0.7.0)
+[mapping_tool_id] | `tool[].uri`\* (0.7.0)
+[mapping_tool_version] | `tool[].version`\* (0.7.0)
+[object_source] | `to.memberSet[].inScheme[].uri`
+[object_source_version] | `to.memberSet[].inScheme[].version` (0.7.0)
+[object_type] | `from.memberSet[].type` (URI, limited list)
+[subject_source] | `from.memberSet[].inScheme`
+[subject_source_version] | `from.memberSet[].inScheme[].version` (0.7.0)
+[subject_type] | `from.memberSet[].type` (URI, limited list)
+[predicate_type] | -
+[object_match_field] | - (see [this discussion](https://github.com/gbv/jskos/issues/152))
+[object_preprocessing] | - (dito)
+[subject_match_field] | - (dito)
+[subject_preprocessing] | - (dito)
+[similarity_measure] | - (dito)
 
-\* The correspondence of slots `mapping_tool` (ignored if not an http/https URL), `mapping_tool_id`, and `mapping_tool_version` is slightly more complicated.
+\* The correspondence of slots `mapping_tool` , `mapping_tool_id`, and `mapping_tool_version` is slightly more complicated.
 
 #### Mapping set slots
 
 SSSOM slot | JSKOS field
 -----------|------------
-[curie_map](https://w3id.org/sssom/curie_map) | -
-[license](https://w3id.org/sssom/license) | `license.uri`
-[mappings](https://w3id.org/sssom/mappings) | `mappings` (of a registry or concordance)
-[mapping_set_id](https://w3id.org/sssom/mapping_set_id) | `uri`
-[mapping_set_version](https://w3id.org/sssom/mapping_version) | `version` (0.7.0)
-[mapping_set_source](https://w3id.org/sssom/mapping_source) | `source`
-[mapping_set_title](https://w3id.org/sssom/mapping_title) | `prefLabel.und`
-[mapping_set_description](https://w3id.org/sssom/mapping_description) | `definition`
-[issue_tracker](https://w3id.org/sssom/issue_tracker) | `issueTracker` (0.7.0)
-[predicate_label](https://w3id.org/sssom/predicate_label) | -
-[extension_definitions](https://w3id.org/sssom/extension_definitions/) | -
+[curie_map] | -
+[license] | `license.uri`
+[mappings] | `mappings` (of a registry or concordance)
+[mapping_set_id] | `uri`
+[mapping_set_version] | `version` (0.7.0)
+[mapping_set_source] | `source`
+[mapping_set_title] | `prefLabel.und`
+[mapping_set_description] | `definition`
+[issue_tracker] | `issueTracker` (0.7.0)
+[predicate_label] | -
+[extension_definitions] | -
 
 #### Mapping slots
 
 SSSOM slot | JSKOS field
 ------------|------------
 mapping_id | uri
-[subject_id](https://w3id.org/sssom/subject_id) | `from.memberSet[].uri`
-[subject_label](https://w3id.org/sssom/subject_label) | `from.memberSet[].prefLabel`
-[subject_category](https://w3id.org/sssom/subject_category) | -
-[predicate_id](https://w3id.org/sssom/predicate_id) | `type`
-[predicate_label](https://w3id.org/sssom/predicate_label) | - (implied by `type`)
-[object_id](https://w3id.org/sssom/object_id) | `to.memberSet[].uri`
-[object_label](https://w3id.org/sssom/object_label) | `to.memberSet[].prefLabel`
-[object_category](https://w3id.org/sssom/object_category) | -
-[mapping_justification](https://w3id.org/sssom/mapping_justification) | `justification` (0.7.0)
-[author_id](https://w3id.org/sssom/author_id) | `creator[].uri`
-[author_label](https://w3id.org/sssom/author_label) | `creator[].prefLabel`
-[reviewer_id](https://w3id.org/sssom/reviewer_id) | `annotations[].creator.id`
-[reviewer_label](https://w3id.org/sssom/reviewer_label) | `annotations[].creator.name`
-[mapping_source](https://w3id.org/sssom/mapping_source) | `source`
-[confidence](https://w3id.org/sssom/confidence) | `mappingRelevance`
-[curation_rule](https://w3id.org/sssom/curation_rule/) | `guidelines` (0.7.0)
-[curation_rule_text](https://w3id.org/sssom/curation_rule_text/) | `guidelines[].prefLabel` (0.7.0)
-[issue_tracker_item](https://w3id.org/sssom/issue_tracker_item) | `issue` (0.7.0)
-[license](https://w3id.org/sssom/license) | - (only for mapping sets)
-[predicate_modifier](https://w3id.org/sssom/predicate_modifier) | -
-[mapping_cardinality](https://w3id.org/sssom/mapping_cardinality) | -
-[match_string](https://w3id.org/sssom/match_string) | - (see #152)
-[similarity_score](https://w3id.org/sssom/similarity_score) | - (see #152)
+[subject_id] | `from.memberSet[].uri`
+[subject_label] | `from.memberSet[].prefLabel`
+[subject_category] | -
+[predicate_id] | `type`
+[predicate_label] | - (implied by `type`)
+[object_id] | `to.memberSet[].uri`
+[object_label] | `to.memberSet[].prefLabel`
+[object_category] | -
+[mapping_justification] | `justification` (0.7.0)
+[author_id] | `creator[].uri`
+[author_label] | `creator[].prefLabel`
+[reviewer_id] | `annotations[].creator.id`
+[reviewer_label] | `annotations[].creator.name`
+[mapping_source] | `source`
+[confidence] | `mappingRelevance`
+[curation_rule] | `guidelines` (0.7.0)
+[curation_rule_text] | `guidelines[].prefLabel` (0.7.0)
+[issue_tracker_item] | `issue` (0.7.0)
+[license] | - (only for mapping sets)
+[predicate_modifier] | -
+[mapping_cardinality] | -
+[match_string] | - (see [this discussion](https://github.com/gbv/jskos/issues/152))
+[similarity_score] | - (dito)
+
+[comment]: https://w3id.org/sssom/comment
+[creator_id]: https://w3id.org/sssom/creator_id
+[creator_label]: https://w3id.org/sssom/creator_label
+[publication_date]: https://w3id.org/sssom/publication_date
+[see_also]: https://w3id.org/sssom/see_also
+[other]: https://w3id.org/sssom/other
+[mapping_date]: https://w3id.org/sssom/mapping_date
+[mapping_provider]: https://w3id.org/sssom/mapping_provider
+[mapping_tool]: https://w3id.org/sssom/mapping_tool
+[mapping_tool_id]: https://w3id.org/sssom/mapping_tool_id
+[mapping_tool_version]: https://w3id.org/sssom/mapping_tool_version
+[object_source]: https://w3id.org/sssom/object_source
+[object_source_version]: https://w3id.org/sssom/object_source_version
+[object_type]: https://w3id.org/sssom/object_type
+[subject_source]: https://w3id.org/sssom/subject_source
+[subject_source_version]: https://w3id.org/sssom/subject_source_version
+[subject_type]: https://w3id.org/sssom/subject_type
+[predicate_type]: https://w3id.org/sssom/predicate_type
+[object_match_field]: https://w3id.org/sssom/object_match_field
+[object_preprocessing]: https://w3id.org/sssom/object_preprocessing
+[subject_match_field]: https://w3id.org/sssom/subject_match_field
+[subject_preprocessing]: https://w3id.org/sssom/subject_preprocessing
+[similarity_measure]: https://w3id.org/sssom/similarity_measure
+[curie_map]: https://w3id.org/sssom/curie_map
+[license]: https://w3id.org/sssom/license
+[mappings]: https://w3id.org/sssom/mappings
+[mapping_set_id]: https://w3id.org/sssom/mapping_set_id
+[mapping_set_version]: https://w3id.org/sssom/mapping_version
+[mapping_set_source]: https://w3id.org/sssom/mapping_source
+[mapping_set_title]: https://w3id.org/sssom/mapping_title
+[mapping_set_description]: https://w3id.org/sssom/mapping_description
+[issue_tracker]: https://w3id.org/sssom/issue_tracker
+[predicate_label]: https://w3id.org/sssom/predicate_label
+[extension_definitions]: https://w3id.org/sssom/extension_definitions/
+[subject_id]: https://w3id.org/sssom/subject_id
+[subject_label]: https://w3id.org/sssom/subject_label
+[subject_category]: https://w3id.org/sssom/subject_category
+[predicate_id]: https://w3id.org/sssom/predicate_id
+[predicate_label]: https://w3id.org/sssom/predicate_label
+[object_id]: https://w3id.org/sssom/object_id
+[object_label]: https://w3id.org/sssom/object_label
+[object_category]: https://w3id.org/sssom/object_category
+[mapping_justification]: https://w3id.org/sssom/mapping_justification
+[author_id]: https://w3id.org/sssom/author_id
+[author_label]: https://w3id.org/sssom/author_label
+[reviewer_id]: https://w3id.org/sssom/reviewer_id
+[reviewer_label]: https://w3id.org/sssom/reviewer_label
+[mapping_source]: https://w3id.org/sssom/mapping_source
+[confidence]: https://w3id.org/sssom/confidence
+[curation_rule]: https://w3id.org/sssom/curation_rule/
+[curation_rule_text]: https://w3id.org/sssom/curation_rule_text/
+[issue_tracker_item]: https://w3id.org/sssom/issue_tracker_item
+[license]: https://w3id.org/sssom/license
+[predicate_modifier]: https://w3id.org/sssom/predicate_modifier
+[mapping_cardinality]: https://w3id.org/sssom/mapping_cardinality
+[match_string]: https://w3id.org/sssom/match_string
+[similarity_score]: https://w3id.org/sssom/similarity_score
+
+### RDF
+
+RDF serialisation of SSSOM has not fully been specified yet. This package uses [a JSON-LD context](context.json) to transform SSSOM/JSON to SSSOM/RDF, except for NQuad (`nq`) output format that only consists of one triple per mapping.
+
+The following slots are not included because semantics are not clear (yet) or because their content better belongs to another place:
+
+- [other]
+- [mapping_tool], [mapping_tool_id] and [mapping_tool_version]
+- [object_source], [object_source_version], [object_type],
+- [subject_source], [subject_source_version], [subject_type],
+- [predicate_type]
+- [object_match_field], [object_preprocessing], [subject_match_field], [subject_preprocessing], [similarity_measure], [match_string], [similarity_score] - see [this discussion](https://github.com/gbv/jskos/issues/152)
+- [subject_label], [predicate_label]
+- [extension_definitions]
+- [object_category]
+- [mapping_source]
+- [curation_rule_text]
+- [predicate_modifier]
+- [mapping_cardinality]
+
+The following slots will likely be included once a good existing predicate URI has been found:
+
+- [confidence]
+- [curation_rule]
+- [issue_tracker], [issue_tracker_item]
 
 ## Limitations
 
@@ -307,10 +392,9 @@ This library follows the [SSSOM specification](https://mapping-commons.github.io
 - [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported:
   - mapping set slot `extension_definition` is ignored
   - mapping set slot `other` is read and validated but not used
-- [SSSOM/JSON], the JSON serialization of SSSOM has not been specified yet, so it may differ from the JSON(-LD) format used in this library
-- Transformation to RDF lacks `creator_label` and `author_label`
+- [SSSOM/JSON], the JSON serialization of SSSOM has not been specified yet, so it may differ from the JSON(-LD) format used in this library. Some applies to the RDF serialization.
 - Propagation silently overwrites existing mapping slots instead of raising an error
-- There is an additional non-SSSOM mapping slot `mapping_id`. Uniqueness is *not* checked.
+- Uniqueness of mapping slot `mapping_id` is not checked.
 
 ## Survey
 
