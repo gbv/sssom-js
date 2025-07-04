@@ -39,7 +39,7 @@ For RDF export in the command line client also install [jsonld2rdf].
 npm install jsonld2rdf
 ```
 
-The [web interface](#web-interface) can be deployed on any web server by copying [directory docs/](https://github.com/gbv/sssom-js/tree/main/docs) of the source code repository.
+The [web interface](#web-interface) can be deployed on any web server by copying static files from directory [docs](https://github.com/gbv/sssom-js/tree/main/docs) of the source code repository.
 
 ## Usage
 
@@ -62,7 +62,7 @@ short| long             | argument | description
 `-s` | `--schemes`      | file     | JSKOS concept [schemes](#schemes) to detect
 `-m` | `--mappings`     |          | emit [mappings only](#mappings)
 `-v` | `--verbose`      |          | emit error verbosely
-`-j` | `--json-errors`  |          | emit errors detailled in JSON
+`-j` | `--json-errors`  |          | emit errors in JSON ([Data Validation Error Format])
 `-h` | `--help`         |          | emit usage information
 `-V` | `--version`      |          | emit the version number
 
@@ -122,14 +122,7 @@ new TSVReader(input)
 new TSVReader(input, { delimiter: "," }) // parse SSSOM/CSV
 ~~~
 
-The following parsing options can be given with a second optional argument object:
-
-- **metadata** (must be an object)
-- **curie** (must be an object)
-- **propagate** (boolean)
-- **liberal** (boolean)
-- **delimiter** (string)
-- **storeMappings** (boolean) whether to store parsed mappings and include them in the result
+A second optional argument can be used to pass options [`propagate`](#propagate) (boolean), [`liberal`](#liberal) (boolean), `delimiter` (string), [`curie`](#curie) (object), [metadata](#metadata) (object), and `storeMappings` (boolean). The latter makes mappings to be collected and returned with the result at the end of parsing. 
 
 #### toJskosRegistry
 
@@ -178,14 +171,17 @@ Mapping set metadata file in JSON or YAML format for external metadata mode. Is 
 
 ## Validation errors
 
-Validation errors are objects with three fields:
+[Data Validation Error Format]: https://gbv.github.io/validation-error-format/
+
+Validation errors follow the [Data Validation Error Format] in condense form. Each error is an object with three fields:
 
 - `message` an error message
 - `value` an optional value that caused the error
 - `position` an optional object mapping locator types to error locations. The following locator types are used:
-  - `line`: a line number given as string, starting with `1` for the first line.
-  - `jsonpointer`: a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to the malformed YAML or JSON element, for instance `/creator_id`.
-  - `rfc5147`: line span conforming to [RFC 5147](http://tools.ietf.org/html/rfc5147), for instance `line=2,4` for line 3 (!) to 4.
+  - `line`: a line number given as string, starting with `1` for the first line
+  - `linecol`: line a column number (both starting with `1`), separated by `:`
+  - `rfc5147`: line span conforming to [RFC 5147](http://tools.ietf.org/html/rfc5147), for instance `line=2,4` for line 3 (!) to 4
+  - `jsonpointer`: [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to the malformed YAML or JSON element (for instance `/creator_id`)
 
 ## Formats
 

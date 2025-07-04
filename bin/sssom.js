@@ -24,7 +24,7 @@ cli.usage("sssom [options] [<mappings-file> [<metadata-file>]] ")
   .option("-l, --language CODE language code (default: und)")
   .option("-m, --mappings      emit mappings only")
   .option("-v, --verbose       emit error verbosely")
-  .option("-j, --json-errors   emit errors detailled in JSON")
+  .option("-j, --json-errors   emit errors in JSON (Data Validation Error Format)")
   .action(async (args, options) => {
     const input = args.length ? args.shift() : "-"
     if (args.length) {
