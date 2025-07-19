@@ -195,12 +195,12 @@ format   | description   | from | to | API
 `tsv`    | [SSSOM/TSV]   | yes  | -  | yes
 `csv`    | SSSOM/CSV     | yes  | -  | yes
 `json`   | [SSSOM/JSON]/JSON-LD | yes | yes | yes
-`ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | to | -
+`ndjson` | metadata and mappings on individual lines (SSSOM/JSON) | no | yes | -
 `jskos`  | [JSKOS]       | -    | to | yes |
-`ndjskos`| metadata and mappings on individual lines (JSKOS) | to | -
-`nq`     | [NQuads] ([RDF]) of raw mappings | - | to | -
-`nt`     | [NTriples] ([RDF])               | - | to (requires [jsonld2rdf]) | -
-`ttl`    | [RDF/Turtle] ([RDF])             | - | to (requires [jsonld2rdf]) | -
+`ndjskos`| metadata and mappings on individual lines (JSKOS) | no | yes | -
+`nq`     | [NQuads] ([RDF]) of raw mappings | - | no | yes | -
+`nt`     | [NTriples] ([RDF])               | - | requires [jsonld2rdf] | -
+`ttl`    | [RDF/Turtle] ([RDF])             | - | requires [jsonld2rdf] | -
 
 [RDF]: #rdf
 [NQuads]: https://www.w3.org/TR/n-quads/
