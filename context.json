@@ -35,5 +35,7 @@
   "publication_date": { "@type": "xsd:date", "@id": "dct:issued" },
   "see_also": { "@id": "rdfs:seeAlso", "@type": "@id" },
   "mapping_date": { "@type": "xsd:date", "@id": "dct:created" },
-  "mapping_provider": { "@id": "sssom:mapping_provider", "@type": "@id" }
+  "mapping_provider": { "@id": "sssom:mapping_provider", "@type": "@id" },
+  "curation_rule": { "@id": "dct:conformsTo", "@type": "@id" },
+  "curation_rule_text": { "@id": "dct:conformsTo" }
 }

@@ -26,6 +26,12 @@
   "mapping_tool": "http://example.org/software.html",
   "mapping_tool_id": "http://example.org/software",
   "mapping_tool_version": "7.0",
+  "curation_rule_text": [
+    "Just map!"
+  ],
+  "curation_rule": [
+    "http://example.org/guide"
+  ],
   "mappings": [
     {
       "mapping_id": "http://example.org/m1",

@@ -225,7 +225,6 @@ The following slots are not included because semantics are not clear (yet) or be
 - [predicate_type], [object_category]
 - [object_match_field], [object_preprocessing], [subject_match_field], [subject_preprocessing], [similarity_measure], [match_string], [similarity_score] - see [this discussion](https://github.com/gbv/jskos/issues/152)
 - [extension_definitions]
-- [curation_rule_text]
 - [predicate_modifier]
 - [mapping_cardinality]
 
@@ -233,7 +232,6 @@ The following slots will likely be included once a good existing predicate URI h
 
 - [mapping_source]
 - [confidence]
-- [curation_rule]
 - [issue_tracker], [issue_tracker_item]
 
 ### JSKOS
