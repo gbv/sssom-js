@@ -384,7 +384,7 @@ mapping_id | uri
 This library follows the [SSSOM specification](https://mapping-commons.github.io/sssom/spec-intro/) as close as possible, but it does not aim to be a fully compliant implementation. The latter would require to also comply to [LinkML](https://w3id.org/linkml/specification), a specification much more complex then needed for SSSOM and not fully been implemented in JavaScript yet. In particular:
 
 - All slots of [type Uri](https://mapping-commons.github.io/sssom/Uri/) must be **absolute** URIs as defined in [RFC 3986](http://tools.ietf.org/html/rfc3986)
-- [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not supported
+- [Literal Mappings](https://mapping-commons.github.io/sssom/spec-model/#literal-mappings) are not fully supported yet
 - [Non-standard slots](https://mapping-commons.github.io/sssom/spec-model/#non-standard-slots) are not supported:
   - mapping set slot `extension_definition` is ignored
   - mapping set slot `other` is read and validated but not used
