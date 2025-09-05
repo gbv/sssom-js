@@ -46,7 +46,7 @@
     "node": ">= 20.0.0"
   },
   "devDependencies": {
-    "chai": "^5.2.0",
+    "chai": "^6.0.0",
     "chai-as-promised": "^8.0.1",
     "eslint": "^9.23.0",
     "eslint-config-gbv": "^2.6.0",

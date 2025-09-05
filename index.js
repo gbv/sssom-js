@@ -16,7 +16,4 @@ const parseSSSOMString = async (str, options = {}) => {
   return parseSSSOM(input, options)
 }
 
-//import { createRequire } from "module"
-//const { version } = createRequire(import.meta.url)("./package.json")
-
 export { parseSSSOM, parseSSSOMString, TSVReader, inputFormats, toJskosRegistry, toJskosMapping }
