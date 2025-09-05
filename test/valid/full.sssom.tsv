@@ -20,6 +20,7 @@
 # mapping_tool_version: "7.0"
 # curation_rule_text: "Just map!"
 # curation_rule: x:guide
-mapping_id	subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	similarity_score	author_id	author_label	reviewer_label	comment
-x:m1	x:a	a	x:predicate	x:1	1	semapv:LexicalMatching	0.2		Alice	X	comment1
-	x:b	b	x:predicate	x:2	2	semapv:LexicalMatching	1.0	orcid:0000-0002-1825-0097	|Bob		comment2
+mapping_id	subject_id	subject_label	subject_type	predicate_id	object_id	object_label	mapping_justification	similarity_score	author_id	author_label	reviewer_label	comment
+x:m1	x:a	a		x:predicate	x:1	1	semapv:LexicalMatching	0.2		Alice	X	comment1
+	x:b	b		x:predicate	x:2	2	semapv:LexicalMatching	1.0	orcid:0000-0002-1825-0097	|Bob		comment2
+		L	rdfs literal	x:predicate	x:3	3	semapv:UnspecifiedMatching					

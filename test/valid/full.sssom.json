@@ -65,6 +65,14 @@
         "Bob"
       ],
       "comment": "comment2"
+    },
+    {
+       "mapping_justification": "https://w3id.org/semapv/vocab/UnspecifiedMatching",
+       "object_id": "http://example.org/3",
+       "object_label": "3",
+       "predicate_id": "http://example.org/predicate",
+       "subject_label": "L",
+       "subject_type": "rdfs literal"
     }
   ]
 }
