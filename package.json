@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "csv-parser": "^3.2.0",
-    "namespace-lookup": "^0.2.1",
+    "namespace-lookup": "^0.3.0",
     "ncname": "^3.0.0",
     "yaml": "^2.7.1"
   },
@@ -48,14 +48,14 @@
   "devDependencies": {
     "chai": "^6.0.0",
     "chai-as-promised": "^8.0.1",
-    "eslint": "^9.23.0",
+    "eslint": "^10.14.0",
     "eslint-config-gbv": "^2.6.0",
     "http-server": "^14.1.1",
     "jsonld2rdf": "^0.5.1",
-    "mocha": "^11.1.0",
-    "node-polyfill-webpack-plugin": "^4.1.0",
+    "mocha": "^12.0.0",
+    "node-polyfill-webpack-plugin": "^4.0.0",
     "process": "^0.11.10",
     "webpack": "^5.99.8",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^7.3.1"
   }
 }
