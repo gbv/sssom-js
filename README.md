@@ -63,7 +63,7 @@ short| long             | argument | description
 `-s` | `--schemes`      | file     | JSKOS concept [schemes](#schemes) to detect
 `-m` | `--mappings`     |          | emit [mappings only](#mappings)
 `-v` | `--verbose`      |          | emit error verbosely
-`-j` | `--json-errors`  |          | emit errors in JSON ([Data Validation Error Format])
+`-j` | `--json-errors`  |          | emit errors in JSON ([Data Validation Report Format])
 `-h` | `--help`         |          | emit usage information
 `-V` | `--version`      |          | emit the version number
 
@@ -172,9 +172,9 @@ Mapping set metadata file in JSON or YAML format for external metadata mode. Is 
 
 ## Validation errors
 
-[Data Validation Error Format]: https://gbv.github.io/validation-error-format/
+[Data Validation Report Format]: https://gbv.github.io/data-validation-report-format/
 
-Validation errors follow the [Data Validation Error Format] in condense form. Each error is an object with three fields:
+Validation errors follow the [Data Validation Report Format] in condense form. Each error is an object with three fields:
 
 - `message` an error message
 - `value` an optional value that caused the error
