@@ -174,7 +174,7 @@ Mapping set metadata file in JSON or YAML format for external metadata mode. Is 
 
 [Data Validation Report Format]: https://gbv.github.io/data-validation-report-format/
 
-Validation errors follow the [Data Validation Report Format] in condense form. Each error is an object with three fields:
+Validation errors follow the [Data Validation Report Format] (DVaRF) in condense form. Each error is an object with three fields:
 
 - `message` an error message
 - `value` an optional value that caused the error
