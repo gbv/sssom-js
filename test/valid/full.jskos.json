@@ -1,0 +1,158 @@
+{
+  "note": {
+    "und": [
+      "hello"
+    ]
+  },
+  "published": "2025-03-04",
+  "created": "2025-01-02",
+  "publisher": [
+    {
+      "url": "http://example.org/mapping_provider"
+    }
+  ],
+  "tool": [
+    {
+      "version": "7.0",
+      "versionOf": [
+        {
+          "uri": "http://example.org/software"
+        }
+      ],
+      "url": "http://example.org/software.html"
+    }
+  ],
+  "guidelines": [
+    {
+      "uri": "http://example.org/guide"
+    },
+    {
+      "prefLabel": {
+        "und": "Just map!"
+      }
+    }
+  ],
+  "license": [
+    {
+      "uri": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "uri": "http://example.org/mapping_set",
+  "version": "1.2.3",
+  "source": [
+    {
+      "uri": "http://example.org/another_set"
+    }
+  ],
+  "prefLabel": {
+    "und": "Test Mapping Set"
+  },
+  "definition": {
+    "und": [
+      "description"
+    ]
+  },
+  "creator": [
+    {
+      "uri": "https://orcid.org/0000-0002-1825-0097"
+    },
+    {
+      "prefLabel": {
+        "und": "Josiah Carberry"
+      }
+    }
+  ],
+  "mappings": [
+    {
+      "type": [
+        "http://www.w3.org/2004/02/skos/core#mappingRelation",
+        "http://example.org/predicate"
+      ],
+      "from": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/a",
+            "prefLabel": {
+              "und": "a"
+            }
+          }
+        ]
+      },
+      "to": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/1",
+            "prefLabel": {
+              "und": "1"
+            }
+          }
+        ]
+      },
+      "note": {
+        "und": [
+          "comment1"
+        ]
+      },
+      "uri": "http://example.org/m1",
+      "justification": "https://w3id.org/semapv/vocab/LexicalMatching",
+      "contributor": [
+        {
+          "prefLabel": {
+            "und": "Alice"
+          }
+        }
+      ],
+      "annotations": [
+        {
+          "type": "Annotation",
+          "motivation": "moderating",
+          "creator": {
+            "name": "X"
+          }
+        }
+      ]
+    },
+    {
+      "type": [
+        "http://www.w3.org/2004/02/skos/core#mappingRelation",
+        "http://example.org/predicate"
+      ],
+      "from": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/b",
+            "prefLabel": {
+              "und": "b"
+            }
+          }
+        ]
+      },
+      "to": {
+        "memberSet": [
+          {
+            "uri": "http://example.org/2",
+            "prefLabel": {
+              "und": "2"
+            }
+          }
+        ]
+      },
+      "note": {
+        "und": [
+          "comment2"
+        ]
+      },
+      "justification": "https://w3id.org/semapv/vocab/LexicalMatching",
+      "contributor": [
+        {
+          "uri": "https://orcid.org/0000-0002-1825-0097"
+        },
+        {
+          "prefLabel": {
+            "und": "Bob"
+          }
+        }
+      ]
+    }
+  ]
+}
