@@ -46,6 +46,11 @@ subject_id	predicate_id	object_id	mapping_justification
 x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
         <p style="text-align:center">
           <input type="button" value="Validate and Transform" onClick="validate()" />
+          <select id="part" name="part" onChange="validate()">
+            <option value="both">metadata and mappings</option>
+            <option value="mappings">mappings only</option>
+            <option value="metadata">metadata only</option>
+          </select>
           to
           <select id="to" name="to" onChange="validate()">
             <option value="json">SSSOM/JSON (JSON-LD)</option>
@@ -58,8 +63,6 @@ x:1	skos:exactMatch	x:2	semapv:ManualMappingCuration</textarea>
           <label for="language">language code</label>
           <input type="text" id="language" maxLength="3" size="3" style="width:2em;" onChange="validate()" />
           and
-          <input type="checkbox" id="mappingsOnly" onChange="validate()" />
-          <label for="mappingsOnly" style="font-weight: normal">mappings only</label>
           <input type="checkbox" id="propagate" onChange="validate()" />
           <label for="propagate">propagate slots</label>
         </p>

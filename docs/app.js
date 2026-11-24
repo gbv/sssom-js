@@ -36,10 +36,11 @@ function validate () {
   const input = cmInput.getValue()
   const editor = $("sssom-input").nextSibling
   const resultFormat = $("to").value
+  const part = $("part").value
   const options = {
     from: $("from").value,
     to: ["jskos","ndjskos"].includes(resultFormat) ? "jskos" : "json",
-    mappings: $("mappingsOnly").checked,
+    mappings: part === "mappings",
     liberal: $("liberal").checked,
     propagate: $("propagate").checked,
     language: $("language").value.toLowerCase(),
@@ -66,20 +67,28 @@ function validate () {
     $("status").textContent = "Input is valid"
     $("status").classList.replace("invalid","valid")
 
+    if (part === "mappings") {
+      result = { mappings: result.mappings }
+    }
+    if (part === "metadata") {
+      delete result.mappings
+    }
+
     if (resultFormat === "ndjson" || resultFormat === "ndjskos") {
       const { mappings, ...metadata } = result
-      const lines = options.mappings ? mappings : [ metadata, ...mappings ]
+      const lines = [ metadata, ...(mappings || []) ].filter(Boolean)
       cmResult.setOption("mode", "javascript")
       cmResult.setValue(lines.map(JSON.stringify).join("\n"))
-    } else if (resultFormat === "nq") {
-      cmResult.setValue(result.mappings.map(({subject_id, predicate_id, object_id}) => {
+    } else if (resultFormat === "nq") { 
+      const lines = result.mappings?.map(({subject_id, predicate_id, object_id}) => {
         const statement = [subject_id, predicate_id, object_id]
         if (result.mapping_set_id) {
           statement.push(result.mapping_set_id)
         }
         // We only support URI, so no escaping is required
         return statement.map(uri => `<${uri}>`).join(" ") + " . \n"
-      }).join(""))
+      }) || []
+      cmResult.setValue(lines.join(""))
       cmResult.setOption("mode", "turtle")
     } else if (resultFormat === "nt" || resultFormat === "ttl") {
       result["@context"] = window.rdfContext
