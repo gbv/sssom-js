@@ -259,14 +259,14 @@ SSSOM slot | JSKOS field
 -----------|------------
 [mapping_date] | `created`
 [mapping_provider] |`publisher[].url`
-[mapping_tool] | `tool[].url`\* (0.7.0)
-[mapping_tool_id] | `tool[].uri`\* (0.7.0)
-[mapping_tool_version] | `tool[].version`\* (0.7.0)
-[object_source] | `to.memberSet[].inScheme[].uri`
-[object_source_version] | `to.memberSet[].inScheme[].version` (0.7.0)
+[mapping_tool] | `tool[].url`\* 
+[mapping_tool_id] | `tool[].uri`\*
+[mapping_tool_version] | `tool[].version`\*
+[object_source] | `to.memberSet[].inScheme[].uri` and `toScheme[].uri`
+[object_source_version] | `to.memberSet[].inScheme[].version`
 [object_type] | `from.memberSet[].type` (URI, limited list)
-[subject_source] | `from.memberSet[].inScheme`
-[subject_source_version] | `from.memberSet[].inScheme[].version` (0.7.0)
+[subject_source] | `from.memberSet[].inScheme` and `fromScheme[].uri`
+[subject_source_version] | `from.memberSet[].inScheme[].version`
 [subject_type] | `from.memberSet[].type` (URI, limited list)
 [predicate_type] | -
 [object_match_field] | - (see [this discussion](https://github.com/gbv/jskos/issues/152))
@@ -285,11 +285,13 @@ SSSOM slot | JSKOS field
 [license] | `license.uri`
 [mappings] | `mappings` (of a registry or concordance)
 [mapping_set_id] | `uri`
-[mapping_set_version] | `version` (0.7.0)
+[mapping_set_version] | `version`
 [mapping_set_source] | `source`
 [mapping_set_title] | `prefLabel.und`
 [mapping_set_description] | `definition`
-[issue_tracker] | `issueTracker` (0.7.0)
+[issue_tracker] | `issueTracker`
+[subject_source] | `fromScheme[].uri`
+[object_source] | `toScheme[].uri`
 [predicate_label] | -
 [extension_definitions] | -
 
@@ -306,16 +308,16 @@ mapping_id | uri
 [object_id] | `to.memberSet[].uri`
 [object_label] | `to.memberSet[].prefLabel`
 [object_category] | -
-[mapping_justification] | `justification` (0.7.0)
+[mapping_justification] | `justification`
 [author_id] | `creator[].uri`
 [author_label] | `creator[].prefLabel`
 [reviewer_id] | `annotations[].creator.id`
 [reviewer_label] | `annotations[].creator.name`
 [mapping_source] | `source`
 [confidence] | `mappingRelevance`
-[curation_rule] | `guidelines` (0.7.0)
-[curation_rule_text] | `guidelines[].prefLabel` (0.7.0)
-[issue_tracker_item] | `issue` (0.7.0)
+[curation_rule] | `guidelines`
+[curation_rule_text] | `guidelines[].prefLabel`
+[issue_tracker_item] | `issue`
 [license] | - (only for mapping sets)
 [predicate_modifier] | -
 [mapping_cardinality] | -
