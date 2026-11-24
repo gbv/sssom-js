@@ -143,11 +143,12 @@ Enables [propagation of mapping set slots](https://mapping-commons.github.io/sss
 
 ### liberal
 
-Enabling liberal parsing will
+Enabling liberal parsing will (against the official SSSOM specification):
 
 - allow empty mappings block in SSSOM/TSV (but still read and validate the metadata block)
 - not require mapping set slots (neither `mapping_set_id` nor `license`) so the metadata block can be empty
 - not require mapping slot `mapping_justification`
+- allow absolute http- and https-URLs in place of entity references
 
 ### curie
 
