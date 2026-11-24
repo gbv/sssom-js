@@ -222,7 +222,7 @@ The following slots are not included because semantics are not clear (yet) or be
 
 - [other]
 - [mapping_tool], [mapping_tool_id] and [mapping_tool_version]
-- [subject_label], [subject_source], [subject_source_version], [subject_type], [object_source], [object_source_version], [object_type], [predicate_label]
+- [subject_label], [subject_source_version], [subject_type], [object_source_version], [object_type], [predicate_label]
 - [predicate_type], [object_category]
 - [object_match_field], [object_preprocessing], [subject_match_field], [subject_preprocessing], [similarity_measure], [match_string], [similarity_score] - see [this discussion](https://github.com/gbv/jskos/issues/152)
 - [extension_definitions]
