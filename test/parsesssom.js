@@ -69,4 +69,10 @@ describe("parseSSSOM", () => {
   it(`should emit error for ${file}`, async () =>
     expect(parseSSSOM("", { metadata: `test/invalid/${file}` })).to.eventually.be.rejectedWith(error))
 
+  it("removes trailing commas in liberal SSSOM/CSV", async () => {
+    const file = "test/invalid/liberal.sssom.csv"
+    const result = await parseSSSOM(file, { liberal: true })
+    expect(result?.mappings?.length).to.equal(1)
+  })
+
 })

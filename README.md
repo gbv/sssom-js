@@ -149,6 +149,7 @@ Enabling liberal parsing will (against the official SSSOM specification):
 - not require mapping set slots (neither `mapping_set_id` nor `license`) so the metadata block can be empty
 - not require mapping slot `mapping_justification`
 - allow absolute http- and https-URLs in place of entity references
+- cleanup two or more trailing delimiters in header lines (two or trailing more commas in SSSOM/CSV)
 
 ### curie
 
